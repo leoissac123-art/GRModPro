@@ -1,1 +1,219 @@
 Create GRModPro website
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GRModPro</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #101318;
+  color: white;
+}
+
+header {
+  text-align: center;
+  padding: 30px 15px;
+  background: #171c23;
+}
+
+h1 {
+  font-size: 36px;
+  margin: 0;
+}
+
+header p {
+  color: #aeb7c4;
+}
+
+.search {
+  padding: 20px;
+  text-align: center;
+}
+
+input {
+  width: 90%;
+  max-width: 600px;
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid #444;
+  background: #1b2129;
+  color: white;
+  font-size: 16px;
+}
+
+.categories {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 10px 15px 20px;
+}
+
+button {
+  padding: 11px 15px;
+  border: none;
+  border-radius: 10px;
+  background: #29313c;
+  color: white;
+  white-space: nowrap;
+}
+
+button:hover {
+  background: #414c5b;
+}
+
+main {
+  max-width: 1100px;
+  margin: auto;
+  padding: 10px 15px 40px;
+}
+
+h2 {
+  margin-top: 10px;
+}
+
+.mods {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.mod {
+  background: #191f27;
+  border: 1px solid #303944;
+  border-radius: 15px;
+  padding: 18px;
+}
+
+.mod h3 {
+  margin-top: 0;
+}
+
+.mod p {
+  color: #aeb7c4;
+  line-height: 1.5;
+}
+
+.tag {
+  display: inline-block;
+  background: #29313c;
+  padding: 5px 8px;
+  border-radius: 7px;
+  margin: 3px;
+  font-size: 12px;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  color: #777;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🌎 GRModPro</h1>
+  <p>Find your next Minecraft mod</p>
+</header>
+
+<div class="search">
+  <input
+    id="search"
+    type="text"
+    placeholder="🔎 Search mods..."
+    oninput="searchMods()"
+  >
+</div>
+
+<div class="categories">
+  <button onclick="showAll()">All</button>
+  <button onclick="filterMods('Bedrock')">🎮 Bedrock</button>
+  <button onclick="filterMods('Java')">💻 Java</button>
+  <button onclick="filterMods('Shaders')">✨ Shaders</button>
+  <button onclick="filterMods('Horror')">👻 Horror</button>
+  <button onclick="filterMods('Realistic')">🌎 Realistic</button>
+  <button onclick="filterMods('Mobs')">🐉 Mobs</button>
+</div>
+
+<main>
+
+<h2>🔥 Popular Mods</h2>
+
+<div class="mods" id="mods">
+
+  <div class="mod" data-tags="Bedrock Shaders">
+    <h3>✨ Realistic Visuals</h3>
+    <p>Realistic-looking Minecraft visuals and atmosphere.</p>
+    <span class="tag">Bedrock</span>
+    <span class="tag">Shaders</span>
+  </div>
+
+  <div class="mod" data-tags="Bedrock Horror">
+    <h3>👻 Horror Survival</h3>
+    <p>Bring a creepy atmosphere to your Minecraft survival world.</p>
+    <span class="tag">Bedrock</span>
+    <span class="tag">Horror</span>
+  </div>
+
+  <div class="mod" data-tags="Bedrock Realistic">
+    <h3>🌎 Realistic Survival</h3>
+    <p>Realistic survival mechanics and environmental features.</p>
+    <span class="tag">Bedrock</span>
+    <span class="tag">Realistic</span>
+  </div>
+
+  <div class="mod" data-tags="Java Mobs">
+    <h3>🐉 New Mobs</h3>
+    <p>Discover new creatures for your Minecraft adventures.</p>
+    <span class="tag">Java</span>
+    <span class="tag">Mobs</span>
+  </div>
+
+</div>
+
+</main>
+
+<footer>
+  GRModPro © 2026
+</footer>
+
+<script>
+
+function searchMods() {
+  let search = document
+    .getElementById("search")
+    .value
+    .toLowerCase();
+
+  document.querySelectorAll(".mod").forEach(mod => {
+    mod.style.display =
+      mod.innerText.toLowerCase().includes(search)
+      ? "block"
+      : "none";
+  });
+}
+
+function filterMods(category) {
+  document.querySelectorAll(".mod").forEach(mod => {
+    mod.style.display =
+      mod.dataset.tags.includes(category)
+      ? "block"
+      : "none";
+  });
+}
+
+function showAll() {
+  document.querySelectorAll(".mod").forEach(mod => {
+    mod.style.display = "block";
+  });
+}
+
+</script>
+
+</body>
+</html>
