@@ -59,6 +59,7 @@ button {
   background: #29313c;
   color: white;
   white-space: nowrap;
+  cursor: pointer;
 }
 
 button:hover {
@@ -86,6 +87,13 @@ h2 {
   border: 1px solid #303944;
   border-radius: 15px;
   padding: 18px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.mod:hover {
+  transform: translateY(-3px);
+  border-color: #5865f2;
 }
 
 .mod h3 {
@@ -144,30 +152,38 @@ footer {
 
 <h2>🔥 Popular Mods</h2>
 
-<div class="mods" id="mods">
+<div class="mods">
 
-  <div class="mod" data-tags="Bedrock Shaders">
+  <div class="mod"
+       data-tags="Bedrock Shaders"
+       onclick="openMod('Realistic Visuals')">
     <h3>✨ Realistic Visuals</h3>
     <p>Realistic-looking Minecraft visuals and atmosphere.</p>
     <span class="tag">Bedrock</span>
     <span class="tag">Shaders</span>
   </div>
 
-  <div class="mod" data-tags="Bedrock Horror">
+  <div class="mod"
+       data-tags="Bedrock Horror"
+       onclick="openMod('Horror Survival')">
     <h3>👻 Horror Survival</h3>
     <p>Bring a creepy atmosphere to your Minecraft survival world.</p>
     <span class="tag">Bedrock</span>
     <span class="tag">Horror</span>
   </div>
 
-  <div class="mod" data-tags="Bedrock Realistic">
+  <div class="mod"
+       data-tags="Bedrock Realistic"
+       onclick="openMod('Realistic Survival')">
     <h3>🌎 Realistic Survival</h3>
     <p>Realistic survival mechanics and environmental features.</p>
     <span class="tag">Bedrock</span>
     <span class="tag">Realistic</span>
   </div>
 
-  <div class="mod" data-tags="Java Mobs">
+  <div class="mod"
+       data-tags="Java Mobs"
+       onclick="openMod('New Mobs')">
     <h3>🐉 New Mobs</h3>
     <p>Discover new creatures for your Minecraft adventures.</p>
     <span class="tag">Java</span>
@@ -213,34 +229,11 @@ function showAll() {
   });
 }
 
+function openMod(modName) {
+  alert("You selected: " + modName);
+}
+
 </script>
 
 </body>
-</html
-<a href="#mods" class="mods-button">Mods</a>
-
-<section id="mods">
-  <h2>Mods</h2>
-  <p>Browse Minecraft mods and add-ons.</p>
-</section>
-
-<style>
-  .mods-button {
-    display: inline-block;
-    padding: 12px 24px;
-    background: #5865f2;
-    color: white;
-    text-decoration: none;
-    border-radius: 10px;
-    font-weight: bold;
-  }
-
-  .mods-button:hover {
-    background: #4752c4;
-  }
-
-  #mods {
-    margin-top: 40px;
-  }
-</style>
-<body>
+</html><body>
