@@ -4,7 +4,6 @@ Grpmodpro boom
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>GRModPro</title>
 
 <style>
@@ -22,8 +21,8 @@ header {
 }
 
 h1 {
-  font-size: 38px;
   margin: 0;
+  font-size: 38px;
 }
 
 header p {
@@ -72,10 +71,6 @@ main {
   padding: 10px 15px 40px;
 }
 
-h2 {
-  margin-top: 10px;
-}
-
 .mods {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -116,7 +111,7 @@ h2 {
 
 #modPage {
   display: none;
-  max-width: 900px;
+  max-width: 800px;
   margin: 30px auto;
   padding: 25px;
   background: #191f27;
@@ -140,10 +135,6 @@ h2 {
   font-weight: bold;
 }
 
-.back {
-  margin-top: 15px;
-}
-
 footer {
   text-align: center;
   padding: 25px;
@@ -156,14 +147,14 @@ footer {
 
 <header>
   <h1>🌎 GRModPro</h1>
-  <p>Your Minecraft mod website</p>
+  <p>Your Minecraft Mod Website</p>
 </header>
 
 <div class="search">
   <input
     id="search"
     type="text"
-    placeholder="🔎 Search mods..."
+    placeholder="🔎 Search GRModPro mods..."
     oninput="searchMods()"
   >
 </div>
@@ -184,176 +175,161 @@ footer {
 
 <div class="mods">
 
-  <div class="mod"
-       data-tags="Bedrock Shaders"
-       onclick="openMod('visuals')">
-    <h3>✨ GRModPro Visuals</h3>
-    <p>Beautiful visuals and atmosphere for Minecraft.</p>
-    <span class="tag">Bedrock</span>
-    <span class="tag">Shaders</span>
-  </div>
-
-  <div class="mod"
-       data-tags="Bedrock Horror"
-       onclick="openMod('horror')">
-    <h3>👻 GRModPro Horror</h3>
-    <p>A creepy survival experience created for GRModPro.</p>
-    <span class="tag">Bedrock</span>
-    <span class="tag">Horror</span>
-  </div>
-
-  <div class="mod"
-       data-tags="Bedrock Realistic"
-       onclick="openMod('survival')">
-    <h3>🌎 GRModPro Survival</h3>
-    <p>More realistic survival mechanics and environments.</p>
-    <span class="tag">Bedrock</span>
-    <span class="tag">Realistic</span>
-  </div>
-
-  <div class="mod"
-       data-tags="Java Mobs"
-       onclick="openMod('mobs')">
-    <h3>🐉 GRModPro Mobs</h3>
-    <p>New creatures and adventures made for GRModPro.</p>
-    <span class="tag">Java</span>
-    <span class="tag">Mobs</span>
-  </div>
-
+<div class="mod"
+data-tags="Bedrock Horror"
+onclick="openMod('horror')">
+<h3>👻 GRModPro Horror</h3>
+<p>A creepy Minecraft survival experience.</p>
+<span class="tag">Bedrock</span>
+<span class="tag">Horror</span>
 </div>
 
+<div class="mod"
+data-tags="Bedrock Realistic"
+onclick="openMod('survival')">
+<h3>🌎 GRModPro Survival</h3>
+<p>A realistic survival experience.</p>
+<span class="tag">Bedrock</span>
+<span class="tag">Realistic</span>
+</div>
+
+<div class="mod"
+data-tags="Bedrock Shaders"
+onclick="openMod('visuals')">
+<h3>✨ GRModPro Visuals</h3>
+<p>Improved Minecraft visuals and atmosphere.</p>
+<span class="tag">Bedrock</span>
+<span class="tag">Shaders</span>
+</div>
+
+<div class="mod"
+data-tags="Java Mobs"
+onclick="openMod('mobs')">
+<h3>🐉 GRModPro Mobs</h3>
+<p>New creatures and adventures.</p>
+<span class="tag">Java</span>
+<span class="tag">Mobs</span>
+</div>
+
+</div>
 </main>
 
 <section id="modPage">
 
-  <button class="back" onclick="goHome()">← Back to Mods</button>
+<button onclick="goHome()">← Back to Mods</button>
 
-  <h2 id="modTitle"></h2>
+<h2 id="modTitle"></h2>
 
-  <p id="modDescription"></p>
+<p id="modDescription"></p>
 
-  <p><strong>Created for GRModPro 🎮</strong></p>
+<p><strong>GRModPro Original Project 🎮</strong></p>
 
-  <a
-    id="downloadButton"
-    class="download"
-    href="#"
-    onclick="downloadMod(event)"
-  >
-    ⬇️ Download Mod
-  </a>
+<a class="download" href="#" onclick="downloadMod(event)">
+⬇️ Download
+</a>
 
 </section>
 
 <footer>
-  GRModPro © 2026
+GRModPro © 2026
 </footer>
 
 <script>
 
 const mods = {
 
-  visuals: {
-    title: "✨ GRModPro Visuals",
-    description:
-      "A GRModPro visual project designed to improve the look and atmosphere of Minecraft.",
-    download: "#"
-  },
+horror: {
+title: "👻 GRModPro Horror",
+description: "A creepy survival experience created for the GRModPro website."
+},
 
-  horror: {
-    title: "👻 GRModPro Horror",
-    description:
-      "A GRModPro horror project designed to create a creepy survival experience.",
-    download: "#"
-  },
+survival: {
+title: "🌎 GRModPro Survival",
+description: "A realistic survival project created for GRModPro."
+},
 
-  survival: {
-    title: "🌎 GRModPro Survival",
-    description:
-      "A GRModPro survival project focused on realistic environmental and survival features.",
-    download: "#"
-  },
+visuals: {
+title: "✨ GRModPro Visuals",
+description: "A visual enhancement project created for GRModPro."
+},
 
-  mobs: {
-    title: "🐉 GRModPro Mobs",
-    description:
-      "A GRModPro project featuring new creatures and adventures.",
-    download: "#"
-  }
+mobs: {
+title: "🐉 GRModPro Mobs",
+description: "A new-mobs project created for GRModPro."
+}
 
 };
 
 function openMod(id) {
 
-  const mod = mods[id];
+let mod = mods[id];
 
-  document.getElementById("home").style.display = "none";
-  document.querySelector(".search").style.display = "none";
-  document.querySelector(".categories").style.display = "none";
+document.getElementById("home").style.display = "none";
+document.querySelector(".search").style.display = "none";
+document.querySelector(".categories").style.display = "none";
 
-  document.getElementById("modPage").style.display = "block";
+document.getElementById("modPage").style.display = "block";
 
-  document.getElementById("modTitle").innerText = mod.title;
-  document.getElementById("modDescription").innerText = mod.description;
+document.getElementById("modTitle").innerText = mod.title;
+document.getElementById("modDescription").innerText = mod.description;
 
-  document.getElementById("downloadButton").dataset.mod = id;
 }
 
 function goHome() {
 
-  document.getElementById("modPage").style.display = "none";
-  document.getElementById("home").style.display = "block";
-  document.querySelector(".search").style.display = "block";
-  document.querySelector(".categories").style.display = "flex";
+document.getElementById("modPage").style.display = "none";
+document.getElementById("home").style.display = "block";
+document.querySelector(".search").style.display = "block";
+document.querySelector(".categories").style.display = "flex";
 
 }
 
 function downloadMod(event) {
 
-  event.preventDefault();
+event.preventDefault();
 
-  alert(
-    "The GRModPro mod file will be added here when the mod is uploaded."
-  );
+alert("The GRModPro mod file will be added here.");
 
 }
 
 function searchMods() {
 
-  let search = document
-    .getElementById("search")
-    .value
-    .toLowerCase();
+let search = document
+.getElementById("search")
+.value
+.toLowerCase();
 
-  document.querySelectorAll(".mod").forEach(mod => {
+document.querySelectorAll(".mod").forEach(mod => {
 
-    mod.style.display =
-      mod.innerText.toLowerCase().includes(search)
-      ? "block"
-      : "none";
+mod.style.display =
+mod.innerText.toLowerCase().includes(search)
+? "block"
+: "none";
 
-  });
+});
 
 }
 
 function filterMods(category) {
 
-  document.querySelectorAll(".mod").forEach(mod => {
+document.querySelectorAll(".mod").forEach(mod => {
 
-    mod.style.display =
-      mod.dataset.tags.includes(category)
-      ? "block"
-      : "none";
+mod.style.display =
+mod.dataset.tags.includes(category)
+? "block"
+: "none";
 
-  });
+});
 
 }
 
 function showAll() {
 
-  document.querySelectorAll(".mod").forEach(mod => {
-    mod.style.display = "block";
-  });
+document.querySelectorAll(".mod").forEach(mod => {
+
+mod.style.display = "block";
+
+});
 
 }
 
