@@ -1,9 +1,10 @@
-Create GRModPro website
+Grpmodpro boom
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>GRModPro</title>
 
 <style>
@@ -16,12 +17,12 @@ body {
 
 header {
   text-align: center;
-  padding: 30px 15px;
+  padding: 35px 15px;
   background: #171c23;
 }
 
 h1 {
-  font-size: 36px;
+  font-size: 38px;
   margin: 0;
 }
 
@@ -58,7 +59,6 @@ button {
   border-radius: 10px;
   background: #29313c;
   color: white;
-  white-space: nowrap;
   cursor: pointer;
 }
 
@@ -92,7 +92,7 @@ h2 {
 }
 
 .mod:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
   border-color: #5865f2;
 }
 
@@ -114,6 +114,36 @@ h2 {
   font-size: 12px;
 }
 
+#modPage {
+  display: none;
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 25px;
+  background: #191f27;
+  border: 1px solid #303944;
+  border-radius: 15px;
+}
+
+#modPage p {
+  color: #aeb7c4;
+  line-height: 1.6;
+}
+
+.download {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 13px 20px;
+  background: #5865f2;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.back {
+  margin-top: 15px;
+}
+
 footer {
   text-align: center;
   padding: 25px;
@@ -126,7 +156,7 @@ footer {
 
 <header>
   <h1>🌎 GRModPro</h1>
-  <p>Find your next Minecraft mod</p>
+  <p>Your Minecraft mod website</p>
 </header>
 
 <div class="search">
@@ -148,44 +178,44 @@ footer {
   <button onclick="filterMods('Mobs')">🐉 Mobs</button>
 </div>
 
-<main>
+<main id="home">
 
-<h2>🔥 Popular Mods</h2>
+<h2>🔥 GRModPro Mods</h2>
 
 <div class="mods">
 
   <div class="mod"
        data-tags="Bedrock Shaders"
-       onclick="openMod('Realistic Visuals')">
-    <h3>✨ Realistic Visuals</h3>
-    <p>Realistic-looking Minecraft visuals and atmosphere.</p>
+       onclick="openMod('visuals')">
+    <h3>✨ GRModPro Visuals</h3>
+    <p>Beautiful visuals and atmosphere for Minecraft.</p>
     <span class="tag">Bedrock</span>
     <span class="tag">Shaders</span>
   </div>
 
   <div class="mod"
        data-tags="Bedrock Horror"
-       onclick="openMod('Horror Survival')">
-    <h3>👻 Horror Survival</h3>
-    <p>Bring a creepy atmosphere to your Minecraft survival world.</p>
+       onclick="openMod('horror')">
+    <h3>👻 GRModPro Horror</h3>
+    <p>A creepy survival experience created for GRModPro.</p>
     <span class="tag">Bedrock</span>
     <span class="tag">Horror</span>
   </div>
 
   <div class="mod"
        data-tags="Bedrock Realistic"
-       onclick="openMod('Realistic Survival')">
-    <h3>🌎 Realistic Survival</h3>
-    <p>Realistic survival mechanics and environmental features.</p>
+       onclick="openMod('survival')">
+    <h3>🌎 GRModPro Survival</h3>
+    <p>More realistic survival mechanics and environments.</p>
     <span class="tag">Bedrock</span>
     <span class="tag">Realistic</span>
   </div>
 
   <div class="mod"
        data-tags="Java Mobs"
-       onclick="openMod('New Mobs')">
-    <h3>🐉 New Mobs</h3>
-    <p>Discover new creatures for your Minecraft adventures.</p>
+       onclick="openMod('mobs')">
+    <h3>🐉 GRModPro Mobs</h3>
+    <p>New creatures and adventures made for GRModPro.</p>
     <span class="tag">Java</span>
     <span class="tag">Mobs</span>
   </div>
@@ -194,70 +224,136 @@ footer {
 
 </main>
 
+<section id="modPage">
+
+  <button class="back" onclick="goHome()">← Back to Mods</button>
+
+  <h2 id="modTitle"></h2>
+
+  <p id="modDescription"></p>
+
+  <p><strong>Created for GRModPro 🎮</strong></p>
+
+  <a
+    id="downloadButton"
+    class="download"
+    href="#"
+    onclick="downloadMod(event)"
+  >
+    ⬇️ Download Mod
+  </a>
+
+</section>
+
 <footer>
   GRModPro © 2026
 </footer>
 
 <script>
 
+const mods = {
+
+  visuals: {
+    title: "✨ GRModPro Visuals",
+    description:
+      "A GRModPro visual project designed to improve the look and atmosphere of Minecraft.",
+    download: "#"
+  },
+
+  horror: {
+    title: "👻 GRModPro Horror",
+    description:
+      "A GRModPro horror project designed to create a creepy survival experience.",
+    download: "#"
+  },
+
+  survival: {
+    title: "🌎 GRModPro Survival",
+    description:
+      "A GRModPro survival project focused on realistic environmental and survival features.",
+    download: "#"
+  },
+
+  mobs: {
+    title: "🐉 GRModPro Mobs",
+    description:
+      "A GRModPro project featuring new creatures and adventures.",
+    download: "#"
+  }
+
+};
+
+function openMod(id) {
+
+  const mod = mods[id];
+
+  document.getElementById("home").style.display = "none";
+  document.querySelector(".search").style.display = "none";
+  document.querySelector(".categories").style.display = "none";
+
+  document.getElementById("modPage").style.display = "block";
+
+  document.getElementById("modTitle").innerText = mod.title;
+  document.getElementById("modDescription").innerText = mod.description;
+
+  document.getElementById("downloadButton").dataset.mod = id;
+}
+
+function goHome() {
+
+  document.getElementById("modPage").style.display = "none";
+  document.getElementById("home").style.display = "block";
+  document.querySelector(".search").style.display = "block";
+  document.querySelector(".categories").style.display = "flex";
+
+}
+
+function downloadMod(event) {
+
+  event.preventDefault();
+
+  alert(
+    "The GRModPro mod file will be added here when the mod is uploaded."
+  );
+
+}
+
 function searchMods() {
+
   let search = document
     .getElementById("search")
     .value
     .toLowerCase();
 
   document.querySelectorAll(".mod").forEach(mod => {
+
     mod.style.display =
       mod.innerText.toLowerCase().includes(search)
       ? "block"
       : "none";
+
   });
+
 }
 
 function filterMods(category) {
+
   document.querySelectorAll(".mod").forEach(mod => {
+
     mod.style.display =
       mod.dataset.tags.includes(category)
       ? "block"
       : "none";
+
   });
+
 }
 
 function showAll() {
+
   document.querySelectorAll(".mod").forEach(mod => {
     mod.style.display = "block";
   });
-}
-
-function openMod(modName) {
-
-  if (modName === "Realistic Visuals") {
-    window.open(
-      "https://www.curseforge.com/minecraft-bedrock/addons/",
-      "_blank"
-    );
-  }
-
-  if (modName === "Horror Survival") {
-    window.open(
-      "https://www.curseforge.com/minecraft-bedrock/addons/",
-      "_blank"
-    );
-  }
-
-  if (modName === "Realistic Survival") {
-    window.open(
-      "https://www.curseforge.com/minecraft-bedrock/addons/",
-      "_blank"
-    );
-  }
-
-  if (modName === "New Mobs") {
-    window.open(
-      "https://www.curseforge.com/minecraft-bedrock/addons/",
-      "_blank"
-    );
-  }
 
 }
 
