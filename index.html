@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
 <title>GRModPro</title>
 
 <style>
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -13,20 +25,25 @@ body {
   color: white;
 }
 
+/* HEADER */
+
 header {
   text-align: center;
-  padding: 35px 15px;
+  padding: 40px 15px;
   background: #171c23;
+  border-bottom: 1px solid #303944;
 }
 
-h1 {
-  margin: 0;
-  font-size: 38px;
+.logo {
+  font-size: 42px;
+  font-weight: bold;
 }
 
 header p {
   color: #aeb7c4;
 }
+
+/* SEARCH */
 
 .search {
   padding: 20px;
@@ -35,63 +52,84 @@ header p {
 
 input {
   width: 90%;
-  max-width: 600px;
-  padding: 15px;
+  max-width: 650px;
+  padding: 16px;
   border-radius: 12px;
   border: 1px solid #444;
   background: #1b2129;
   color: white;
   font-size: 16px;
+  outline: none;
 }
+
+input:focus {
+  border-color: #5865f2;
+}
+
+/* CATEGORIES */
 
 .categories {
   display: flex;
   gap: 8px;
   overflow-x: auto;
   padding: 10px 15px 20px;
+  justify-content: center;
 }
 
 button {
-  padding: 11px 15px;
+  padding: 11px 16px;
   border: none;
   border-radius: 10px;
   background: #29313c;
   color: white;
   cursor: pointer;
+  font-size: 14px;
 }
 
 button:hover {
-  background: #414c5b;
+  background: #5865f2;
 }
+
+/* MAIN */
 
 main {
   max-width: 1100px;
   margin: auto;
-  padding: 10px 15px 40px;
+  padding: 10px 15px 50px;
 }
+
+h2 {
+  margin-top: 20px;
+}
+
+/* MOD GRID */
 
 .mods {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 15px;
+  grid-template-columns:
+    repeat(auto-fit, minmax(250px, 1fr));
+  gap: 18px;
 }
+
+/* MOD CARD */
 
 .mod {
   background: #191f27;
   border: 1px solid #303944;
   border-radius: 15px;
-  padding: 18px;
+  padding: 20px;
   cursor: pointer;
   transition: 0.2s;
 }
 
 .mod:hover {
-  transform: translateY(-4px);
+  transform: translateY(-5px);
   border-color: #5865f2;
 }
 
 .mod h3 {
   margin-top: 0;
+  font-size: 21px;
 }
 
 .mod p {
@@ -99,14 +137,18 @@ main {
   line-height: 1.5;
 }
 
+/* TAGS */
+
 .tag {
   display: inline-block;
   background: #29313c;
-  padding: 5px 8px;
+  padding: 5px 9px;
   border-radius: 7px;
   margin: 3px;
   font-size: 12px;
 }
+
+/* MOD PAGE */
 
 #modPage {
   display: none;
@@ -120,219 +162,477 @@ main {
 
 #modPage p {
   color: #aeb7c4;
-  line-height: 1.6;
+  line-height: 1.7;
 }
+
+/* DOWNLOAD BUTTON */
 
 .download {
   display: inline-block;
   margin-top: 15px;
-  padding: 13px 20px;
+  padding: 14px 22px;
   background: #5865f2;
   color: white;
   text-decoration: none;
   border-radius: 10px;
   font-weight: bold;
+  cursor: pointer;
 }
+
+.download:hover {
+  background: #4752c4;
+}
+
+/* FOOTER */
 
 footer {
   text-align: center;
-  padding: 25px;
+  padding: 30px;
   color: #777;
+  border-top: 1px solid #303944;
 }
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+  .logo {
+    font-size: 34px;
+  }
+
+  .categories {
+    justify-content: flex-start;
+  }
+
+}
+
 </style>
+
 </head>
 
 <body>
 
+<!-- HEADER -->
+
 <header>
-  <h1>🌎 GRModPro</h1>
-  <p>Your Minecraft Mod Website</p>
+
+  <div class="logo">
+    🌎 GRModPro
+  </div>
+
+  <p>
+    Your Minecraft Mod Website
+  </p>
+
 </header>
 
+
+<!-- SEARCH -->
+
 <div class="search">
+
   <input
     id="search"
     type="text"
     placeholder="🔎 Search GRModPro mods..."
     oninput="searchMods()"
   >
+
 </div>
 
+
+<!-- CATEGORIES -->
+
 <div class="categories">
-  <button onclick="showAll()">All</button>
-  <button onclick="filterMods('Bedrock')">🎮 Bedrock</button>
-  <button onclick="filterMods('Java')">💻 Java</button>
-  <button onclick="filterMods('Shaders')">✨ Shaders</button>
-  <button onclick="filterMods('Horror')">👻 Horror</button>
-  <button onclick="filterMods('Realistic')">🌎 Realistic</button>
-  <button onclick="filterMods('Mobs')">🐉 Mobs</button>
+
+  <button onclick="showAll()">
+    All
+  </button>
+
+  <button onclick="filterMods('Bedrock')">
+    🎮 Bedrock
+  </button>
+
+  <button onclick="filterMods('Java')">
+    💻 Java
+  </button>
+
+  <button onclick="filterMods('Shaders')">
+    ✨ Shaders
+  </button>
+
+  <button onclick="filterMods('Horror')">
+    👻 Horror
+  </button>
+
+  <button onclick="filterMods('Realistic')">
+    🌎 Realistic
+  </button>
+
+  <button onclick="filterMods('Mobs')">
+    🐉 Mobs
+  </button>
+
 </div>
+
+
+<!-- HOME -->
 
 <main id="home">
 
-<h2>🔥 GRModPro Mods</h2>
+  <h2>
+    🔥 GRModPro Mods
+  </h2>
 
-<div class="mods">
+  <div class="mods">
 
-<div class="mod"
-data-tags="Bedrock Horror"
-onclick="openMod('horror')">
-<h3>👻 GRModPro Horror</h3>
-<p>A creepy Minecraft survival experience.</p>
-<span class="tag">Bedrock</span>
-<span class="tag">Horror</span>
-</div>
 
-<div class="mod"
-data-tags="Bedrock Realistic"
-onclick="openMod('survival')">
-<h3>🌎 GRModPro Survival</h3>
-<p>A realistic survival experience.</p>
-<span class="tag">Bedrock</span>
-<span class="tag">Realistic</span>
-</div>
+    <!-- HORROR -->
 
-<div class="mod"
-data-tags="Bedrock Shaders"
-onclick="openMod('visuals')">
-<h3>✨ GRModPro Visuals</h3>
-<p>Improved Minecraft visuals and atmosphere.</p>
-<span class="tag">Bedrock</span>
-<span class="tag">Shaders</span>
-</div>
+    <div
+      class="mod"
+      data-tags="Bedrock Horror"
+      onclick="openMod('horror')"
+    >
 
-<div class="mod"
-data-tags="Java Mobs"
-onclick="openMod('mobs')">
-<h3>🐉 GRModPro Mobs</h3>
-<p>New creatures and adventures.</p>
-<span class="tag">Java</span>
-<span class="tag">Mobs</span>
-</div>
+      <h3>
+        👻 GRModPro Horror
+      </h3>
 
-</div>
+      <p>
+        A creepy Minecraft survival experience.
+      </p>
+
+      <span class="tag">
+        Bedrock
+      </span>
+
+      <span class="tag">
+        Horror
+      </span>
+
+    </div>
+
+
+    <!-- SURVIVAL -->
+
+    <div
+      class="mod"
+      data-tags="Bedrock Realistic"
+      onclick="openMod('survival')"
+    >
+
+      <h3>
+        🌎 GRModPro Survival
+      </h3>
+
+      <p>
+        A realistic Minecraft survival experience.
+      </p>
+
+      <span class="tag">
+        Bedrock
+      </span>
+
+      <span class="tag">
+        Realistic
+      </span>
+
+    </div>
+
+
+    <!-- VISUALS -->
+
+    <div
+      class="mod"
+      data-tags="Bedrock Shaders"
+      onclick="openMod('visuals')"
+    >
+
+      <h3>
+        ✨ GRModPro Visuals
+      </h3>
+
+      <p>
+        Improved Minecraft visuals and atmosphere.
+      </p>
+
+      <span class="tag">
+        Bedrock
+      </span>
+
+      <span class="tag">
+        Shaders
+      </span>
+
+    </div>
+
+
+    <!-- MOBS -->
+
+    <div
+      class="mod"
+      data-tags="Java Mobs"
+      onclick="openMod('mobs')"
+    >
+
+      <h3>
+        🐉 GRModPro Mobs
+      </h3>
+
+      <p>
+        New creatures and adventures.
+      </p>
+
+      <span class="tag">
+        Java
+      </span>
+
+      <span class="tag">
+        Mobs
+      </span>
+
+    </div>
+
+  </div>
+
 </main>
+
+
+<!-- MOD DETAILS -->
 
 <section id="modPage">
 
-<button onclick="goHome()">← Back to Mods</button>
+  <button onclick="goHome()">
+    ← Back to Mods
+  </button>
 
-<h2 id="modTitle"></h2>
+  <h2 id="modTitle"></h2>
 
-<p id="modDescription"></p>
+  <p id="modDescription"></p>
 
-<p><strong>GRModPro Original Project 🎮</strong></p>
+  <p>
+    <strong>
+      GRModPro Original Project 🎮
+    </strong>
+  </p>
 
-<a class="download" href="#" onclick="downloadMod(event)">
-⬇️ Download
-</a>
+  <a
+    id="downloadButton"
+    class="download"
+    href="#"
+    onclick="downloadMod(event)"
+  >
+    ⬇️ Download
+  </a>
 
 </section>
 
+
+<!-- FOOTER -->
+
 <footer>
-GRModPro © 2026
+
+  GRModPro © 2026
+
 </footer>
+
 
 <script>
 
+/* MOD INFORMATION */
+
 const mods = {
 
-horror: {
-title: "👻 GRModPro Horror",
-description: "A creepy survival experience created for the GRModPro website."
-},
+  horror: {
 
-survival: {
-title: "🌎 GRModPro Survival",
-description: "A realistic survival project created for GRModPro."
-},
+    title:
+      "👻 GRModPro Horror",
 
-visuals: {
-title: "✨ GRModPro Visuals",
-description: "A visual enhancement project created for GRModPro."
-},
+    description:
+      "A creepy survival experience created for the GRModPro website.",
 
-mobs: {
-title: "🐉 GRModPro Mobs",
-description: "A new-mobs project created for GRModPro."
-}
+    file:
+      ""
+
+  },
+
+  survival: {
+
+    title:
+      "🌎 GRModPro Survival",
+
+    description:
+      "A realistic Minecraft survival project created for GRModPro.",
+
+    file:
+      ""
+
+  },
+
+  visuals: {
+
+    title:
+      "✨ GRModPro Visuals",
+
+    description:
+      "A visual enhancement project created for GRModPro.",
+
+    file:
+      ""
+
+  },
+
+  mobs: {
+
+    title:
+      "🐉 GRModPro Mobs",
+
+    description:
+      "A new-mobs project created for GRModPro.",
+
+    file:
+      ""
+
+  }
 
 };
 
+
+/* OPEN MOD */
+
 function openMod(id) {
 
-let mod = mods[id];
+  const mod = mods[id];
 
-document.getElementById("home").style.display = "none";
-document.querySelector(".search").style.display = "none";
-document.querySelector(".categories").style.display = "none";
+  document.getElementById("home")
+    .style.display = "none";
 
-document.getElementById("modPage").style.display = "block";
+  document.querySelector(".search")
+    .style.display = "none";
 
-document.getElementById("modTitle").innerText = mod.title;
-document.getElementById("modDescription").innerText = mod.description;
+  document.querySelector(".categories")
+    .style.display = "none";
+
+  document.getElementById("modPage")
+    .style.display = "block";
+
+  document.getElementById("modTitle")
+    .innerText = mod.title;
+
+  document.getElementById("modDescription")
+    .innerText = mod.description;
 
 }
+
+
+/* GO HOME */
 
 function goHome() {
 
-document.getElementById("modPage").style.display = "none";
-document.getElementById("home").style.display = "block";
-document.querySelector(".search").style.display = "block";
-document.querySelector(".categories").style.display = "flex";
+  document.getElementById("modPage")
+    .style.display = "none";
+
+  document.getElementById("home")
+    .style.display = "block";
+
+  document.querySelector(".search")
+    .style.display = "block";
+
+  document.querySelector(".categories")
+    .style.display = "flex";
 
 }
+
+
+/* DOWNLOAD */
 
 function downloadMod(event) {
 
-event.preventDefault();
+  event.preventDefault();
 
-alert("The GRModPro mod file will be added here.");
+  alert(
+    "GRModPro: The mod file will be connected here."
+  );
 
 }
+
+
+/* SEARCH */
 
 function searchMods() {
 
-let search = document
-.getElementById("search")
-.value
-.toLowerCase();
+  const search =
+    document
+      .getElementById("search")
+      .value
+      .toLowerCase();
 
-document.querySelectorAll(".mod").forEach(mod => {
+  document
+    .querySelectorAll(".mod")
+    .forEach(mod => {
 
-mod.style.display =
-mod.innerText.toLowerCase().includes(search)
-? "block"
-: "none";
+      if (
+        mod.innerText
+          .toLowerCase()
+          .includes(search)
+      ) {
 
-});
+        mod.style.display = "block";
+
+      } else {
+
+        mod.style.display = "none";
+
+      }
+
+    });
 
 }
+
+
+/* FILTER */
 
 function filterMods(category) {
 
-document.querySelectorAll(".mod").forEach(mod => {
+  document
+    .querySelectorAll(".mod")
+    .forEach(mod => {
 
-mod.style.display =
-mod.dataset.tags.includes(category)
-? "block"
-: "none";
+      if (
+        mod.dataset.tags
+          .includes(category)
+      ) {
 
-});
+        mod.style.display = "block";
+
+      } else {
+
+        mod.style.display = "none";
+
+      }
+
+    });
 
 }
 
+
+/* SHOW ALL */
+
 function showAll() {
 
-document.querySelectorAll(".mod").forEach(mod => {
+  document
+    .querySelectorAll(".mod")
+    .forEach(mod => {
 
-mod.style.display = "block";
+      mod.style.display = "block";
 
-});
+    });
 
 }
 
 </script>
 
 </body>
+
 </html>
