@@ -5,11 +5,17 @@
       "identifier": "grmodpro:horror",
       "is_spawnable": true,
       "is_summonable": true,
-      "is_experimental": false,
-      "runtime_identifier": "minecraft:zombie"
+      "is_experimental": false
     },
 
     "components": {
+      "minecraft:type_family": {
+        "family": [
+          "monster",
+          "horror"
+        ]
+      },
+
       "minecraft:health": {
         "value": 40,
         "max": 40
@@ -18,6 +24,15 @@
       "minecraft:movement": {
         "value": 0.32
       },
+
+      "minecraft:movement.basic": {},
+
+      "minecraft:navigation.walk": {
+        "can_path_over_water": true,
+        "avoid_water": false
+      },
+
+      "minecraft:jump.static": {},
 
       "minecraft:attack": {
         "damage": 7
