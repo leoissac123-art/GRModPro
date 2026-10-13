@@ -1,4 +1,4 @@
-# GRModPro discovery redesign
+# GrModPro discovery redesign
 
 ## Direction
 
@@ -12,7 +12,7 @@ Replace the editorial marketplace presentation with a premium dark gaming discov
 - Search, combined category filtering, reset, detail view, mobile menu, real download CTA, install steps, and achievement limitation notice.
 - Coming-soon projects remain visibly untested and have no download buttons.
 - Lightweight CSS transitions, loading shimmer, card rendering, and reduced-motion support.
-- Footer credit: Helped by Manus. GRModPro remains the site owner and primary brand.
+- Footer credit: Helped by Manus. GrModPro remains the site owner and primary brand.
 
 ## Validation boundary
 

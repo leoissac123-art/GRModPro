@@ -1,8 +1,8 @@
 {
-  "site": "GRModPro",
+  "site": "GrModPro",
   "release": {
     "id": "horror",
-    "name": "GRModPro Horror",
+    "name": "GrModPro Horror",
     "version": "1.0.0",
     "format": "mcaddon",
     "file": "downloads/GRModPro-Horror-1.0.0.mcaddon",

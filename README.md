@@ -1,15 +1,15 @@
-# GRModPro
+# GrModPro
 
-GRModPro is a lightweight Minecraft Bedrock add-on site hosted on GitHub Pages.
+GrModPro is a lightweight Minecraft Bedrock add-on site hosted on GitHub Pages.
 
 ## Current release
 
-**GRModPro Horror 1.0.0** is the first real release. The `.mcaddon` contains a behavior pack and matching resource pack for the hostile `grmodpro:horror` entity.
+**GrModPro Horror 1.0.0** is the first real release. The `.mcaddon` contains a behavior pack and matching resource pack for the hostile `grmodpro:horror` entity.
 
 - Download: `downloads/GRModPro-Horror-1.0.0.mcaddon`
 - Target metadata: Minecraft Bedrock 26.52
 - Spawn: use the generated spawn egg or `/summon grmodpro:horror` with cheats enabled
-- Website: <https://leoissac123-art.github.io/GRModPro/>
+- Website: <https://leoissac123-art.github.io/GrModPro/>
 
 ## Important compatibility note
 

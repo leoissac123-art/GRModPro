@@ -1,4 +1,4 @@
-# GRModPro redesign outcomes
+# GrModPro redesign outcomes
 
 - [x] Rebuild the homepage as a premium dark gaming discovery platform with subtle electric-blue lighting and cinematic gradients.
 - [x] Add featured, trending, recently added, and full-catalog shelves.

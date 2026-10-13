@@ -1,4 +1,4 @@
-# GRModPro Horror 1.0.0
+# GrModPro Horror 1.0.0
 
 This release contains one real Minecraft Bedrock add-on: a hostile `grmodpro:horror` entity with behavior and matching resource-pack visuals.
 
