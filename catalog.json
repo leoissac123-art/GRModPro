@@ -1,0 +1,13 @@
+{
+  "site": "GRModPro",
+  "release": {
+    "id": "horror",
+    "name": "GRModPro Horror",
+    "version": "1.0.0",
+    "format": "mcaddon",
+    "file": "downloads/GRModPro-Horror-1.0.0.mcaddon",
+    "target": "Minecraft Bedrock 26.52",
+    "achievements": "Not enabled for direct community downloads; Marketplace-only achievement eligibility is not claimed."
+  },
+  "comingSoon": ["survival", "visuals", "mobs"]
+}

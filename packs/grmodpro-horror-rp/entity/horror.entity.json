@@ -1,0 +1,13 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "grmodpro:horror",
+      "materials": {"default": "entity"},
+      "textures": {"default": "textures/entity/horror"},
+      "geometry": {"default": "geometry.horror"},
+      "render_controllers": ["controller.render.default"],
+      "spawn_egg": {"base_color": "#10131b", "overlay_color": "#8a7dff"}
+    }
+  }
+}

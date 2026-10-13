@@ -1,0 +1,30 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "GRModPro Horror Behavior",
+    "description": "Hostile horror entity behavior for GRModPro.",
+    "uuid": "2dd6df35-4f21-4d93-b1d1-940a0a9d64d3",
+    "version": [1, 0, 0],
+    "min_engine_version": [1, 26, 52]
+  },
+  "modules": [
+    {
+      "description": "GRModPro Horror behavior module",
+      "type": "data",
+      "uuid": "7c0ecbb8-00bb-4ff3-90a4-1848781b62d6",
+      "version": [1, 0, 0]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "b3d41904-7598-45e2-9e57-c2da3cda4e5f",
+      "version": [1, 0, 0]
+    }
+  ],
+  "metadata": {
+    "authors": ["GRModPro"],
+    "license": "All rights reserved",
+    "product_type": "addon",
+    "url": "https://leoissac123-art.github.io/GRModPro/"
+  }
+}

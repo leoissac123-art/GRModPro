@@ -1,0 +1,30 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "GRModPro Horror Resources",
+    "description": "Visual resources for the GRModPro Horror entity.",
+    "uuid": "b3d41904-7598-45e2-9e57-c2da3cda4e5f",
+    "version": [1, 0, 0],
+    "min_engine_version": [1, 26, 52]
+  },
+  "modules": [
+    {
+      "description": "GRModPro Horror resource module",
+      "type": "resources",
+      "uuid": "9f277778-0a62-46b7-ae7b-ffed90fcad85",
+      "version": [1, 0, 0]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "2dd6df35-4f21-4d93-b1d1-940a0a9d64d3",
+      "version": [1, 0, 0]
+    }
+  ],
+  "metadata": {
+    "authors": ["GRModPro"],
+    "license": "All rights reserved",
+    "product_type": "addon",
+    "url": "https://leoissac123-art.github.io/GRModPro/"
+  }
+}

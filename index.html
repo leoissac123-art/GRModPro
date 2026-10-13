@@ -1,344 +1,40 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GRModPro</title>
-
-<style>
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #101318;
-  color: white;
-}
-
-header {
-  text-align: center;
-  padding: 40px 15px;
-  background: #171c23;
-  border-bottom: 1px solid #303944;
-}
-
-.logo {
-  font-size: 42px;
-  font-weight: bold;
-}
-
-header p {
-  color: #aeb7c4;
-}
-
-.search {
-  padding: 20px;
-  text-align: center;
-}
-
-input {
-  width: 90%;
-  max-width: 650px;
-  padding: 16px;
-  border-radius: 12px;
-  border: 1px solid #444;
-  background: #1b2129;
-  color: white;
-  font-size: 16px;
-  outline: none;
-}
-
-input:focus {
-  border-color: #5865f2;
-}
-
-.categories {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding: 10px 15px 20px;
-  justify-content: center;
-}
-
-button {
-  padding: 11px 16px;
-  border: none;
-  border-radius: 10px;
-  background: #29313c;
-  color: white;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-button:hover {
-  background: #5865f2;
-}
-
-main {
-  max-width: 1100px;
-  margin: auto;
-  padding: 10px 15px 50px;
-}
-
-h2 {
-  margin-top: 20px;
-}
-
-.mods {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 18px;
-}
-
-.mod {
-  background: #191f27;
-  border: 1px solid #303944;
-  border-radius: 15px;
-  padding: 20px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.mod:hover {
-  transform: translateY(-5px);
-  border-color: #5865f2;
-}
-
-.mod h3 {
-  margin-top: 0;
-  font-size: 21px;
-}
-
-.mod p {
-  color: #aeb7c4;
-  line-height: 1.5;
-}
-
-.tag {
-  display: inline-block;
-  background: #29313c;
-  padding: 5px 9px;
-  border-radius: 7px;
-  margin: 3px;
-  font-size: 12px;
-}
-
-#modPage {
-  display: none;
-  max-width: 800px;
-  margin: 30px auto;
-  padding: 25px;
-  background: #191f27;
-  border: 1px solid #303944;
-  border-radius: 15px;
-}
-
-#modPage p {
-  color: #aeb7c4;
-  line-height: 1.7;
-}
-
-.download {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 14px 22px;
-  background: #5865f2;
-  color: white;
-  text-decoration: none;
-  border-radius: 10px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.download:hover {
-  background: #4752c4;
-}
-
-footer {
-  text-align: center;
-  padding: 30px;
-  color: #777;
-  border-top: 1px solid #303944;
-}
-
-@media (max-width: 600px) {
-  .logo {
-    font-size: 34px;
-  }
-
-  .categories {
-    justify-content: flex-start;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0d13">
+  <meta name="description" content="GRModPro — verified Minecraft Bedrock add-ons with clear compatibility details and real downloads.">
+  <title>GRModPro | Minecraft Bedrock Add-ons</title>
+  <style>
+    :root{color-scheme:dark;--bg:#090c12;--panel:#121823;--panel-2:#182230;--line:#293548;--text:#f3f6fb;--muted:#9aa8bb;--accent:#67e8c5;--accent-2:#8a7dff;--warning:#f4c66d;--shadow:0 18px 50px rgba(0,0,0,.28)}
+    *{box-sizing:border-box}html{background:var(--bg);scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 10% -10%,rgba(103,232,197,.12),transparent 32rem),radial-gradient(circle at 90% 0,rgba(138,125,255,.13),transparent 28rem),var(--bg);color:var(--text);font:16px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:3px solid rgba(103,232,197,.65);outline-offset:3px}.shell{width:min(1120px,calc(100% - 32px));margin:auto}.site-header{padding:64px 0 36px;border-bottom:1px solid rgba(154,168,187,.16)}.eyebrow{margin:0 0 12px;color:var(--accent);font-size:.78rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase}.brand{display:flex;align-items:center;gap:14px}.brand-mark{display:grid;place-items:center;width:48px;height:48px;border:1px solid rgba(103,232,197,.4);border-radius:15px;background:linear-gradient(145deg,rgba(103,232,197,.2),rgba(138,125,255,.22));font-size:1.55rem;box-shadow:0 0 32px rgba(103,232,197,.12)}h1,h2,h3,p{margin-top:0}.brand h1{margin:0;font-size:clamp(1.75rem,5vw,2.65rem);letter-spacing:-.04em}.tagline{margin:8px 0 0;color:var(--muted)}.hero{padding:36px 0 18px}.hero h2{max-width:720px;margin-bottom:12px;font-size:clamp(2rem,6vw,4rem);line-height:1.02;letter-spacing:-.06em}.hero-copy{max-width:650px;color:var(--muted);font-size:1.05rem}.toolbar{display:grid;gap:14px;padding:18px;margin:18px 0 30px;border:1px solid var(--line);border-radius:22px;background:rgba(18,24,35,.85);box-shadow:var(--shadow)}.search-wrap{position:relative}.search-wrap span{position:absolute;left:15px;top:11px;color:var(--muted)}#search{width:100%;min-height:48px;padding:0 16px 0 44px;border:1px solid var(--line);border-radius:13px;background:#0b1018;color:var(--text)}.filter-row{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 6px;scrollbar-width:thin}.filter{flex:0 0 auto;min-height:42px;padding:9px 14px;border:1px solid var(--line);border-radius:999px;background:var(--panel-2);color:var(--muted);font-weight:700}.filter:hover,.filter[aria-pressed="true"]{border-color:var(--accent);background:rgba(103,232,197,.12);color:var(--text)}.toolbar-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.result-count{margin:0;color:var(--muted);font-size:.9rem}.clear-button{padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:transparent;color:var(--muted)}.clear-button:hover{border-color:var(--accent);color:var(--text)}.catalog-heading{display:flex;align-items:end;justify-content:space-between;gap:16px;margin:18px 0 14px}.catalog-heading h2{margin:0;font-size:1.4rem}.catalog-heading p{margin:0;color:var(--muted);font-size:.9rem}.mods{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.mod-card{display:flex;min-height:250px;flex-direction:column;text-align:left;padding:22px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(160deg,rgba(24,34,48,.94),rgba(14,19,29,.94));color:var(--text);box-shadow:0 12px 35px rgba(0,0,0,.16);transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}.mod-card:hover{transform:translateY(-3px);border-color:rgba(103,232,197,.6);box-shadow:0 18px 48px rgba(0,0,0,.3)}.mod-card.is-coming-soon{opacity:.75}.card-top{display:flex;align-items:center;justify-content:space-between;gap:10px}.mod-icon{font-size:1.7rem}.status{padding:5px 9px;border-radius:999px;font-size:.7rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}.status.live{background:rgba(103,232,197,.13);color:var(--accent)}.status.soon{background:rgba(244,198,109,.13);color:var(--warning)}.mod-card h3{margin:18px 0 8px;font-size:1.25rem}.mod-card p{color:var(--muted)}.card-meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;padding-top:16px}.chip{padding:5px 8px;border:1px solid rgba(154,168,187,.2);border-radius:7px;color:var(--muted);font-size:.75rem}.empty{padding:34px 18px;border:1px dashed var(--line);border-radius:18px;color:var(--muted);text-align:center}.hidden{display:none!important}.detail{margin:30px 0;padding:28px;border:1px solid var(--line);border-radius:22px;background:rgba(18,24,35,.92);box-shadow:var(--shadow)}.back-button{padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:transparent;color:var(--muted)}.back-button:hover{border-color:var(--accent);color:var(--text)}.detail h2{margin:24px 0 10px;font-size:clamp(1.8rem,5vw,2.7rem);letter-spacing:-.04em}.detail-copy{max-width:720px;color:var(--muted)}.detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:24px 0}.detail-item{padding:14px;border:1px solid var(--line);border-radius:14px;background:rgba(9,12,18,.45)}.detail-item strong{display:block;margin-bottom:3px;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}.notice{margin:18px 0;padding:14px 16px;border-left:3px solid var(--warning);background:rgba(244,198,109,.08);color:#f7dfaa}.download-button{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 18px;border:1px solid var(--accent);border-radius:12px;background:var(--accent);color:#07110f;font-weight:900;text-decoration:none;transition:transform .2s ease,filter .2s ease}.download-button:hover{filter:brightness(1.08);transform:translateY(-2px)}.install{margin-top:30px;padding-top:22px;border-top:1px solid var(--line)}.install ol{padding-left:22px;color:var(--muted)}.site-footer{margin-top:60px;padding:30px 0 46px;border-top:1px solid rgba(154,168,187,.16);color:var(--muted);font-size:.9rem}.site-footer a{color:var(--accent)}@media(max-width:640px){.shell{width:min(100% - 24px,1120px)}.site-header{padding-top:34px}.hero{padding-top:28px}.mods{grid-template-columns:1fr}.mod-card{min-height:224px}.detail-grid{grid-template-columns:1fr}.catalog-heading{display:block}.catalog-heading p{margin-top:5px}.toolbar{padding:14px;border-radius:18px}}
+  </style>
 </head>
-
 <body>
-
-<header>
-  <div class="logo">🌎 GRModPro</div>
-  <p>Your Minecraft Mod Website</p>
-</header>
-
-<div class="search">
-  <input
-    id="search"
-    type="text"
-    placeholder="🔎 Search GRModPro mods..."
-    oninput="searchMods()"
-  >
-</div>
-
-<div class="categories">
-  <button onclick="showAll()">All</button>
-  <button onclick="filterMods('Bedrock')">🎮 Bedrock</button>
-  <button onclick="filterMods('Java')">💻 Java</button>
-  <button onclick="filterMods('Shaders')">✨ Shaders</button>
-  <button onclick="filterMods('Horror')">👻 Horror</button>
-  <button onclick="filterMods('Realistic')">🌎 Realistic</button>
-  <button onclick="filterMods('Mobs')">🐉 Mobs</button>
-</div>
-
-<main id="home">
-
-  <h2>🔥 GRModPro Mods</h2>
-
-  <div class="mods">
-
-    <div class="mod" data-tags="Bedrock Horror"
-      onclick="openMod('horror')">
-      <h3>👻 GRModPro Horror</h3>
-      <p>A creepy Minecraft survival experience.</p>
-      <span class="tag">Bedrock</span>
-      <span class="tag">Horror</span>
-    </div>
-
-    <div class="mod" data-tags="Bedrock Realistic"
-      onclick="openMod('survival')">
-      <h3>🌎 GRModPro Survival</h3>
-      <p>A realistic Minecraft survival experience.</p>
-      <span class="tag">Bedrock</span>
-      <span class="tag">Realistic</span>
-    </div>
-
-    <div class="mod" data-tags="Bedrock Shaders"
-      onclick="openMod('visuals')">
-      <h3>✨ GRModPro Visuals</h3>
-      <p>Improved Minecraft visuals and atmosphere.</p>
-      <span class="tag">Bedrock</span>
-      <span class="tag">Shaders</span>
-    </div>
-
-    <div class="mod" data-tags="Java Mobs"
-      onclick="openMod('mobs')">
-      <h3>🐉 GRModPro Mobs</h3>
-      <p>New creatures and adventures.</p>
-      <span class="tag">Java</span>
-      <span class="tag">Mobs</span>
-    </div>
-
-  </div>
-</main>
-
-<section id="modPage">
-
-  <button onclick="goHome()">← Back to Mods</button>
-
-  <h2 id="modTitle"></h2>
-
-  <p id="modDescription"></p>
-
-  <p><strong>GRModPro Original Project 🎮</strong></p>
-
-  <button class="download" onclick="downloadMod()">
-    ⬇️ Download
-  </button>
-
-</section>
-
-<footer>
-  GRModPro © 2026
-</footer>
-
-<script>
-
-const mods = {
-  horror: {
-    title: "👻 GRModPro Horror",
-    description: "A creepy survival experience created for GRModPro."
-  },
-
-  survival: {
-    title: "🌎 GRModPro Survival",
-    description: "A realistic Minecraft survival project created for GRModPro."
-  },
-
-  visuals: {
-    title: "✨ GRModPro Visuals",
-    description: "A visual enhancement project created for GRModPro."
-  },
-
-  mobs: {
-    title: "🐉 GRModPro Mobs",
-    description: "A new-mobs project created for GRModPro."
-  }
-};
-
-function openMod(id) {
-  const mod = mods[id];
-
-  document.getElementById("home").style.display = "none";
-  document.querySelector(".search").style.display = "none";
-  document.querySelector(".categories").style.display = "none";
-  document.getElementById("modPage").style.display = "block";
-
-  document.getElementById("modTitle").innerText = mod.title;
-  document.getElementById("modDescription").innerText = mod.description;
-}
-
-function goHome() {
-  document.getElementById("modPage").style.display = "none";
-  document.getElementById("home").style.display = "block";
-  document.querySelector(".search").style.display = "block";
-  document.querySelector(".categories").style.display = "flex";
-}
-
-function downloadMod() {
-  alert("GRModPro: Your mod file will be added here.");
-}
-
-function searchMods() {
-  const search = document
-    .getElementById("search")
-    .value
-    .toLowerCase();
-
-  document.querySelectorAll(".mod").forEach(mod => {
-    mod.style.display =
-      mod.innerText.toLowerCase().includes(search)
-      ? "block"
-      : "none";
-  });
-}
-
-function filterMods(category) {
-  document.querySelectorAll(".mod").forEach(mod => {
-    mod.style.display =
-      mod.dataset.tags.includes(category)
-      ? "block"
-      : "none";
-  });
-}
-
-function showAll() {
-  document.querySelectorAll(".mod").forEach(mod => {
-    mod.style.display = "block";
-  });
-}
-
-</script>
-
+  <header class="site-header"><div class="shell"><p class="eyebrow">Verified Bedrock releases</p><div class="brand"><div class="brand-mark" aria-hidden="true">🌎</div><div><h1>GRModPro</h1><p class="tagline">A focused home for Minecraft add-ons that actually ship.</p></div></div></div></header>
+  <main class="shell">
+    <section class="hero" aria-labelledby="hero-title"><p class="eyebrow">Horror release 01</p><h2 id="hero-title">Make your survival world feel watched.</h2><p class="hero-copy">Download the first verified GRModPro Bedrock release, check its compatibility before installing, and keep upcoming projects clearly marked until they are ready.</p></section>
+    <section class="toolbar" aria-label="Mod search and filters"><div class="search-wrap"><span aria-hidden="true">⌕</span><label class="hidden" for="search">Search mods</label><input id="search" type="search" placeholder="Search mods, tags, or versions…" autocomplete="off"></div><div class="filter-row" role="group" aria-label="Filter by category"><button class="filter" type="button" data-filter="All" aria-pressed="true">All</button><button class="filter" type="button" data-filter="Bedrock" aria-pressed="false">Bedrock</button><button class="filter" type="button" data-filter="Java" aria-pressed="false">Java</button><button class="filter" type="button" data-filter="Shaders" aria-pressed="false">Shaders</button><button class="filter" type="button" data-filter="Horror" aria-pressed="false">Horror</button><button class="filter" type="button" data-filter="Realistic" aria-pressed="false">Realistic</button><button class="filter" type="button" data-filter="Mobs" aria-pressed="false">Mobs</button></div><div class="toolbar-bottom"><p id="result-count" class="result-count" aria-live="polite"></p><button id="clear-filters" class="clear-button" type="button">Clear filters</button></div></section>
+    <section id="catalog" aria-labelledby="catalog-title"><div class="catalog-heading"><h2 id="catalog-title">Mod catalog</h2><p>One live release. More in production.</p></div><div id="mods" class="mods"></div><div id="empty-state" class="empty hidden" role="status">No mods match those filters. Try a different search or clear the filters.</div></section>
+    <section id="detail" class="detail hidden" aria-live="polite"></section>
+  </main>
+  <footer class="site-footer"><div class="shell"><p><strong>GRModPro</strong> © 2026 · Downloads are provided as-is. Test compatibility before adding packs to important worlds.</p><p><a href="https://github.com/leoissac123-art/GRModPro">View the source repository</a></p></div></footer>
+  <script>
+    const mods = [
+      {id:'horror',icon:'👻',title:'GRModPro Horror',status:'Live release',statusClass:'live',description:'A hostile custom entity for a tense survival encounter. The current release includes the behavior pack and matching resource pack.',tags:['Bedrock','Horror','26.52'],platform:'Minecraft Bedrock',version:'1.0.0',compatibility:'Targeted for Bedrock 26.52',achievements:'Not enabled for direct downloads',download:'downloads/GRModPro-Horror-1.0.0.mcaddon',installation:['Download the .mcaddon file on your iPhone.','Open it with Minecraft when iOS presents the share/open action.','Activate GRModPro Horror Behavior and Resources in a test world.','Use the generated spawn egg or /summon grmodpro:horror with cheats enabled.']},
+      {id:'survival',icon:'🌎',title:'GRModPro Survival',status:'Coming soon',statusClass:'soon',description:'A realistic survival project is in development. It is not published as a downloadable mod yet.',tags:['Bedrock','Realistic'],platform:'Not released',version:'—',compatibility:'Not tested',achievements:'Not applicable',download:null},
+      {id:'visuals',icon:'✨',title:'GRModPro Visuals',status:'Coming soon',statusClass:'soon',description:'A visual enhancement project is planned. It will be published only after a real pack is built and tested.',tags:['Bedrock','Shaders'],platform:'Not released',version:'—',compatibility:'Not tested',achievements:'Not applicable',download:null},
+      {id:'mobs',icon:'🐉',title:'GRModPro Mobs',status:'Coming soon',statusClass:'soon',description:'Additional creatures are planned. No downloadable Java or Bedrock file is published yet.',tags:['Java','Mobs'],platform:'Not released',version:'—',compatibility:'Not tested',achievements:'Not applicable',download:null}
+    ];
+    const state={query:'',filter:'All',detail:null};
+    const els={mods:document.getElementById('mods'),empty:document.getElementById('empty-state'),count:document.getElementById('result-count'),search:document.getElementById('search'),detail:document.getElementById('detail'),catalog:document.getElementById('catalog')};
+    function matches(mod){const haystack=[mod.title,mod.description,...mod.tags,mod.platform,mod.compatibility].join(' ').toLowerCase();return (!state.query||haystack.includes(state.query.toLowerCase()))&&(state.filter==='All'||mod.tags.includes(state.filter));}
+    function card(mod){const button=document.createElement('button');button.type='button';button.className='mod-card'+(mod.download?'':' is-coming-soon');button.dataset.id=mod.id;button.innerHTML=`<span class="card-top"><span class="mod-icon" aria-hidden="true">${mod.icon}</span><span class="status ${mod.statusClass}">${mod.status}</span></span><h3>${mod.title}</h3><p>${mod.description}</p><span class="card-meta">${mod.tags.map(tag=>`<span class="chip">${tag}</span>`).join('')}</span>`;button.addEventListener('click',()=>openDetail(mod.id));return button;}
+    function render(){const visible=mods.filter(matches);els.mods.replaceChildren(...visible.map(card));els.empty.classList.toggle('hidden',visible.length!==0);els.count.textContent=`${visible.length} of ${mods.length} projects shown`;document.querySelectorAll('[data-filter]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.filter===state.filter)));}
+    function openDetail(id){const mod=mods.find(item=>item.id===id);if(!mod)return;state.detail=id;els.catalog.classList.add('hidden');els.detail.classList.remove('hidden');els.detail.innerHTML=`<button id="back-button" class="back-button" type="button">← Back to catalog</button><p class="eyebrow" style="margin-top:24px">${mod.status}</p><h2>${mod.icon} ${mod.title}</h2><p class="detail-copy">${mod.description}</p><div class="detail-grid"><div class="detail-item"><strong>Platform</strong>${mod.platform}</div><div class="detail-item"><strong>Release</strong>${mod.version}</div><div class="detail-item"><strong>Compatibility</strong>${mod.compatibility}</div><div class="detail-item"><strong>Achievements</strong>${mod.achievements}</div></div>${mod.download?'<div class="notice"><strong>Achievement note:</strong> Mojang states that achievements are enabled for Marketplace add-ons, not direct community downloads. GRModPro does not promise achievements for this file.</div><a class="download-button" href="'+mod.download+'" download>⬇ Download GRModPro Horror 1.0.0</a><div class="install"><h3>Install on Bedrock</h3><ol>'+mod.installation.map(step=>`<li>${step}</li>`).join('')+'</ol></div>':'<div class="notice">This project is intentionally marked Coming Soon. No nonexistent download is advertised.</div>'}`;document.getElementById('back-button').addEventListener('click',closeDetail);els.detail.scrollIntoView({behavior:'smooth',block:'start'});}
+    function closeDetail(){state.detail=null;els.detail.classList.add('hidden');els.catalog.classList.remove('hidden');}
+    els.search.addEventListener('input',event=>{state.query=event.target.value.trim();render();});document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>{state.filter=button.dataset.filter;render();}));document.getElementById('clear-filters').addEventListener('click',()=>{state.query='';state.filter='All';els.search.value='';render();});render();
+  </script>
 </body>
 </html>
