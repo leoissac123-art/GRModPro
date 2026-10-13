@@ -1,24 +1,19 @@
-# GRModPro redesign plan
+# GRModPro discovery redesign
 
 ## Direction
 
-Reframe GRModPro as a first-party editorial mod marketplace: premium, dark, cinematic, and curated rather than a utility catalog. The reference provides the visual direction only; all branding, copy, downloads, and project status remain GRModPro-owned.
+Replace the editorial marketplace presentation with a premium dark gaming discovery platform: electric-blue lighting, cinematic hero art, console-like navigation, polished mod cards, and a Roblox-style browse structure without copying another product or adding third-party branding.
 
-## Design system
+## Implemented
 
-- **Movement:** editorial game-marketplace / dark premium magazine.
-- **Principles:** cinematic entry point, strong typographic hierarchy, curated discovery, and honest release status.
-- **Color philosophy:** near-black charcoal creates depth; warm cream keeps reading comfortable; amber/gold marks GRModPro’s own signature; muted sage is reserved for safe/live states.
-- **Layout:** full-width hero with a split composition, horizontal “universe” rail, then a dense but breathable release grid.
-- **Signature elements:** amber GRModPro wordmark, oversized serif display headlines, and thin framed cards with small uppercase category labels.
-- **Interaction:** search and filters feel like browsing a collection; every project opens a detail view; only the verified Horror pack has a download CTA.
-- **Animation:** restrained hover lift, amber border glow, and short reveal transitions; no distracting loops.
-- **Typography:** Georgia/Times-style serif for editorial headlines, system sans for navigation, metadata, and controls.
-- **Brand essence:** “A focused home for Minecraft projects that are ready to play.” Personality: cinematic, curious, trustworthy.
-- **Brand voice:** direct, atmospheric, and honest. Examples: “Find the next way to play.” and “One verified release. More worlds in the making.”
-- **Wordmark:** GR MOD PRO with a compact amber G mark; implemented as a text-safe CSS mark rather than generated lettering.
-- **Signature brand color:** warm amber `#e7b565`.
+- Original blue cinematic hero artwork, optimized to WebP at under 200 KB for mobile Safari.
+- Featured, Trending now, Recently added, and All add-ons shelves.
+- Category rail for Survival, Visuals, Performance, Graphics, Mobs, Horror, Utilities, and All.
+- Search, combined category filtering, reset, detail view, mobile menu, real download CTA, install steps, and achievement limitation notice.
+- Coming-soon projects remain visibly untested and have no download buttons.
+- Lightweight CSS transitions, loading shimmer, card rendering, and reduced-motion support.
+- Footer credit: Helped by Manus. GRModPro remains the site owner and primary brand.
 
-## Implementation
+## Validation boundary
 
-Keep the existing static GitHub Pages architecture. Replace `index.html` with a self-contained responsive page; use the original GRModPro hero artwork at `assets/grmodpro-hero.png`; keep the existing real `downloads/GRModPro-Horror-1.0.0.mcaddon` path; keep the four current catalog records and honest Coming Soon states; preserve search, category filters, clear filters, detail view, installation guidance, and accessibility semantics. No Manus branding, Manus URLs, or copied reference download assets are used.
+Only `downloads/GRModPro-Horror-1.0.0.mcaddon` is advertised as a real downloadable release. Other shelves are discovery placeholders until actual, tested files exist.
