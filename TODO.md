@@ -8,4 +8,4 @@
 - [x] Optimize the hero visual for mobile Safari and add reduced-motion accessibility support.
 - [x] Add the requested subtle footer credit: “Helped by Manus.”
 - [x] Validate desktop and iPhone-sized renders, JavaScript syntax, console output, horizontal overflow, asset response, and download response.
-- [ ] Publish the final commit to GitHub Pages.
+- [x] Publish the final commit to GitHub Pages.
