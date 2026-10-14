@@ -1,0 +1,37 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "GRModPro Classic Blocks",
+    "description": "A bright, stylized pixel-art resource pack with a classic Minecraft-inspired palette. Selected original textures only; not a complete texture replacement.",
+    "uuid": "62a924a1-8b47-4f4c-a8e0-0d8b2d36f5f0",
+    "version": [
+      1,
+      0,
+      0
+    ],
+    "min_engine_version": [
+      1,
+      26,
+      0
+    ]
+  },
+  "modules": [
+    {
+      "description": "GRModPro Classic Blocks resources",
+      "type": "resources",
+      "uuid": "d39d95d1-5c9f-4f4e-9347-86cf8e08f210",
+      "version": [
+        1,
+        0,
+        0
+      ]
+    }
+  ],
+  "metadata": {
+    "authors": [
+      "GRModPro"
+    ],
+    "license": "All rights reserved",
+    "url": "https://leoissac123-art.github.io/GRModPro/"
+  }
+}
