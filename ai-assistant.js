@@ -3,6 +3,7 @@
   const SUPABASE_FUNCTION_URL = "https://vetoktprzxyqkpfsarpb.supabase.co/functions/v1/ai-assistant";
   const defaults = { language: "en", theme: "dark", textSize: "medium", enterToSend: true, sounds: false, responseStyle: "balanced" };
   let settings = { ...defaults };
+  let conversation = [];
   try { settings = { ...defaults, ...JSON.parse(localStorage.getItem("gmp-ai-settings") || "{}") }; } catch {}
   const style = document.createElement("style");
   style.textContent = `
@@ -44,11 +45,11 @@
   el("enter").addEventListener("change",e=>{settings.enterToSend=e.target.checked;save()});
   el("sounds").addEventListener("change",e=>{settings.sounds=e.target.checked;save()});
   el("style").addEventListener("change",e=>{settings.responseStyle=e.target.value;save()});
-  el("clear").addEventListener("click",()=>{log.replaceChildren();add(t("cleared"),"bot");showSettings(false)});
+  el("clear").addEventListener("click",()=>{conversation=[];log.replaceChildren();add(t("cleared"),"bot");showSettings(false)});
   el("reset").addEventListener("click",()=>{settings={...defaults};save();applySettings();showSettings(false)});
   input.addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){if(settings.enterToSend){e.preventDefault();form.requestSubmit()}else if(!e.ctrlKey){e.preventDefault()}}});
   form.addEventListener("submit",async event=>{event.preventDefault();const text=input.value.trim();if(!text||send.disabled)return;add(text,"user");input.value="";send.disabled=true;send.textContent=t("thinking");const pending=document.createElement("div");pending.className="gmp-ai-msg gmp-ai-bot";pending.textContent=t("thinking");log.appendChild(pending);log.scrollTop=log.scrollHeight;
-    try{const response=await fetch(SUPABASE_FUNCTION_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({message:text,language:settings.language,responseStyle:settings.responseStyle})});const data=await response.json().catch(()=>({}));if(!response.ok)throw new Error(data.error||t("failed"));if(typeof data.reply!=="string"||!data.reply.trim())throw new Error(t("failed"));pending.remove();add(data.reply,"bot");beep()}
+    try{conversation.push({role:"user",content:text});conversation=conversation.slice(-10);const response=await fetch(SUPABASE_FUNCTION_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:conversation,language:settings.language,responseStyle:settings.responseStyle})});const data=await response.json().catch(()=>({}));if(!response.ok)throw new Error(data.error||t("failed"));if(typeof data.reply!=="string"||!data.reply.trim())throw new Error(t("failed"));conversation.push({role:"assistant",content:data.reply.trim()});conversation=conversation.slice(-10);pending.remove();add(data.reply,"bot");beep()}
     catch(error){pending.remove();add(error.message||t("failed"),"bot")}finally{send.disabled=false;send.textContent=t("send");input.focus()}});
   applySettings();
 })();
