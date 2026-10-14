@@ -18,8 +18,10 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Generate original realism textures
-        run: python3 packs/generate_realism_textures.py
+      - name: Generate original resource pack textures
+        run: |
+          python3 packs/generate_realism_textures.py
+          python3 packs/generate_classic_textures.py
 
       - name: Build .mcpack and .mcaddon files
         run: |
@@ -34,6 +36,7 @@ jobs:
               ("packs/grmodpro-horror-bp", out / "GRModPro-Horror-Behavior-1.0.0.mcpack"),
               ("packs/grmodpro-horror-rp", out / "GRModPro-Horror-Resources-1.0.0.mcpack"),
               ("packs/grmodpro-realism-rp", out / "GRModPro-Realism-Atmosphere-1.0.0.mcpack"),
+              ("packs/grmodpro-classic-rp", out / "GRModPro-Classic-Blocks-1.0.0.mcpack"),
           ]
           for source, destination in packs:
               source = root / source
