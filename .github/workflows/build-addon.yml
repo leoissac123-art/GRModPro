@@ -54,7 +54,7 @@ jobs:
               archive.write(horror_packs[1][1], horror_packs[1][1].name)
           PY
 
-      - name: Validate realism pack contents
+      - name: Validate realism pack contents and texture mappings
         run: |
           python3 - <<'PY'
           import json
@@ -73,6 +73,12 @@ jobs:
               "textures/blocks/leaves_oak.png",
               "textures/blocks/leaves_spruce.png",
               "textures/blocks/cherry_leaves.png",
+              "textures/blocks/log_mangrove.png",
+              "textures/blocks/planks_mangrove.png",
+              "textures/blocks/pale_oak_log_side.png",
+              "textures/blocks/pale_oak_log_top.png",
+              "textures/blocks/planks_pale_oak.png",
+              "textures/blocks/pale_oak_leaves.png",
               "textures/terrain_texture.json",
               "manifest.json",
           ]
@@ -92,9 +98,22 @@ jobs:
                   manifest = json.loads(archive.read("manifest.json"))
                   atlas = json.loads(archive.read("textures/terrain_texture.json"))
                   atlas_keys = atlas.get("texture_data", {})
-                  for key in ("log_oak", "log_oak_top", "planks_oak", "leaves_oak", "log_spruce", "planks_spruce"):
+                  for key in (
+                      "log_oak", "log_oak_top", "planks_oak", "leaves_oak",
+                      "log_spruce", "log_spruce_top", "planks_spruce", "leaves_spruce",
+                      "log_birch", "planks_birch", "log_jungle", "planks_jungle",
+                      "log_acacia", "planks_acacia", "log_big_oak", "planks_big_oak",
+                      "log_mangrove", "planks_mangrove", "cherry_log_side", "planks_cherry",
+                      "pale_oak_log_side", "pale_oak_log_top", "planks_pale_oak", "pale_oak_leaves",
+                  ):
                       if key not in atlas_keys:
-                          raise SystemExit(f"{filename} terrain atlas is missing tree key: {key}")
+                          raise SystemExit("Missing terrain atlas key: " + key)
+                      texture_path = atlas_keys[key].get("textures", "")
+                      if not texture_path or texture_path.startswith("/") or ".." in texture_path.split("/"):
+                          raise SystemExit("Invalid atlas path for " + key + ": " + texture_path)
+                      archive_path = texture_path + ".png"
+                      if archive_path not in names:
+                          raise SystemExit("Atlas key " + key + " points to missing file: " + archive_path)
                   ids.append((manifest["header"]["uuid"], manifest["modules"][0]["uuid"]))
                   for name in required:
                       if name.endswith(".png") and not archive.read(name).startswith(bytes([137, 80, 78, 71, 13, 10, 26, 10])):
