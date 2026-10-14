@@ -313,8 +313,8 @@ for key in required_tree_keys:
     if not entry:
         raise SystemExit("Missing terrain atlas key: " + key)
     relative = entry.get("textures", "") + ".png"
-    texture_file = ROOT / relative
-    if not relative.startswith("blocks/") or not texture_file.is_file():
+    texture_file = ROOT.parent / relative
+    if not relative.startswith("textures/blocks/") or not texture_file.is_file():
         raise SystemExit("Atlas key " + key + " points to missing texture: " + relative)
 
 print(f"Generated and validated {len(texture_data)} original lightweight terrain textures under {ROOT}")
