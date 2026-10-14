@@ -209,4 +209,58 @@ def grass_block_icon():
     png(Path("packs/grmodpro-realism-rp/pack_icon.png"),pix,w,h)
 
 grass_block_icon()
+
+# Bedrock uses species-first texture filenames for many vanilla wood blocks.
+# Generate those paths as well as the earlier aliases so trees visibly update.
+tree_specs = [
+    ("oak", (111,78,48), (145,105,63), (65,112,53)),
+    ("spruce", (91,66,43), (107,76,48), (42,87,55)),
+    ("birch", (190,165,109), (195,178,118), (79,132,55)),
+    ("jungle", (112,77,48), (163,119,75), (63,126,54)),
+    ("acacia", (104,73,57), (171,91,48), (70,128,53)),
+    ("big_oak", (64,45,32), (70,48,34), (47,86,42)),
+    ("mangrove", (91,48,43), (117,61,52), (56,117,51)),
+    ("cherry", (107,66,59), (190,133,127), (221,151,175)),
+    ("pale_oak", (144,132,107), (166,157,129), (111,135,92)),
+    ("bamboo", (111,150,69), (187,158,91), (86,142,61)),
+]
+for species, bark, planks, leaves in tree_specs:
+    texture(f"blocks/log_{species}.png", bark, 14, mode="wood")
+    texture(f"blocks/log_{species}_top.png", tuple(min(255, c + 35) for c in bark), 11, mode="grain")
+    texture(f"blocks/planks_{species}.png", planks, 13, mode="wood")
+    if species in ("mangrove", "cherry", "pale_oak"):
+        texture(f"blocks/{species}_log_side.png", bark, 14, mode="wood")
+        texture(f"blocks/{species}_log_top.png", tuple(min(255, c + 35) for c in bark), 11, mode="grain")
+    if species == "cherry":
+        texture("blocks/cherry_leaves.png", leaves, 20, mode="grain")
+    elif species == "pale_oak":
+        texture("blocks/pale_oak_leaves.png", leaves, 22, mode="grain")
+    elif species == "mangrove":
+        texture("blocks/mangrove_leaves.png", leaves, 22, mode="grain")
+    elif species == "big_oak":
+        texture("blocks/leaves_big_oak.png", leaves, 22, mode="grain")
+    elif species != "bamboo":
+        texture(f"blocks/leaves_{species}.png", leaves, 22, mode="grain")
+
+# Preserve earlier filenames too, for compatibility with older pack layouts.
+import shutil
+aliases = {
+    "oak_log.png": "log_oak.png",
+    "oak_log_top.png": "log_oak_top.png",
+    "oak_planks.png": "planks_oak.png",
+    "spruce_planks.png": "planks_spruce.png",
+    "birch_planks.png": "planks_birch.png",
+    "jungle_planks.png": "planks_jungle.png",
+    "acacia_planks.png": "planks_acacia.png",
+    "dark_oak_planks.png": "planks_big_oak.png",
+    "mangrove_planks.png": "planks_mangrove.png",
+    "cherry_planks.png": "planks_cherry.png",
+    "bamboo_planks.png": "planks_bamboo.png",
+}
+for alias, canonical in aliases.items():
+    source = ROOT / "blocks" / canonical
+    target = ROOT / "blocks" / alias
+    if source.exists():
+        shutil.copyfile(source, target)
+
 print(f"Generated original lightweight realism textures under {ROOT}")
