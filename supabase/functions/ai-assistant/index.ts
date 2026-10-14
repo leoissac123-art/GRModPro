@@ -19,8 +19,8 @@ serve(async (req) => {
   if (!apiKey) return new Response(JSON.stringify({ error: "AI service is not configured yet." }), { status: 503, headers: corsHeaders });
   try {
     const body = await req.json();
-    if (!Array.isArray(body.messages) || body.messages.length < 1 || body.messages.length > 12) {
-      return new Response(JSON.stringify({ error: "Send between 1 and 12 messages." }), { status: 400, headers: corsHeaders });
+    if (!Array.isArray(body.messages) || body.messages.length < 1 || body.messages.length > 10) {
+      return new Response(JSON.stringify({ error: "Send between 1 and 10 messages." }), { status: 400, headers: corsHeaders });
     }
     const messages = body.messages.map((m: { role?: string; content?: string }) => {
       if (!["user", "assistant"].includes(m.role ?? "") || typeof m.content !== "string" || !m.content.trim() || m.content.length > 2000) throw new Error("Invalid message");
@@ -32,7 +32,7 @@ serve(async (req) => {
       headers: { "Authorization": "Bearer " + apiKey, "Content-Type": "application/json" },
       body: JSON.stringify({
         model: Deno.env.get("OPENAI_MODEL") ?? "gpt-4o-mini",
-        messages: [{ role: "system", content: "You are GRModPro AI, a friendly general-purpose assistant on the GRModPro gaming website. Be helpful, clear, and honest. Do not claim you can change accounts, download files, or perform actions unless a tool actually enables it. Do not request passwords, secret keys, or sensitive personal information." }, ...messages],
+        messages: [{ role: "system", content: `You are GRModPro AI, a friendly general-purpose assistant on the GRModPro gaming website. Be helpful, clear, and honest. Do not claim you can change accounts, download files, or perform actions unless a tool actually enables it. Do not request passwords, secret keys, or sensitive personal information. Reply in language code: ${String(body.language ?? "en").slice(0, 12)}. Response style preference: ${["concise", "balanced", "detailed"].includes(body.responseStyle) ? body.responseStyle : "balanced"}.` }, ...messages],
         max_tokens: 700,
         temperature: 0.7
       })
