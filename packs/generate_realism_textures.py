@@ -295,7 +295,7 @@ atlas = {
     "texture_data": texture_data,
 }
 (ROOT / "terrain_texture.json").write_text(
-    json.dumps(atlas, indent=2) + "\\n", encoding="utf-8"
+    json.dumps(atlas, indent=2) + "\n", encoding="utf-8"
 )
 
 print(f"Generated original lightweight realism textures under {ROOT}")
