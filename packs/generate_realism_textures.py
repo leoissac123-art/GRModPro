@@ -28,14 +28,14 @@ def texture(name, base, variation, size=16, mode="noise", accent=None):
             if mode=="wood":
                 n += int(variation*0.6*math.sin(x*1.8)) + (8 if x in (2,3,10,11) else 0)
             if mode=="grass" and y < 3: n += 12
-            if mode=="ore" and random.random()<0.11: 
+            if mode=="ore" and random.random()<0.11:
                 c=accent or (70,190,220)
                 pixels.append(tuple(max(0,min(255,v+random.randint(-12,12))) for v in c)+(255,))
                 continue
             pixels.append(tuple(max(0,min(255,v+n)) for v in base)+(255,))
     png(ROOT / name, pixels, size, size)
 
-# Vanilla-style Bedrock resource paths. Compact textures prioritize mobile performance.
+# Common terrain textures.
 texture("blocks/stone.png",(111,116,119),18,mode="stone")
 texture("blocks/cobblestone.png",(100,104,105),22,mode="stone")
 texture("blocks/deepslate.png",(61,67,73),14,mode="stone")
@@ -70,87 +70,96 @@ texture("items/diamond_sword.png",(69,210,202),15,mode="grain",size=16)
 texture("items/iron_pickaxe.png",(176,181,181),18,mode="grain",size=16)
 texture("items/diamond_pickaxe.png",(63,197,190),15,mode="grain",size=16)
 
-
-
-# Expanded texture coverage: additional common Overworld, cave, Nether, End,
-# construction, and utility blocks. Procedural originals; not a complete game atlas.
+# Expanded texture coverage for additional blocks.
 for name,base,var,mode in [
- ("blocks/bedrock.png",(72,72,74),18,"stone"),
- ("blocks/clay.png",(159,164,177),9,"grain"),
- ("blocks/mud.png",(76,70,54),13,"grain"),
- ("blocks/muddy_mangrove_roots_side.png",(92,63,43),14,"wood"),
- ("blocks/moss_block.png",(80,123,55),20,"grain"),
- ("blocks/mossy_cobblestone.png",(88,112,72),20,"stone"),
- ("blocks/stone_bricks.png",(112,116,117),14,"stone"),
- ("blocks/cracked_stone_bricks.png",(105,108,109),17,"stone"),
- ("blocks/mossy_stone_bricks.png",(91,111,77),17,"stone"),
- ("blocks/tuff.png",(104,108,101),16,"stone"),
- ("blocks/calcite.png",(219,218,205),9,"grain"),
- ("blocks/dripstone_block.png",(131,94,76),17,"stone"),
- ("blocks/pointed_dripstone.png",(136,101,83),14,"grain"),
- ("blocks/terracotta.png",(153,88,65),12,"grain"),
- ("blocks/white_terracotta.png",(209,190,169),9,"grain"),
- ("blocks/bricks.png",(151,77,61),14,"stone"),
- ("blocks/mud_bricks.png",(103,82,63),13,"stone"),
- ("blocks/prismarine.png",(67,131,119),17,"stone"),
- ("blocks/dark_prismarine.png",(43,91,81),14,"stone"),
- ("blocks/sea_lantern.png",(159,218,205),12,"grain"),
- ("blocks/end_stone.png",(218,215,153),12,"grain"),
- ("blocks/end_stone_bricks.png",(195,191,132),12,"stone"),
- ("blocks/purpur_block.png",(166,117,168),12,"stone"),
- ("blocks/quartz_block_side.png",(225,222,211),7,"grain"),
- ("blocks/nether_brick.png",(66,39,40),11,"stone"),
- ("blocks/blackstone.png",(47,44,44),14,"stone"),
- ("blocks/basalt_side.png",(77,74,73),14,"wood"),
- ("blocks/soul_sand.png",(91,68,55),15,"grain"),
- ("blocks/soul_soil.png",(68,54,49),14,"stone"),
- ("blocks/crimson_planks.png",(111,46,55),14,"wood"),
- ("blocks/warped_planks.png",(43,105,99),13,"wood"),
- ("blocks/bone_block_side.png",(211,204,177),8,"grain"),
- ("blocks/hay_block_side.png",(190,157,54),16,"wood"),
- ("blocks/sponge.png",(194,180,71),16,"grain"),
- ("blocks/wet_sponge.png",(141,154,65),15,"grain"),
- ("blocks/packed_ice.png",(141,191,224),9,"grain"),
- ("blocks/blue_ice.png",(103,171,223),11,"grain"),
- ("blocks/sea_pickle.png",(111,157,79),14,"grain"),
- ("blocks/copper_ore.png",(112,103,83),12,"ore"),
- ("blocks/redstone_ore.png",(91,77,72),12,"ore"),
- ("blocks/lapis_ore.png",(67,85,137),12,"ore"),
- ("blocks/emerald_ore.png",(75,112,79),12,"ore"),
- ("blocks/nether_gold_ore.png",(76,54,47),12,"ore"),
- ("blocks/nether_quartz_ore.png",(73,48,46),12,"ore"),
- ("blocks/copper_block.png",(181,104,73),13,"grain"),
- ("blocks/exposed_copper.png",(151,124,89),13,"grain"),
- ("blocks/oxidized_copper.png",(75,143,122),14,"grain"),
- ("blocks/iron_block.png",(194,198,198),7,"grain"),
- ("blocks/gold_block.png",(235,190,54),8,"grain"),
- ("blocks/diamond_block.png",(76,204,193),8,"grain"),
- ("blocks/emerald_block.png",(54,183,105),8,"grain"),
- ("blocks/lapis_block.png",(42,75,151),8,"grain"),
- ("blocks/redstone_block.png",(166,45,39),8,"grain"),
- ("blocks/coal_block.png",(45,47,49),7,"grain"),
- ("blocks/honey_block_side.png",(209,153,39),9,"grain"),
- ("blocks/slime.png",(104,181,74),13,"grain"),
- ("blocks/powder_snow.png",(224,238,246),6,"grain"),
- ("blocks/azalea_leaves.png",(85,138,62),23,"grain"),
- ("blocks/flowering_azalea_leaves.png",(83,133,61),22,"grain"),
- ("blocks/mangrove_leaves.png",(56,117,51),24,"grain"),
- ("blocks/cherry_leaves.png",(221,151,175),19,"grain"),
- ("blocks/bamboo_block.png",(111,150,69),14,"wood"),
- ("blocks/bamboo_planks.png",(187,158,91),12,"wood"),
- ("blocks/cherry_planks.png",(190,133,127),12,"wood"),
- ("blocks/mangrove_planks.png",(117,61,52),14,"wood"),
- ("blocks/acacia_planks.png",(171,91,48),14,"wood"),
- ("blocks/birch_planks.png",(195,178,118),11,"wood"),
- ("blocks/dark_oak_planks.png",(70,48,34),12,"wood"),
- ("blocks/jungle_planks.png",(163,119,75),13,"wood"),
- ("blocks/crimson_nylium_side.png",(111,42,47),16,"stone"),
- ("blocks/warped_nylium_side.png",(41,103,96),14,"stone"),
- ("blocks/chorus_plant.png",(106,70,127),14,"wood"),
+ ("blocks/bedrock.png",(72,72,74),18,"stone"),("blocks/clay.png",(159,164,177),9,"grain"),
+ ("blocks/mud.png",(76,70,54),13,"grain"),("blocks/muddy_mangrove_roots_side.png",(92,63,43),14,"wood"),
+ ("blocks/moss_block.png",(80,123,55),20,"grain"),("blocks/mossy_cobblestone.png",(88,112,72),20,"stone"),
+ ("blocks/stone_bricks.png",(112,116,117),14,"stone"),("blocks/cracked_stone_bricks.png",(105,108,109),17,"stone"),
+ ("blocks/mossy_stone_bricks.png",(91,111,77),17,"stone"),("blocks/tuff.png",(104,108,101),16,"stone"),
+ ("blocks/calcite.png",(219,218,205),9,"grain"),("blocks/dripstone_block.png",(131,94,76),17,"stone"),
+ ("blocks/pointed_dripstone.png",(136,101,83),14,"grain"),("blocks/terracotta.png",(153,88,65),12,"grain"),
+ ("blocks/white_terracotta.png",(209,190,169),9,"grain"),("blocks/bricks.png",(151,77,61),14,"stone"),
+ ("blocks/mud_bricks.png",(103,82,63),13,"stone"),("blocks/prismarine.png",(67,131,119),17,"stone"),
+ ("blocks/dark_prismarine.png",(43,91,81),14,"stone"),("blocks/sea_lantern.png",(159,218,205),12,"grain"),
+ ("blocks/end_stone.png",(218,215,153),12,"grain"),("blocks/end_stone_bricks.png",(195,191,132),12,"stone"),
+ ("blocks/purpur_block.png",(166,117,168),12,"stone"),("blocks/quartz_block_side.png",(225,222,211),7,"grain"),
+ ("blocks/nether_brick.png",(66,39,40),11,"stone"),("blocks/blackstone.png",(47,44,44),14,"stone"),
+ ("blocks/basalt_side.png",(77,74,73),14,"wood"),("blocks/soul_sand.png",(91,68,55),15,"grain"),
+ ("blocks/soul_soil.png",(68,54,49),14,"stone"),("blocks/crimson_planks.png",(111,46,55),14,"wood"),
+ ("blocks/warped_planks.png",(43,105,99),13,"wood"),("blocks/bone_block_side.png",(211,204,177),8,"grain"),
+ ("blocks/hay_block_side.png",(190,157,54),16,"wood"),("blocks/sponge.png",(194,180,71),16,"grain"),
+ ("blocks/wet_sponge.png",(141,154,65),15,"grain"),("blocks/packed_ice.png",(141,191,224),9,"grain"),
+ ("blocks/blue_ice.png",(103,171,223),11,"grain"),("blocks/sea_pickle.png",(111,157,79),14,"grain"),
+ ("blocks/copper_ore.png",(112,103,83),12,"ore"),("blocks/redstone_ore.png",(91,77,72),12,"ore"),
+ ("blocks/lapis_ore.png",(67,85,137),12,"ore"),("blocks/emerald_ore.png",(75,112,79),12,"ore"),
+ ("blocks/nether_gold_ore.png",(76,54,47),12,"ore"),("blocks/nether_quartz_ore.png",(73,48,46),12,"ore"),
+ ("blocks/copper_block.png",(181,104,73),13,"grain"),("blocks/exposed_copper.png",(151,124,89),13,"grain"),
+ ("blocks/oxidized_copper.png",(75,143,122),14,"grain"),("blocks/iron_block.png",(194,198,198),7,"grain"),
+ ("blocks/gold_block.png",(235,190,54),8,"grain"),("blocks/diamond_block.png",(76,204,193),8,"grain"),
+ ("blocks/emerald_block.png",(54,183,105),8,"grain"),("blocks/lapis_block.png",(42,75,151),8,"grain"),
+ ("blocks/redstone_block.png",(166,45,39),8,"grain"),("blocks/coal_block.png",(45,47,49),7,"grain"),
+ ("blocks/honey_block_side.png",(209,153,39),9,"grain"),("blocks/slime.png",(104,181,74),13,"grain"),
+ ("blocks/powder_snow.png",(224,238,246),6,"grain"),("blocks/azalea_leaves.png",(85,138,62),23,"grain"),
+ ("blocks/flowering_azalea_leaves.png",(83,133,61),22,"grain"),("blocks/mangrove_leaves.png",(56,117,51),24,"grain"),
+ ("blocks/cherry_leaves.png",(221,151,175),19,"grain"),("blocks/bamboo_block.png",(111,150,69),14,"wood"),
+ ("blocks/bamboo_planks.png",(187,158,91),12,"wood"),("blocks/cherry_planks.png",(190,133,127),12,"wood"),
+ ("blocks/mangrove_planks.png",(117,61,52),14,"wood"),("blocks/acacia_planks.png",(171,91,48),14,"wood"),
+ ("blocks/birch_planks.png",(195,178,118),11,"wood"),("blocks/dark_oak_planks.png",(70,48,34),12,"wood"),
+ ("blocks/jungle_planks.png",(163,119,75),13,"wood"),("blocks/crimson_nylium_side.png",(111,42,47),16,"stone"),
+ ("blocks/warped_nylium_side.png",(41,103,96),14,"stone"),("blocks/chorus_plant.png",(106,70,127),14,"wood"),
 ]:
     texture(name,base,var,mode=mode)
 
-# Draw a recognizable 64x64 grass-block pack icon with original procedural pixel art.
+# Add aliases matching Bedrock's common terrain texture names. The first version
+# used names such as oak_log.png and oak_planks.png, which some vanilla atlas
+# entries do not reference. These explicit aliases cover the common tree families.
+tree_textures = [
+    ("log_oak.png", (111,78,48), 15, "wood"),
+    ("log_oak_top.png", (154,119,78), 13, "grain"),
+    ("planks_oak.png", (145,105,63), 18, "wood"),
+    ("leaves_oak.png", (65,112,53), 28, "grain"),
+    ("leaves_oak_opaque.png", (65,112,53), 28, "grain"),
+    ("log_spruce.png", (77,55,39), 13, "wood"),
+    ("log_spruce_top.png", (121,92,65), 12, "grain"),
+    ("planks_spruce.png", (107,76,48), 15, "wood"),
+    ("leaves_spruce.png", (42,87,55), 21, "grain"),
+    ("leaves_spruce_opaque.png", (42,87,55), 21, "grain"),
+    ("log_birch.png", (196,178,123), 10, "wood"),
+    ("log_birch_top.png", (211,194,146), 8, "grain"),
+    ("planks_birch.png", (195,178,118), 11, "wood"),
+    ("leaves_birch.png", (105,145,67), 23, "grain"),
+    ("leaves_birch_opaque.png", (105,145,67), 23, "grain"),
+    ("log_jungle.png", (119,83,52), 15, "wood"),
+    ("log_jungle_top.png", (156,118,78), 12, "grain"),
+    ("planks_jungle.png", (163,119,75), 13, "wood"),
+    ("leaves_jungle.png", (70,125,54), 24, "grain"),
+    ("leaves_jungle_opaque.png", (70,125,54), 24, "grain"),
+    ("log_acacia.png", (116,73,49), 14, "wood"),
+    ("log_acacia_top.png", (155,103,69), 12, "grain"),
+    ("planks_acacia.png", (171,91,48), 14, "wood"),
+    ("leaves_acacia.png", (91,125,52), 23, "grain"),
+    ("leaves_acacia_opaque.png", (91,125,52), 23, "grain"),
+    ("log_big_oak.png", (72,52,37), 12, "wood"),
+    ("log_big_oak_top.png", (114,83,58), 10, "grain"),
+    ("planks_big_oak.png", (70,48,34), 12, "wood"),
+    ("leaves_big_oak.png", (53,95,42), 24, "grain"),
+    ("leaves_big_oak_opaque.png", (53,95,42), 24, "grain"),
+    ("log_mangrove.png", (91,48,43), 14, "wood"),
+    ("log_mangrove_top.png", (143,81,64), 12, "grain"),
+    ("planks_mangrove.png", (117,61,52), 14, "wood"),
+    ("leaves_mangrove.png", (56,117,51), 24, "grain"),
+    ("leaves_mangrove_opaque.png", (56,117,51), 24, "grain"),
+    ("log_cherry.png", (125,82,75), 12, "wood"),
+    ("log_cherry_top.png", (187,135,127), 9, "grain"),
+    ("planks_cherry.png", (190,133,127), 12, "wood"),
+    ("leaves_cherry.png", (221,151,175), 19, "grain"),
+    ("leaves_cherry_opaque.png", (221,151,175), 19, "grain"),
+]
+for filename, base, variation, mode in tree_textures:
+    texture("blocks/" + filename, base, variation, mode=mode)
+
+# Original, simple voxel-style pack icon.
 def polygon(points, color, pixels, width=64, height=64):
     xs=[p[0] for p in points]; ys=[p[1] for p in points]
     for y in range(max(0,min(ys)), min(height,max(ys)+1)):
@@ -168,19 +177,14 @@ def polygon(points, color, pixels, width=64, height=64):
 def grass_block_icon():
     w=h=64
     pix=[(0,0,0,0)]*(w*h)
-    # Three faces of a voxel cube.
     polygon([(8,19),(31,8),(56,20),(32,33)],(92,165,62,255),pix)
     polygon([(8,19),(32,33),(32,57),(8,43)],(113,75,45,255),pix)
     polygon([(32,33),(56,20),(56,44),(32,57)],(91,58,37,255),pix)
-    # Natural grass flecks on the top face.
     rng=random.Random(931)
     for _ in range(160):
         x=rng.randrange(10,55); y=rng.randrange(9,33)
-        # Keep flecks roughly inside the diamond top.
         if y >= 19-abs(x-32)*0.48 and y <= 20+abs(x-32)*0.55:
-            color=rng.choice([(58,132,45,255),(123,185,69,255),(75,147,49,255),(145,192,83,255)])
-            pix[y*w+x]=color
-    # Pixelated dirt grains and strata on the two side faces.
+            pix[y*w+x]=rng.choice([(58,132,45,255),(123,185,69,255),(75,147,49,255),(145,192,83,255)])
     for _ in range(110):
         x=rng.randrange(9,32); y=rng.randrange(34,56)
         if y >= 33+(x-8)*0.60 and y <= 43+(x-8)*0.60:
@@ -189,7 +193,6 @@ def grass_block_icon():
         x=rng.randrange(33,56); y=rng.randrange(22,57)
         if y >= 33-(x-32)*0.52 and y <= 57-(x-32)*0.02:
             pix[y*w+x]=rng.choice([(117,72,43,255),(75,47,31,255),(133,82,47,255)])
-    # A thin dark outline makes the block readable as a launcher/pack icon.
     outline=(42,38,31,255)
     def line(x1,y1,x2,y2,col):
         dx=abs(x2-x1); sx=1 if x1<x2 else -1
@@ -206,5 +209,4 @@ def grass_block_icon():
     png(Path("packs/grmodpro-realism-rp/pack_icon.png"),pix,w,h)
 
 grass_block_icon()
-
 print(f"Generated original lightweight realism textures under {ROOT}")
