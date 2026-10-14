@@ -29,8 +29,8 @@ manifest["header"]["description"] = (
     "or complete texture replacement."
 )
 manifest["header"]["uuid"] = "b0e75a7d-9bd5-4d31-9a62-6f85d4a1c2e9"
-manifest["header"]["version"] = [2, 0, 1]
+manifest["header"]["version"] = [2, 0, 2]
 manifest["modules"][0]["uuid"] = "a87d5b9e-ef35-4f23-a8e2-14c2d91a6b70"
-manifest["modules"][0]["version"] = [2, 0, 1]
+manifest["modules"][0]["version"] = [2, 0, 2]
 manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
 print(f"Created {destination.relative_to(root)} with unique Phase 2 UUIDs")
