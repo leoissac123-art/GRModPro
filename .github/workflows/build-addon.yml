@@ -54,6 +54,51 @@ jobs:
               archive.write(horror_packs[1][1], horror_packs[1][1].name)
           PY
 
+      - name: Validate realism pack contents
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from zipfile import ZipFile
+
+          root = Path("downloads")
+          required = [
+              "textures/blocks/log_oak.png",
+              "textures/blocks/log_spruce.png",
+              "textures/blocks/log_birch.png",
+              "textures/blocks/log_jungle.png",
+              "textures/blocks/log_acacia.png",
+              "textures/blocks/log_big_oak.png",
+              "textures/blocks/planks_oak.png",
+              "textures/blocks/leaves_oak.png",
+              "textures/blocks/leaves_spruce.png",
+              "textures/blocks/cherry_leaves.png",
+              "manifest.json",
+          ]
+          ids = []
+          for filename in [
+              "GRModPro-Realism-Atmosphere-1.0.0.mcpack",
+              "GRModPro-Realism-Phase-2-2.0.0.mcpack",
+          ]:
+              path = root / filename
+              if not path.is_file():
+                  raise SystemExit(f"Missing output package: {path}")
+              with ZipFile(path) as archive:
+                  names = set(archive.namelist())
+                  missing = [name for name in required if name not in names]
+                  if missing:
+                      raise SystemExit(f"{filename} missing required files: {missing}")
+                  manifest = json.loads(archive.read("manifest.json"))
+                  ids.append((manifest["header"]["uuid"], manifest["modules"][0]["uuid"]))
+                  for name in required:
+                      if name.endswith(".png") and not archive.read(name).startswith(b"\\x89PNG\\r\\n\\x1a\\n"):
+                          raise SystemExit(f"Invalid PNG signature: {filename}:{name}")
+                  print(f"Validated {filename}: {len(names)} files; required tree textures and manifest present")
+          if ids[0][0] == ids[1][0] or ids[0][1] == ids[1][1]:
+              raise SystemExit("Phase 1 and Phase 2 must use distinct header and module UUIDs")
+          print("Both packs passed structural checks and have distinct identities.")
+          PY
+
       - name: Commit rebuilt packages
         run: |
           git config user.name "github-actions[bot]"
