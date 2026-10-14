@@ -63,6 +63,6 @@
     document.getElementById('search-form').addEventListener('submit',e=>{e.preventDefault();state.query=els.search.value.trim();render();document.getElementById('releases').scrollIntoView({behavior:'smooth',block:'start'});});els.search.addEventListener('input',e=>{state.query=e.target.value.trim();render();});document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>setFilter(b.dataset.filter)));document.querySelectorAll('[data-category]').forEach(b=>b.addEventListener('click',()=>setFilter(b.dataset.category)));document.getElementById('reset').addEventListener('click',()=>{state.filter='All';state.query='';els.search.value='';render();});document.getElementById('menu-button').addEventListener('click',e=>{const nav=document.getElementById('mobile-nav');const open=nav.classList.toggle('hidden')===false;e.currentTarget.setAttribute('aria-expanded',String(open));});boot();
   </script>
   <script src="./ai-assistant.js" defer></script>
-<script src="./site-settings.js?v=8" defer></script>
+<script src="./site-settings.js?v=9" defer></script>
 </body>
 </html>
