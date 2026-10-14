@@ -2,7 +2,7 @@
   "format_version": 2,
   "header": {
     "name": "GRModPro Realism Atmosphere",
-    "description": "An experimental atmospheric fog resource pack for Minecraft Bedrock. This is not a shader and does not replace block textures.",
+    "description": "A lightweight experimental realism resource pack with original procedural textures for selected blocks, ores, leaves, water, and tools, plus atmospheric fog presets. Not a full shader or complete texture replacement.",
     "uuid": "e51a9a31-bce4-48cb-a8b9-8e5b7d0ef4c1",
     "version": [
       1,
