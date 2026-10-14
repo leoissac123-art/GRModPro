@@ -22,6 +22,7 @@ jobs:
         run: |
           python3 packs/generate_realism_textures.py
           python3 packs/generate_classic_textures.py
+          python3 packs/generate_realism_phase2.py
 
       - name: Build .mcpack and .mcaddon files
         run: |
@@ -36,6 +37,7 @@ jobs:
               ("packs/grmodpro-horror-bp", out / "GRModPro-Horror-Behavior-1.0.0.mcpack"),
               ("packs/grmodpro-horror-rp", out / "GRModPro-Horror-Resources-1.0.0.mcpack"),
               ("packs/grmodpro-realism-rp", out / "GRModPro-Realism-Atmosphere-1.0.0.mcpack"),
+              ("packs/grmodpro-realism-phase2-rp", out / "GRModPro-Realism-Phase-2-2.0.0.mcpack"),
               ("packs/grmodpro-classic-rp", out / "GRModPro-Classic-Blocks-1.0.0.mcpack"),
           ]
           for source, destination in packs:
@@ -45,11 +47,11 @@ jobs:
                       if file.is_file():
                           archive.write(file, file.relative_to(source).as_posix())
 
-          packs = packs[:2]
+          horror_packs = packs[:2]
           addon = out / "GRModPro-Horror-1.0.0.mcaddon"
           with ZipFile(addon, "w", ZIP_DEFLATED) as archive:
-              archive.write(packs[0][1], packs[0][1].name)
-              archive.write(packs[1][1], packs[1][1].name)
+              archive.write(horror_packs[0][1], horror_packs[0][1].name)
+              archive.write(horror_packs[1][1], horror_packs[1][1].name)
           PY
 
       - name: Commit rebuilt packages
