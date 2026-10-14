@@ -30,6 +30,7 @@ jobs:
           packs = [
               ("packs/grmodpro-horror-bp", out / "GRModPro-Horror-Behavior-1.0.0.mcpack"),
               ("packs/grmodpro-horror-rp", out / "GRModPro-Horror-Resources-1.0.0.mcpack"),
+              ("packs/grmodpro-realism-rp", out / "GRModPro-Realism-Atmosphere-1.0.0.mcpack"),
           ]
           for source, destination in packs:
               source = root / source
@@ -38,6 +39,7 @@ jobs:
                       if file.is_file():
                           archive.write(file, file.relative_to(source).as_posix())
 
+          packs = packs[:2]
           addon = out / "GRModPro-Horror-1.0.0.mcaddon"
           with ZipFile(addon, "w", ZIP_DEFLATED) as archive:
               archive.write(packs[0][1], packs[0][1].name)
