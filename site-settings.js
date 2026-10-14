@@ -7,7 +7,32 @@ const modal=document.createElement("div");modal.className="gmp-settings-shade";m
 document.body.appendChild(modal);
 const $=id=>modal.querySelector("#"+id),theme=$("gmp-setting-theme"),color=$("gmp-setting-color"),size=$("gmp-setting-size"),motion=$("gmp-setting-motion"),language=$("gmp-setting-language"),status=$("gmp-settings-status");
 language.innerHTML='<option value="">Original language (English)</option>'+langs.map(x=>'<option value="'+x[0]+'">'+x[1]+'</option>').join("");
-function apply(){const root=document.documentElement;root.classList.toggle("gmp-light-mode",saved.theme==="light"||(saved.theme==="system"&&matchMedia("(prefers-color-scheme: light)").matches));root.classList.toggle("gmp-large-text",saved.size==="large");root.classList.toggle("gmp-reduce-motion",!!saved.motion);const accent=/^#[0-9a-f]{6}$/i.test(saved.accent||"")?saved.accent:"#55b6ff";root.style.setProperty("--blue",accent);root.style.setProperty("--accent",accent);root.style.setProperty("--blue-bright",accent);root.style.setProperty("--line-strong",accent+"99");root.style.setProperty("--gmp-accent",accent);let style=document.getElementById("gmp-settings-accent-style");if(!style){style=document.createElement("style");style.id="gmp-settings-accent-style";document.head.appendChild(style)}style.textContent=".gmp-settings-trigger{border-color:var(--gmp-accent)!important}.gmp-settings-action.primary{background:var(--gmp-accent)!important;border-color:var(--gmp-accent)!important}"}
+function apply(){
+const root=document.documentElement;
+root.classList.toggle("gmp-light-mode",saved.theme==="light"||(saved.theme==="system"&&matchMedia("(prefers-color-scheme: light)").matches));
+root.classList.toggle("gmp-large-text",saved.size==="large");
+root.classList.toggle("gmp-reduce-motion",!!saved.motion);
+const accent=/^#[0-9a-f]{6}$/i.test(saved.accent||"")?saved.accent:"#55b6ff";
+["--blue","--blue-bright","--blue-deep","--bright","--cyan","--accent","--primary","--gmp-accent"].forEach(name=>root.style.setProperty(name,accent));
+root.style.setProperty("--line-strong",accent+"99");
+root.style.setProperty("--gmp-accent-soft","color-mix(in srgb, "+accent+" 13%, var(--panel, #102039))");
+root.style.setProperty("--gmp-accent-glow","color-mix(in srgb, "+accent+" 30%, transparent)");
+let style=document.getElementById("gmp-settings-accent-style");
+if(!style){style=document.createElement("style");style.id="gmp-settings-accent-style";document.head.appendChild(style)}
+style.textContent=`
+:root{--blue:${accent}!important;--blue-bright:${accent}!important;--blue-deep:${accent}!important;--bright:${accent}!important;--cyan:${accent}!important;--accent:${accent}!important;--primary:${accent}!important;--gmp-accent:${accent}!important;--line-strong:${accent}99!important}
+.gmp-settings-trigger,.gmp-settings-action.primary{border-color:${accent}!important}
+.gmp-settings-action.primary{background:${accent}!important;color:#fff!important}
+a:not(.plain-link),.nav-links a.active,.eyebrow,.section-kicker{color:${accent}}
+button:not(.gmp-settings-close):not(.gmp-settings-action),.btn,.button,.search-button,.search-submit,.filter-button.active,.chip.active,.tab.active{border-color:${accent}!important}
+button.primary,.btn-primary,.button-primary,.search-button,.search-submit,.cta,.hero-cta{background:${accent}!important;border-color:${accent}!important;color:#fff!important}
+.card,.mod-card,.category-card,.project-card,.stat-card,.panel,.surface,.filter-bar{border-color:color-mix(in srgb,${accent} 42%,var(--line, #23364f))!important}
+.card:hover,.mod-card:hover,.category-card:hover,.project-card:hover{border-color:${accent}!important;box-shadow:0 10px 32px color-mix(in srgb,${accent} 18%,transparent)!important}
+input:focus,select:focus,textarea:focus{outline-color:${accent}!important;border-color:${accent}!important}
+.badge,.tag,.pill,.count-badge{border-color:color-mix(in srgb,${accent} 50%,transparent)!important}
+::selection{background:${accent};color:#fff}
+`;
+}
 function populate(){theme.value=saved.theme;color.value=saved.accent||"#55b6ff";size.value=saved.size;motion.checked=!!saved.motion;language.value=saved.language||""}
 function translate(code){if(code){document.cookie="googtrans=/en/"+code+";path=/;max-age=31536000;SameSite=Lax"}else{document.cookie="googtrans=;path=/;max-age=0;SameSite=Lax";document.cookie="googtrans=;path=/;domain="+location.hostname+";max-age=0;SameSite=Lax"}location.reload()}
 document.querySelectorAll('nav a[href="discover.html"], nav a[href="./discover.html"]').forEach(a=>{if(a.parentElement.querySelector(".gmp-settings-trigger"))return;const b=document.createElement("button");b.type="button";b.className="gmp-settings-trigger";b.textContent="⚙ Settings";b.setAttribute("aria-haspopup","dialog");a.insertAdjacentElement("afterend",b)});
