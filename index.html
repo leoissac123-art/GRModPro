@@ -546,7 +546,7 @@
           </div>
           <div class="hero-stats">
             <div class="stat"><strong>03</strong><span>Download files</span></div>
-            <div class="stat"><strong>06</strong><span>In production</span></div>
+            <div class="stat"><strong>05</strong><span>Upcoming projects</span></div>
             <div class="stat"><strong>26.52</strong><span>Bedrock target</span></div>
           </div>
         </div>
@@ -670,7 +670,7 @@
       count: document.getElementById('result-count')
     };
     const matches = mod => {
-      const hay = [mod.title, mod.category, mod.description, ...mod.tags, mod.platform].join(' ').toLowerCase();
+      const hay = [mod.title, mod.category, mod.description, ...mod.tags, mod.platform, mod.version].join(' ').toLowerCase();
       return (!state.query || hay.includes(state.query.toLowerCase())) &&
              (state.filter === 'All' || mod.tags.includes(state.filter) || mod.category === state.filter);
     };
