@@ -680,7 +680,7 @@
       b.className = 'mod-card card-enter' + (mod.download ? '' : ' is-coming-soon');
       b.dataset.id = mod.id;
       const downloadAction = mod.download
-        ? `<a class="card-download" href="${mod.download}" download>↓ Download ${mod.version}</a>`
+        ? `<a class="card-download" href="${mod.download}" download>↓ Download ${mod.download.endsWith(".mcaddon") ? "full add-on (.mcaddon)" : "resource pack (.mcpack)"}</a>`
         : '<span class="card-download card-download-disabled">No file released yet</span>';
       b.innerHTML = `
         <div class="card-cover ${mod.cover}">
@@ -713,7 +713,7 @@
               <span class="pill live">Download file</span>
             </div>
           </div>
-          <a class="primary-button feature-action" href="${mod.download}" download>↓ Download 1.0.0</a>
+          <a class="primary-button feature-action" href="${mod.download}" download>↓ Download full add-on (.mcaddon)</a>
         </article>`;
     }
     function fill(target, ids) {
