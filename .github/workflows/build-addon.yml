@@ -37,7 +37,7 @@ jobs:
               ("packs/grmodpro-horror-bp", out / "GRModPro-Horror-Behavior-1.0.0.mcpack"),
               ("packs/grmodpro-horror-rp", out / "GRModPro-Horror-Resources-1.0.0.mcpack"),
               ("packs/grmodpro-realism-rp", out / "GRModPro-Realism-Atmosphere-1.0.0.mcpack"),
-              ("packs/grmodpro-realism-phase2-rp", out / "GRModPro-Realism-Phase-2-2.0.0.mcpack"),
+              ("packs/grmodpro-realism-phase2-rp", out / "GRModPro-Realism-Phase-2-2.0.1.mcpack"),
               ("packs/grmodpro-classic-rp", out / "GRModPro-Classic-Blocks-1.0.0.mcpack"),
           ]
           for source, destination in packs:
@@ -78,7 +78,7 @@ jobs:
           ids = []
           for filename in [
               "GRModPro-Realism-Atmosphere-1.0.0.mcpack",
-              "GRModPro-Realism-Phase-2-2.0.0.mcpack",
+              "GRModPro-Realism-Phase-2-2.0.1.mcpack",
           ]:
               path = root / filename
               if not path.is_file():
