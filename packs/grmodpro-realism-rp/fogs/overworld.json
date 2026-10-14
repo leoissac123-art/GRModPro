@@ -1,0 +1,28 @@
+{
+  "format_version": "1.16.100",
+  "minecraft:fog_settings": {
+    "description": {
+      "identifier": "grmodpro:realism_overworld"
+    },
+    "distance": {
+      "air": {
+        "fog_start": 0.72,
+        "fog_end": 1,
+        "fog_color": "#B9D3D8",
+        "render_distance_type": "render"
+      },
+      "water": {
+        "fog_start": 0,
+        "fog_end": 0.38,
+        "fog_color": "#2B697A",
+        "render_distance_type": "fixed"
+      },
+      "weather": {
+        "fog_start": 0,
+        "fog_end": 0.72,
+        "fog_color": "#A9B7C1",
+        "render_distance_type": "render"
+      }
+    }
+  }
+}
