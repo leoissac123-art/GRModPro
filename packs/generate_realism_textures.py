@@ -5,7 +5,7 @@ The textures are procedural originals, not copied from Minecraft's asset files.
 They intentionally stay 16x16/32x32 for mobile performance.
 """
 from pathlib import Path
-import math, random, struct, zlib
+import json, math, random, struct, zlib
 
 ROOT = Path("packs/grmodpro-realism-rp/textures")
 random.seed(26052)
@@ -262,5 +262,40 @@ for alias, canonical in aliases.items():
     target = ROOT / "blocks" / alias
     if source.exists():
         shutil.copyfile(source, target)
+
+# Explicitly register the generated block textures in Bedrock's terrain atlas.
+# Without atlas entries, files can exist in the pack but never be selected by blocks.
+texture_data = {}
+for image_path in sorted((ROOT / "blocks").glob("*.png")):
+    key = image_path.stem
+    texture_data[key] = {"textures": f"textures/blocks/{key}"}
+
+# Common vanilla atlas identifiers for logs, log ends, leaves and planks.
+# Keep these explicit so the intended keys are easy to inspect and validate.
+for key in [
+    "log_oak", "log_oak_top", "planks_oak", "leaves_oak", "leaves_oak_opaque",
+    "log_spruce", "log_spruce_top", "planks_spruce", "leaves_spruce", "leaves_spruce_opaque",
+    "log_birch", "log_birch_top", "planks_birch", "leaves_birch", "leaves_birch_opaque",
+    "log_jungle", "log_jungle_top", "planks_jungle", "leaves_jungle", "leaves_jungle_opaque",
+    "log_acacia", "log_acacia_top", "planks_acacia", "leaves_acacia", "leaves_acacia_opaque",
+    "log_big_oak", "log_big_oak_top", "planks_big_oak", "leaves_big_oak", "leaves_big_oak_opaque",
+    "log_mangrove", "log_mangrove_top", "planks_mangrove", "mangrove_leaves",
+    "cherry_log_side", "cherry_log_top", "planks_cherry", "cherry_leaves",
+    "pale_oak_log_side", "pale_oak_log_top", "planks_pale_oak", "pale_oak_leaves",
+    "bamboo_block", "planks_bamboo",
+]:
+    if (ROOT / "blocks" / f"{key}.png").is_file():
+        texture_data[key] = {"textures": f"textures/blocks/{key}"}
+
+atlas = {
+    "resource_pack_name": "grmodpro_realism",
+    "texture_name": "atlas.terrain",
+    "padding": 8,
+    "num_mip_levels": 4,
+    "texture_data": texture_data,
+}
+(ROOT / "terrain_texture.json").write_text(
+    json.dumps(atlas, indent=2) + "\\n", encoding="utf-8"
+)
 
 print(f"Generated original lightweight realism textures under {ROOT}")
