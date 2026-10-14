@@ -557,7 +557,7 @@
             <a class="secondary-button" href="#releases">See what’s live</a>
           </div>
           <div class="hero-stats">
-            <div class="stat"><strong>01</strong><span>Download file</span></div>
+            <div class="stat"><strong>03</strong><span>Download files</span></div>
             <div class="stat"><strong>06</strong><span>In production</span></div>
             <div class="stat"><strong>26.52</strong><span>Bedrock target</span></div>
           </div>
@@ -662,6 +662,8 @@
   <script>
     const mods = [
       {id:'horror',category:'Horror',cover:'horror',symbol:'☽',title:'GrModPro Horror',status:'Download available',statusClass:'live',description:'A hostile custom entity for a tense survival encounter. Includes a behavior pack and matching resource pack.',tags:['Horror','Graphics'],platform:'Minecraft Bedrock',version:'1.0.0',download:'downloads/GRModPro-Horror-1.0.0.mcaddon'},
+       {id:'realism',category:'Visuals',cover:'visuals',symbol:'✦',title:'GRModPro Realism Atmosphere',status:'Experimental download · import unverified',statusClass:'live',description:'A realistic resource pack with original textures for many common blocks and cave/Overworld fog presets. It is experimental, not a true shader, and has not been device-tested.',tags:['Realism','Visuals','Graphics'],platform:'Minecraft Bedrock · iOS intended, not tested',version:'1.0.0',download:'downloads/GRModPro-Realism-Atmosphere-1.0.0.mcpack'},
+       {id:'classic',category:'Visuals',cover:'visuals',symbol:'▦',title:'GRModPro Classic Blocks',status:'Experimental download · import unverified',statusClass:'live',description:'A stylized resource pack with bright pixel textures for selected blocks. It is a starter pack, not a complete replacement for every texture, and has not been device-tested.',tags:['Classic','Visuals','Graphics'],platform:'Minecraft Bedrock · iOS intended, not tested',version:'1.0.0',download:'downloads/GRModPro-Classic-Blocks-1.0.0.mcpack'},
       {id:'survival',category:'Survival',cover:'survival',symbol:'◌',title:'GrModPro Survival',status:'In production',statusClass:'soon',description:'A realistic survival project being shaped for longer worlds and slower discoveries.',tags:['Survival'],platform:'Not released',version:'—'},
       {id:'visuals',category:'Visuals',cover:'visuals',symbol:'✧',title:'GrModPro Visuals',status:'In production',statusClass:'soon',description:'A visual refresh with beautiful atmosphere and shader-like mood for players who want a different feel.',tags:['Visuals','Graphics'],platform:'Not released',version:'—'},
       {id:'performance',category:'Performance',cover:'performance',symbol:'◈',title:'GrModPro Performance',status:'Planned',statusClass:'soon',description:'A lightweight performance project focused on smoother Bedrock sessions.',tags:['Performance','Utilities'],platform:'Not released',version:'—'},
@@ -744,8 +746,8 @@
     }
     function boot() {
       featured();
-      fill(els.trending, ['horror', 'survival', 'mobs']);
-      fill(els.recent, ['horror', 'visuals', 'utilities']);
+      fill(els.trending, ['horror', 'realism', 'mobs']);
+      fill(els.recent, ['classic', 'realism', 'horror']);
       render();
       setTimeout(() => els.app.classList.remove('is-loading'), 180);
     }
