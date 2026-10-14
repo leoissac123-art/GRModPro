@@ -70,4 +70,62 @@ texture("items/diamond_sword.png",(69,210,202),15,mode="grain",size=16)
 texture("items/iron_pickaxe.png",(176,181,181),18,mode="grain",size=16)
 texture("items/diamond_pickaxe.png",(63,197,190),15,mode="grain",size=16)
 
+
+# Draw a recognizable 64x64 grass-block pack icon with original procedural pixel art.
+def polygon(points, color, pixels, width=64, height=64):
+    xs=[p[0] for p in points]; ys=[p[1] for p in points]
+    for y in range(max(0,min(ys)), min(height,max(ys)+1)):
+        for x in range(max(0,min(xs)), min(width,max(xs)+1)):
+            inside=False
+            j=len(points)-1
+            for i in range(len(points)):
+                xi,yi=points[i]; xj,yj=points[j]
+                if ((yi>y)!=(yj>y)) and (x < (xj-xi)*(y-yi)/(yj-yi+1e-9)+xi):
+                    inside=not inside
+                j=i
+            if inside:
+                pixels[y*width+x]=color
+
+def grass_block_icon():
+    w=h=64
+    pix=[(0,0,0,0)]*(w*h)
+    # Three faces of a voxel cube.
+    polygon([(8,19),(31,8),(56,20),(32,33)],(92,165,62,255),pix)
+    polygon([(8,19),(32,33),(32,57),(8,43)],(113,75,45,255),pix)
+    polygon([(32,33),(56,20),(56,44),(32,57)],(91,58,37,255),pix)
+    # Natural grass flecks on the top face.
+    rng=random.Random(931)
+    for _ in range(160):
+        x=rng.randrange(10,55); y=rng.randrange(9,33)
+        # Keep flecks roughly inside the diamond top.
+        if y >= 19-abs(x-32)*0.48 and y <= 20+abs(x-32)*0.55:
+            color=rng.choice([(58,132,45,255),(123,185,69,255),(75,147,49,255),(145,192,83,255)])
+            pix[y*w+x]=color
+    # Pixelated dirt grains and strata on the two side faces.
+    for _ in range(110):
+        x=rng.randrange(9,32); y=rng.randrange(34,56)
+        if y >= 33+(x-8)*0.60 and y <= 43+(x-8)*0.60:
+            pix[y*w+x]=rng.choice([(139,94,55,255),(83,53,34,255),(124,81,47,255)])
+    for _ in range(110):
+        x=rng.randrange(33,56); y=rng.randrange(22,57)
+        if y >= 33-(x-32)*0.52 and y <= 57-(x-32)*0.02:
+            pix[y*w+x]=rng.choice([(117,72,43,255),(75,47,31,255),(133,82,47,255)])
+    # A thin dark outline makes the block readable as a launcher/pack icon.
+    outline=(42,38,31,255)
+    def line(x1,y1,x2,y2,col):
+        dx=abs(x2-x1); sx=1 if x1<x2 else -1
+        dy=-abs(y2-y1); sy=1 if y1<y2 else -1
+        err=dx+dy
+        while True:
+            if 0<=x1<w and 0<=y1<h: pix[y1*w+x1]=col
+            if x1==x2 and y1==y2: break
+            e2=2*err
+            if e2>=dy: err+=dy; x1+=sx
+            if e2<=dx: err+=dx; y1+=sy
+    for a,b in [((8,19),(31,8)),((31,8),(56,20)),((56,20),(56,44)),((56,44),(32,57)),((32,57),(8,43)),((8,43),(8,19)),((8,19),(32,33)),((32,33),(56,20)),((32,33),(32,57))]:
+        line(*a,*b,outline)
+    png(Path("packs/grmodpro-realism-rp/pack_icon.png"),pix,w,h)
+
+grass_block_icon()
+
 print(f"Generated original lightweight realism textures under {ROOT}")
