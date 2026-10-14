@@ -298,4 +298,23 @@ atlas = {
     json.dumps(atlas, indent=2) + "\n", encoding="utf-8"
 )
 
-print(f"Generated original lightweight realism textures under {ROOT}")
+# Fail the build immediately if any important tree texture is missing or its
+# terrain-atlas entry points to a file that was not generated.
+required_tree_keys = (
+    "log_oak", "log_oak_top", "planks_oak", "leaves_oak",
+    "log_spruce", "log_spruce_top", "planks_spruce", "leaves_spruce",
+    "log_birch", "planks_birch", "log_jungle", "planks_jungle",
+    "log_acacia", "planks_acacia", "log_big_oak", "planks_big_oak",
+    "log_mangrove", "planks_mangrove", "cherry_log_side", "planks_cherry",
+    "pale_oak_log_side", "pale_oak_log_top", "planks_pale_oak", "pale_oak_leaves",
+)
+for key in required_tree_keys:
+    entry = texture_data.get(key)
+    if not entry:
+        raise SystemExit("Missing terrain atlas key: " + key)
+    relative = entry.get("textures", "") + ".png"
+    texture_file = ROOT.parent / relative
+    if not relative.startswith("blocks/") or not texture_file.is_file():
+        raise SystemExit("Atlas key " + key + " points to missing texture: " + relative)
+
+print(f"Generated and validated {len(texture_data)} original lightweight terrain textures under {ROOT}")
