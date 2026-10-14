@@ -7,9 +7,10 @@ The UI is loaded by `index.html` from `ai-assistant.js`. It is intentionally not
 1. Install/use the Supabase CLI and link it to your Supabase project.
 2. Set the OpenAI API key as a server-side secret: `supabase secrets set OPENAI_API_KEY=your_key_here`. Never put this key in GitHub files, frontend JavaScript, or chat messages.
 3. Set `ALLOWED_ORIGIN` to the exact deployed website origin (currently `https://leoissac123-art.github.io`) and optionally set `OPENAI_MODEL`.
-4. Deploy the function: `supabase functions deploy ai-assistant`.
-5. In `ai-assistant.js`, replace `YOUR_PROJECT_REF` in `SUPABASE_FUNCTION_URL` with your Supabase project reference.
-6. Test on a preview/development deployment before merging.
+4. Deploy the function with `supabase functions deploy ai-assistant`.
+5. The frontend points to the configured project URL in `ai-assistant.js`; confirm it matches the Supabase project you deployed to.
+6. Test from the deployed website. The browser sends a `messages` array and the Edge Function returns a JSON `reply`.
+7. If `OPENAI_API_KEY` is not configured, the function intentionally returns HTTP 503 instead of simulating an AI answer.
 
 ## Security and limitations
 
