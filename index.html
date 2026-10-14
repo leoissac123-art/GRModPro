@@ -44,25 +44,13 @@
       color: var(--text);
       font: 15px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
+        linear-gradient(180deg, rgba(5,7,12,.58) 0%, rgba(5,7,12,.82) 38%, rgba(5,7,12,.96) 82%),
+        url("assets/grmodpro-hero-blue.webp") center 12% / cover no-repeat fixed,
         radial-gradient(ellipse 100% 70% at 10% -15%, rgba(50,120,220,.22), transparent 50%),
         radial-gradient(ellipse 80% 50% at 95% 5%, rgba(120,70,255,.14), transparent 45%),
         radial-gradient(ellipse 60% 40% at 50% 110%, rgba(100,240,255,.07), transparent 40%),
         var(--bg);
-      background-attachment: fixed;
-    }
-    /* Global cinematic background layer inspired by the supplied visual reference.
-       Keep the existing hero artwork, catalog, downloads, and search behavior intact. */
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      pointer-events: none;
-      background:
-        linear-gradient(180deg, rgba(5,7,12,.72) 0%, rgba(5,7,12,.88) 52%, rgba(5,7,12,.96) 100%),
-        url("assets/grmodpro-hero-blue.webp") center 18% / cover no-repeat;
-      opacity: .72;
-      transform: scale(1.015);
+      background-attachment: fixed, fixed, fixed, fixed, fixed, fixed;
     }
     .topbar { background: rgba(5,7,12,.68); }
     .category, .mod-card, .feature-card {
