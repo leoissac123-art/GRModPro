@@ -91,7 +91,7 @@ jobs:
                   manifest = json.loads(archive.read("manifest.json"))
                   ids.append((manifest["header"]["uuid"], manifest["modules"][0]["uuid"]))
                   for name in required:
-                      if name.endswith(".png") and not archive.read(name).startswith(b"\\x89PNG\\r\\n\\x1a\\n"):
+                      if name.endswith(".png") and not archive.read(name).startswith(bytes([137, 80, 78, 71, 13, 10, 26, 10])):
                           raise SystemExit(f"Invalid PNG signature: {filename}:{name}")
                   print(f"Validated {filename}: {len(names)} files; required tree textures and manifest present")
           if ids[0][0] == ids[1][0] or ids[0][1] == ids[1][1]:
