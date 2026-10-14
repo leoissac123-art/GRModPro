@@ -9,5 +9,5 @@
 {id:'utilities',category:'Utilities',symbol:'⌘',title:'GrModPro Utilities',status:'Planned',soon:true,description:'Small tools and quality-of-life ideas for a future utilities shelf.',platform:'Not released',version:'—',tags:['Utilities','Performance']}
 ];
 function card(m){return '<a class="card" href="project.html?id='+encodeURIComponent(m.id)+'"><span class="cover">'+m.symbol+'</span><span class="body"><span class="category">'+m.category+'</span><strong>'+m.title+'</strong><span class="status '+(m.soon?'soon':'')+'">'+m.status+'</span><p>'+m.description+'</p><span class="meta">'+m.platform+' · '+m.version+'　→ View details</span></span></a>'}
-document.getElementById('cards').innerHTML=['horror','visuals','utilities'].map(id=>mods.find(m=>m.id===id)).filter(Boolean).map(card).join('');document.querySelector('[data-nav="recent"]').classList.add('active');</script><script src="./ai-assistant.js" defer></script><script src="./site-settings.js?v=3" defer></script>
+document.getElementById('cards').innerHTML=['horror','visuals','utilities'].map(id=>mods.find(m=>m.id===id)).filter(Boolean).map(card).join('');document.querySelector('[data-nav="recent"]').classList.add('active');</script><script src="./ai-assistant.js" defer></script><script src="./site-settings.js?v=5" defer></script>
 </body></html>
