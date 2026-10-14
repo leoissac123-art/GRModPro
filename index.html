@@ -423,6 +423,19 @@
     }
     .meta { color: var(--muted); font-size: .62rem; }
     .card-link { color: var(--blue-bright); font-size: .7rem; }
+    .card-download {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      margin-top: 14px; min-height: 42px; padding: 10px 14px;
+      border: 1px solid rgba(94,200,255,.6); border-radius: 11px;
+      background: linear-gradient(120deg, #238fe0, #1767ba);
+      color: #fff; font-size: .78rem; font-weight: 850; text-decoration: none;
+      transition: transform .2s ease, filter .2s ease;
+    }
+    .card-download:hover { transform: translateY(-2px); filter: brightness(1.12); }
+    .card-download-disabled {
+      border-color: var(--line); background: rgba(255,255,255,.035);
+      color: var(--muted); cursor: default;
+    }
 
     .empty {
       padding: 40px; border: 1px dashed var(--line-strong); border-radius: 16px;
@@ -673,22 +686,28 @@
     };
     const meta = mod => `<span class="meta">${mod.platform} · v${mod.version}</span>`;
     function card(mod) {
-      const b = document.createElement('button');
-      b.type = 'button';
+      const b = document.createElement('article');
       b.className = 'mod-card card-enter' + (mod.download ? '' : ' is-coming-soon');
       b.dataset.id = mod.id;
+      const downloadAction = mod.download
+        ? `<a class="card-download" href="${mod.download}" download>↓ Download ${mod.version}</a>`
+        : '<span class="card-download card-download-disabled">No file released yet</span>';
       b.innerHTML = `
-        <span class="card-cover ${mod.cover}">
+        <div class="card-cover ${mod.cover}">
           <span class="cover-symbol">${mod.symbol}</span>
           <span class="status ${mod.statusClass}">${mod.status}</span>
-        </span>
-        <span class="card-body">
+        </div>
+        <div class="card-body">
           <span class="card-category">${mod.category}</span>
-          <strong>${mod.title}</strong>
+          <h3>${mod.title}</h3>
           <p>${mod.description}</p>
-          <span class="card-footer">${meta(mod)}<span class="card-link">View details →</span></span>
-        </span>`;
-      b.addEventListener('click', () => location.href = 'project.html?id=' + encodeURIComponent(mod.id));
+          <div class="card-footer">${meta(mod)}<span class="card-link">View details →</span></div>
+          ${downloadAction}
+        </div>`;
+      b.addEventListener('click', e => {
+        if (e.target.closest('a')) return;
+        location.href = 'project.html?id=' + encodeURIComponent(mod.id);
+      });
       return b;
     }
     function featured() {
