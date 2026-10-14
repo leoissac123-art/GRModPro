@@ -1,0 +1,57 @@
+name: Build Bedrock add-on packages
+
+on:
+  push:
+    paths:
+      - "packs/**"
+      - ".github/workflows/build-addon.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Build .mcpack and .mcaddon files
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile, ZIP_DEFLATED
+
+          root = Path(".")
+          out = root / "downloads"
+          out.mkdir(exist_ok=True)
+          packs = [
+              ("packs/grmodpro-horror-bp", out / "GRModPro-Horror-Behavior-1.0.0.mcpack"),
+              ("packs/grmodpro-horror-rp", out / "GRModPro-Horror-Resources-1.0.0.mcpack"),
+          ]
+          for source, destination in packs:
+              source = root / source
+              with ZipFile(destination, "w", ZIP_DEFLATED) as archive:
+                  for file in sorted(source.rglob("*")):
+                      if file.is_file():
+                          archive.write(file, file.relative_to(source).as_posix())
+
+          addon = out / "GRModPro-Horror-1.0.0.mcaddon"
+          with ZipFile(addon, "w", ZIP_DEFLATED) as archive:
+              archive.write(packs[0][1], packs[0][1].name)
+              archive.write(packs[1][1], packs[1][1].name)
+          PY
+
+      - name: Commit rebuilt packages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add downloads/*.mcpack downloads/*.mcaddon
+          if git diff --cached --quiet; then
+            echo "Packages already up to date."
+          else
+            git commit -m "Rebuild Horror add-on packages"
+            git push
+          fi
