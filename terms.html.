@@ -1,0 +1,94 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Terms of Service for GRModPro.">
+  <title>Terms of Service | GRModPro</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0d12;
+      --panel: #141821;
+      --text: #f3f5f9;
+      --muted: #a7afbd;
+      --accent: #8b7cff;
+      --border: #292f3d;
+    }
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 32px 18px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  line-height: 1.75;
+}
+main {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 32px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+}
+a { color: var(--accent); }
+.back {
+  display: inline-block;
+  margin-bottom: 24px;
+  text-decoration: none;
+}
+h1 { font-size: clamp(2rem, 6vw, 3rem); }
+h2 {
+  margin-top: 32px;
+  font-size: 1.25rem;
+}
+p, li { color: var(--muted); }
+.updated {
+  padding: 12px 16px;
+  background: #1b2030;
+  border-radius: 10px;
+  font-size: 0.9rem;
+}
+footer {
+  margin-top: 36px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="./">← Back to GRModPro</a>
+<h1>Terms of Service</h1>
+<p class="updated">Last updated: October 16, 2026</p>
+<p>
+  Welcome to GRModPro. These Terms of Service explain the basic
+  rules for using our website and its features. By using GRModPro,
+  you agree to these terms. If you do not agree, please stop using
+  the website.
+</p>
+<h2>1. About GRModPro</h2>
+<p>
+  GRModPro provides information and links relating to Minecraft
+  Bedrock add-ons, modifications, resource packs, and other
+  community content. Features may change, be added, or be removed
+  over time.
+</p>
+<h2>2. Third-Party Content</h2>
+<p>
+  Add-ons and downloads may be hosted by third-party websites.
+  Those files and services are controlled by their respective
+  creators or providers, not GRModPro. Check the source, version
+  compatibility, permissions, and safety of a download before
+  installing it. We cannot guarantee that third-party content will
+  always be available, compatible, safe, or free of errors.
+</p>
+<h2>3. Acceptable Use</h2>
+<p>You agree not to:</p>
+<ul>
+  <li>Use the website for unlawful, fraudulent, or harmful purposes.</li>
+  <li>Attempt to disrupt, damage, or gain
