@@ -1,5 +1,5 @@
 /* GrModPro — shared page behavior */
-import { ready, onUserChange, getUser, displayName, logOut, getFavorites, toggleFavorite, friendlyError } from "./auth.js";
+import { ready, onUserChange, getUser, displayName, logOut, getFavorites, toggleFavorite, friendlyError, isGuest, startGuest, endGuest } from "./auth.js";
 
 const ICONS = {
   search: '<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>',
@@ -75,16 +75,14 @@ document.addEventListener("click", async e => {
   const btn = e.target.closest("[data-fav]");
   if (!btn) return;
   e.preventDefault(); e.stopPropagation();
-  if (!getUser()) {
-    toast("Create a free account to save favorites", "heart");
-    setTimeout(() => { location.href = "signup.html?next=" + encodeURIComponent(location.pathname.split("/").pop() + location.search); }, 900);
-    return;
-  }
+  const firstGuestSave = !getUser() && !isGuest();
+  if (firstGuestSave) startGuest();
   const id = btn.dataset.fav;
   btn.disabled = true;
   try {
     const saved = await toggleFavorite(id);
-    toast(saved ? "Saved to your favorites" : "Removed from favorites", saved ? "heart" : "check");
+    if (!getUser() && saved) toast(firstGuestSave ? "Saved on this device. Sign up free to keep favorites everywhere." : "Saved to your favorites on this device", "heart");
+    else toast(saved ? "Saved to your favorites" : "Removed from favorites", saved ? "heart" : "check");
   } catch (err) { toast(friendlyError(err), "alert"); }
   finally { btn.disabled = false; }
 });
@@ -105,7 +103,19 @@ function renderAuth(user) {
   const slot = document.getElementById("auth-slot");
   const mobile = document.getElementById("mobile-auth");
   if (!slot) return;
-  if (!user) {
+  if (!user && isGuest()) {
+    const n = getFavorites().length;
+    slot.innerHTML = `<div class="account-menu">
+      <button class="avatar-btn" type="button" aria-haspopup="menu" aria-expanded="false" id="account-btn"><span class="avatar avatar-guest">${icon("user")}</span><span>Guest</span></button>
+      <div class="dropdown" role="menu" id="account-dropdown" hidden>
+        <div class="who"><strong>Browsing as a guest</strong><span>Favorites are saved on this device only</span></div>
+        <a href="account.html#favorites" role="menuitem">${icon("heart")}My favorites${n ? ` (${n})` : ""}</a>
+        <a href="signup.html" role="menuitem">${icon("user")}Create free account</a>
+        <a href="login.html" role="menuitem">${icon("arrow")}Log in</a>
+        <button type="button" role="menuitem" data-exit-guest>${icon("logout")}Exit guest mode</button>
+      </div></div>`;
+    if (mobile) mobile.innerHTML = `<a class="btn" href="account.html">${icon("heart")}Guest favorites</a><a class="btn btn-primary" href="signup.html">Sign up free</a>`;
+  } else if (!user) {
     slot.innerHTML = `<a class="btn btn-ghost" href="login.html">Log in</a><a class="btn btn-primary" href="signup.html">Sign up free</a>`;
     if (mobile) mobile.innerHTML = `<a class="btn" href="login.html">Log in</a><a class="btn btn-primary" href="signup.html">Sign up free</a>`;
   } else {
@@ -120,6 +130,9 @@ function renderAuth(user) {
       </div></div>`;
     if (mobile) mobile.innerHTML = `<a class="btn" href="account.html">${icon("user")}My account</a><button class="btn" type="button" data-logout>${icon("logout")}Log out</button>`;
   }
+  document.querySelectorAll("[data-exit-guest]").forEach(b => b.addEventListener("click", () => {
+    endGuest(); toast("Guest mode ended. Favorites on this device were cleared.");
+  }));
   document.querySelectorAll("[data-logout]").forEach(b => b.addEventListener("click", async () => {
     await logOut(); toast("You're logged out. See you soon!");
     if (document.body.dataset.private) setTimeout(() => location.href = "index.html", 700);

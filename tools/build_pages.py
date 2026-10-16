@@ -6,7 +6,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE = "https://leoissac123-art.github.io/GRModPro/"
-VER = "3"
+VER = "4"
 
 def ic(name):
     paths = {
@@ -153,7 +153,7 @@ page("index.html", "GrModPro — Free Minecraft Bedrock add-ons, easy to install
 
 <section class="section shell" id="account-cta">
   <div class="cta-band">
-    <div><h2>Make a free account</h2><p>Save your favorite add-ons and come back to them on any device. It takes less than a minute — just an email and a password.</p></div>
+    <div><h2>Make a free account</h2><p>Save your favorite add-ons and come back to them on any device. It takes less than a minute — just an email and a password. Not ready? You can browse and save favorites as a guest.</p></div>
     <div class="actions"><a class="btn btn-primary btn-lg" href="signup.html">Sign up free</a><a class="btn btn-lg" href="login.html">I already have an account</a></div>
   </div>
 </section>''', active="index.html")
@@ -221,6 +221,9 @@ auth_page("signup.html", "Sign up", "Create a free GrModPro account.", "signup",
   {PW("password", "Password", "new-password", "At least 8 characters.")}
   <button class="btn btn-primary btn-lg btn-block" type="submit">Create account</button>
   <p class="hint" style="text-align:center;color:var(--faint);font-size:var(--text-xs)">We'll only use your email to log you in and help you reset your password.</p>
+  <div class="or-line">or</div>
+  <button class="btn btn-lg btn-block" type="button" data-guest>Continue as guest</button>
+  <p class="hint" style="text-align:center;color:var(--faint);font-size:var(--text-xs)">Guests can browse, download and save favorites on this device. No email needed.</p>
 </form>
 <p class="switch-line" id="switch-line">Already have an account? <a href="login.html">Log in</a></p>''')
 
@@ -232,6 +235,9 @@ auth_page("login.html", "Log in", "Log in to your GrModPro account.", "login", "
   {PW("password", "Password", "current-password")}
   <div class="form-row"><span></span><a href="forgot.html">Forgot your password?</a></div>
   <button class="btn btn-primary btn-lg btn-block" type="submit">Log in</button>
+  <div class="or-line">or</div>
+  <button class="btn btn-lg btn-block" type="button" data-guest>Continue as guest</button>
+  <p class="hint" style="text-align:center;color:var(--faint);font-size:var(--text-xs)">Guests can browse, download and save favorites on this device. No email needed.</p>
 </form>
 <p class="switch-line">New here? <a href="signup.html" id="signup-link">Create a free account</a></p>''')
 
@@ -257,8 +263,14 @@ auth_page("reset.html", "Choose a new password", "Choose a new GrModPro password
 page("account.html", "My account", "Your GrModPro account and saved favorites.", "account", f'''
 <div class="shell">
   <section id="signed-out" hidden>
-    <div class="empty" style="margin:64px 0"><h3>You're not logged in</h3><p>Log in to see your account and saved favorites.</p>
-      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><a class="btn btn-primary" href="login.html">Log in</a><a class="btn" href="signup.html">Sign up free</a></div></div>
+    <div class="empty" style="margin:64px 0"><h3>You're not logged in</h3><p>Log in to see your account and saved favorites, or keep browsing as a guest.</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><a class="btn btn-primary" href="login.html">Log in</a><a class="btn" href="signup.html">Sign up free</a><button class="btn btn-ghost" type="button" data-guest>Continue as guest</button></div></div>
+  </section>
+  <section id="guest-view" hidden>
+    <header class="page-head"><h1>Guest favorites</h1><p>You're browsing as a guest. Your favorites are saved on this device only. Create a free account to keep them on every device; your saved favorites will move over automatically.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px"><a class="btn btn-primary" href="signup.html">Create free account</a><a class="btn" href="login.html">Log in</a><button class="btn btn-ghost" type="button" data-exit-guest-page>Exit guest mode</button></div></header>
+    <div class="grid" id="guest-grid" style="padding-bottom:40px"></div>
+    <div class="empty" id="guest-empty" hidden><h3>No favorites yet</h3><p>Tap the heart on any add-on to save it here.</p><a class="btn btn-primary" href="discover.html">Browse add-ons</a></div>
   </section>
   <section id="signed-in" hidden>
     <header class="page-head"><h1>My account</h1></header>

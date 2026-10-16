@@ -13,6 +13,30 @@ export const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
 let currentUser = null;
 const listeners = new Set();
 
+/* Guest mode: browse and save favorites on this device without an account. */
+const GUEST_KEY = "gmp-guest-v1";
+function readGuest() { try { return JSON.parse(localStorage.getItem(GUEST_KEY) || "null"); } catch (e) { return null; } }
+function writeGuest(g) { try { g ? localStorage.setItem(GUEST_KEY, JSON.stringify(g)) : localStorage.removeItem(GUEST_KEY); } catch (e) {} }
+export function isGuest() { return !currentUser && !!readGuest(); }
+export function startGuest() { if (!readGuest()) writeGuest({ favorites: [], started: Date.now() }); emit(); }
+export function endGuest() { writeGuest(null); emit(); }
+function guestFavorites() { const g = readGuest(); return Array.isArray(g?.favorites) ? g.favorites : []; }
+
+/* After sign-in, move any guest favorites onto the real account. */
+async function adoptGuestFavorites() {
+  const extra = guestFavorites();
+  if (!currentUser || !readGuest()) return;
+  if (extra.length) {
+    const mine = getFavorites();
+    const merged = [...new Set([...mine, ...extra])].slice(-100);
+    if (merged.length !== mine.length) {
+      const { data, error } = await supabase.auth.updateUser({ data: { favorites: merged } });
+      if (!error) currentUser = data.user;
+    }
+  }
+  writeGuest(null); emit();
+}
+
 export function getUser() { return currentUser; }
 export function onUserChange(fn) { listeners.add(fn); fn(currentUser); return () => listeners.delete(fn); }
 function emit() { listeners.forEach(fn => { try { fn(currentUser); } catch (e) { console.error(e); } }); }
@@ -20,6 +44,7 @@ function emit() { listeners.forEach(fn => { try { fn(currentUser); } catch (e) {
 export const ready = supabase.auth.getSession().then(({ data }) => {
   currentUser = data.session?.user ?? null;
   emit();
+  if (currentUser) adoptGuestFavorites();
   return currentUser;
 }).catch(() => { emit(); return null; });
 
@@ -31,7 +56,7 @@ supabase.auth.onAuthStateChange((_event, session) => {
 export function pageUrl(file) { return new URL(file, location.href).href; }
 
 export function displayName(user = currentUser) {
-  if (!user) return "";
+  if (!user) return isGuest() ? "Guest" : "";
   return user.user_metadata?.name || (user.email || "").split("@")[0] || "Player";
 }
 
@@ -52,9 +77,10 @@ export function friendlyError(error) {
 export async function signUp({ name, email, password }) {
   const { data, error } = await supabase.auth.signUp({
     email, password,
-    options: { data: { name, favorites: [] }, emailRedirectTo: pageUrl("account.html?welcome=1") }
+    options: { data: { name, favorites: guestFavorites() }, emailRedirectTo: pageUrl("account.html?welcome=1") }
   });
   if (error) throw error;
+  if (data.session) { currentUser = data.session.user; writeGuest(null); emit(); }
   // Supabase hides "already registered" by returning a user with no identities.
   if (data.user && Array.isArray(data.user.identities) && data.user.identities.length === 0) {
     throw new Error("User already registered");
@@ -65,6 +91,8 @@ export async function signUp({ name, email, password }) {
 export async function logIn({ email, password }) {
   const { data, error } = await supabase.auth.signInWithPassword({ email, password });
   if (error) throw error;
+  currentUser = data.user;
+  await adoptGuestFavorites();
   return data;
 }
 
@@ -90,12 +118,19 @@ export async function updateName(name) {
 
 /* Favorites are stored on the user's own account profile. */
 export function getFavorites(user = currentUser) {
+  if (!user) return guestFavorites();
   const list = user?.user_metadata?.favorites;
   return Array.isArray(list) ? list : [];
 }
 
 export async function toggleFavorite(id) {
-  if (!currentUser) throw new Error("NOT_SIGNED_IN");
+  if (!currentUser) {
+    const g = readGuest() || { favorites: [], started: Date.now() };
+    const has = g.favorites.includes(id);
+    g.favorites = has ? g.favorites.filter(x => x !== id) : [...g.favorites, id].slice(-100);
+    writeGuest(g); emit();
+    return !has;
+  }
   const list = getFavorites();
   const next = list.includes(id) ? list.filter(x => x !== id) : [...list, id].slice(-100);
   const { data, error } = await supabase.auth.updateUser({ data: { favorites: next } });

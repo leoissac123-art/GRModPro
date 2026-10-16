@@ -135,6 +135,14 @@ document.querySelectorAll(".pw-toggle").forEach(b => b.addEventListener("click",
 const safeNext = () => { const n = params.get("next") || ""; return /^[a-z0-9_-]+\.html(\?[^\s]*)?$/i.test(n) ? n : "account.html"; };
 const validEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
+/* ---------- Guest buttons (log in, sign up, account pages) ---------- */
+document.querySelectorAll("[data-guest]").forEach(b => b.addEventListener("click", () => {
+  auth.startGuest();
+  toast("You're browsing as a guest");
+  const n = params.get("next");
+  setTimeout(() => location.href = (n && /^[a-z0-9_-]+\.html(\?[^\s]*)?$/i.test(n) && n !== "account.html") ? n : "discover.html", 500);
+}));
+
 /* ---------- Sign up ---------- */
 if (page === "signup") {
   auth.ready.then(u => { if (u) location.replace(safeNext()); });
@@ -215,10 +223,17 @@ if (page === "reset") {
 
 /* ---------- Account ---------- */
 if (page === "account") {
-  const out = $("#signed-out"), inn = $("#signed-in");
+  const out = $("#signed-out"), inn = $("#signed-in"), gv = $("#guest-view");
+  $("[data-exit-guest-page]")?.addEventListener("click", () => { auth.endGuest(); toast("Guest mode ended"); });
   if (params.get("welcome") === "1") toast("Your email is confirmed. Welcome to GrModPro!");
   const draw = user => {
-    out.hidden = !!user; inn.hidden = !user;
+    const guest = !user && auth.isGuest();
+    out.hidden = !!user || guest; inn.hidden = !user; gv.hidden = !guest;
+    if (guest) {
+      const favs = auth.getFavorites().map(findMod).filter(Boolean);
+      $("#guest-grid").innerHTML = favs.map(cardHTML).join("");
+      $("#guest-empty").hidden = favs.length > 0;
+    }
     if (!user) return;
     const name = auth.displayName(user);
     $("#p-avatar").textContent = (name[0] || "?").toUpperCase();

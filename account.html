@@ -16,8 +16,8 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 29 9.5v13L16 30 3 22.5v-13Z' fill='%234cb2ff'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
   <link href="https://api.fontshare.com/v2/css?f[]=chillax@500,600&f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css?v=3">
-  <script src="site-settings.js?v=3"></script>
+  <link rel="stylesheet" href="assets/styles.css?v=4">
+  <script src="site-settings.js?v=4"></script>
 </head>
 <body data-page="account" data-private="1">
 <a class="skip" href="#main">Skip to content</a>
@@ -40,8 +40,14 @@
 
 <div class="shell">
   <section id="signed-out" hidden>
-    <div class="empty" style="margin:64px 0"><h3>You're not logged in</h3><p>Log in to see your account and saved favorites.</p>
-      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><a class="btn btn-primary" href="login.html">Log in</a><a class="btn" href="signup.html">Sign up free</a></div></div>
+    <div class="empty" style="margin:64px 0"><h3>You're not logged in</h3><p>Log in to see your account and saved favorites, or keep browsing as a guest.</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><a class="btn btn-primary" href="login.html">Log in</a><a class="btn" href="signup.html">Sign up free</a><button class="btn btn-ghost" type="button" data-guest>Continue as guest</button></div></div>
+  </section>
+  <section id="guest-view" hidden>
+    <header class="page-head"><h1>Guest favorites</h1><p>You're browsing as a guest. Your favorites are saved on this device only. Create a free account to keep them on every device; your saved favorites will move over automatically.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px"><a class="btn btn-primary" href="signup.html">Create free account</a><a class="btn" href="login.html">Log in</a><button class="btn btn-ghost" type="button" data-exit-guest-page>Exit guest mode</button></div></header>
+    <div class="grid" id="guest-grid" style="padding-bottom:40px"></div>
+    <div class="empty" id="guest-empty" hidden><h3>No favorites yet</h3><p>Tap the heart on any add-on to save it here.</p><a class="btn btn-primary" href="discover.html">Browse add-ons</a></div>
   </section>
   <section id="signed-in" hidden>
     <header class="page-head"><h1>My account</h1></header>
@@ -78,8 +84,8 @@
     <p class="footer-note">© <span data-year>2026</span> GrModPro. Free community add-ons for Minecraft Bedrock. Not an official Minecraft product and not approved by or associated with Mojang or Microsoft. Always back up your world before installing add-ons.</p>
   </div>
 </footer>
-<script src="assets/catalog.js?v=3"></script>
-<script type="module" src="assets/pages.js?v=3"></script>
+<script src="assets/catalog.js?v=4"></script>
+<script type="module" src="assets/pages.js?v=4"></script>
 <script src="ai-assistant.js" defer></script>
 </body>
 </html>

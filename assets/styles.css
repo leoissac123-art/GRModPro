@@ -366,3 +366,5 @@ p { margin: 0; }
 html.gmp-reduce-motion *, html.gmp-reduce-motion *::before, html.gmp-reduce-motion *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
 .profile .avatar { color: var(--accent-ink); }
+.avatar-guest { background: var(--surface-3); color: var(--text); } .avatar-guest .icon { width: 18px; height: 18px; }
+.or-line { display: flex; align-items: center; gap: 12px; color: var(--faint); font-size: var(--text-xs); margin: 6px 0; } .or-line::before, .or-line::after { content: ""; flex: 1; height: 1px; background: var(--line); }

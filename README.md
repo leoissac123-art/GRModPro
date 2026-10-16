@@ -23,6 +23,8 @@ Survival, Visuals, and Mobs are intentionally marked **Coming Soon** on the webs
 
 Accounts use Supabase Auth (project `GrModPro`, ref `tgpkgzvgttulqtwnodde`). The public publishable key lives in `assets/auth.js` — it is safe to be public. Never put a `service_role` / secret key in this repo.
 
+Guest mode: visitors can tap "Continue as guest" (or just tap a heart) to save favorites on their device; they move to the account automatically on sign-up or log-in.
+
 Pages: `signup.html`, `login.html`, `forgot.html`, `reset.html`, `account.html`. Favorites are saved on each user's own account profile (`user_metadata.favorites`).
 
 One-time Supabase setup (Dashboard → Authentication → URL Configuration):
