@@ -18,3 +18,17 @@ The pack metadata targets Bedrock 26.52, but this repository cannot launch Minec
 Achievements are not promised. Mojang's official guidance says that only Marketplace add-ons qualify for achievements; this direct community download is not a Marketplace add-on.
 
 Survival, Visuals, and Mobs are intentionally marked **Coming Soon** on the website until each has a real tested file.
+
+## Accounts (sign up / log in)
+
+Accounts use Supabase Auth (project `GrModPro`, ref `tgpkgzvgttulqtwnodde`). The public publishable key lives in `assets/auth.js` — it is safe to be public. Never put a `service_role` / secret key in this repo.
+
+Pages: `signup.html`, `login.html`, `forgot.html`, `reset.html`, `account.html`. Favorites are saved on each user's own account profile (`user_metadata.favorites`).
+
+One-time Supabase setup (Dashboard → Authentication → URL Configuration):
+- Site URL: `https://leoissac123-art.github.io/GRModPro/`
+- Redirect URLs: `https://leoissac123-art.github.io/GRModPro/**`
+
+## Editing pages
+
+All HTML pages are generated from `tools/build_pages.py` (shared header/footer). Edit it and run `python3 tools/build_pages.py`. Add-ons are listed in `assets/catalog.js`.

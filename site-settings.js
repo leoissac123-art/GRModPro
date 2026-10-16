@@ -1,81 +1,72 @@
+/* GrModPro display settings: theme, text size, motion, and language.
+   Saved on this device only. */
 (() => {
-const langs=[["af","Afrikaans"],["sq","Albanian"],["am","Amharic"],["ar","Arabic"],["hy","Armenian"],["az","Azerbaijani"],["eu","Basque"],["be","Belarusian"],["bn","Bengali"],["bs","Bosnian"],["bg","Bulgarian"],["ca","Catalan"],["ceb","Cebuano"],["zh-CN","Chinese (Simplified)"],["zh-TW","Chinese (Traditional)"],["co","Corsican"],["hr","Croatian"],["cs","Czech"],["da","Danish"],["nl","Dutch"],["en","English"],["eo","Esperanto"],["et","Estonian"],["tl","Filipino"],["fi","Finnish"],["fr","French"],["fy","Frisian"],["gl","Galician"],["ka","Georgian"],["de","German"],["el","Greek"],["gu","Gujarati"],["ht","Haitian Creole"],["ha","Hausa"],["haw","Hawaiian"],["iw","Hebrew"],["hi","Hindi"],["hmn","Hmong"],["hu","Hungarian"],["is","Icelandic"],["ig","Igbo"],["id","Indonesian"],["ga","Irish"],["it","Italian"],["ja","Japanese"],["jw","Javanese"],["kn","Kannada"],["kk","Kazakh"],["km","Khmer"],["rw","Kinyarwanda"],["ko","Korean"],["ku","Kurdish"],["ky","Kyrgyz"],["lo","Lao"],["la","Latin"],["lv","Latvian"],["lt","Lithuanian"],["lb","Luxembourgish"],["mk","Macedonian"],["mg","Malagasy"],["ms","Malay"],["ml","Malayalam"],["mt","Maltese"],["mi","Maori"],["mr","Marathi"],["mn","Mongolian"],["my","Myanmar"],["ne","Nepali"],["no","Norwegian"],["ny","Nyanja"],["or","Odia"],["ps","Pashto"],["fa","Persian"],["pl","Polish"],["pt","Portuguese"],["pa","Punjabi"],["ro","Romanian"],["ru","Russian"],["sm","Samoan"],["gd","Scots Gaelic"],["sr","Serbian"],["st","Sesotho"],["sn","Shona"],["sd","Sindhi"],["si","Sinhala"],["sk","Slovak"],["sl","Slovenian"],["so","Somali"],["es","Spanish"],["su","Sundanese"],["sw","Swahili"],["sv","Swedish"],["tg","Tajik"],["ta","Tamil"],["tt","Tatar"],["te","Telugu"],["th","Thai"],["tr","Turkish"],["tk","Turkmen"],["uk","Ukrainian"],["ur","Urdu"],["ug","Uyghur"],["uz","Uzbek"],["vi","Vietnamese"],["cy","Welsh"],["xh","Xhosa"],["yi","Yiddish"],["yo","Yoruba"],["zu","Zulu"]];
-const css='.gmp-settings-trigger{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line-strong,rgba(120,160,200,.4));border-radius:10px;background:var(--panel-2,#13243b);color:var(--text,#eef5ff);padding:9px 12px;font:inherit;font-size:.78rem;font-weight:800;white-space:nowrap;cursor:pointer}.gmp-settings-shade{position:fixed;inset:0;z-index:99999;display:none;place-items:center;padding:16px;background:#020812c9;backdrop-filter:blur(8px)}.gmp-settings-shade.gmp-open{display:grid}.gmp-settings-panel{box-sizing:border-box;width:min(490px,100%);max-height:86vh;overflow:auto;border:1px solid #69abeb55;border-radius:20px;background:var(--panel,#0e1a2c);color:var(--text,#eef5ff);padding:22px;box-shadow:0 28px 90px #0008;font-family:inherit}.gmp-settings-panel *{box-sizing:border-box}.gmp-settings-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px}.gmp-settings-heading h2{margin:0;font-size:1.35rem}.gmp-settings-close,.gmp-settings-action{border:1px solid var(--line-strong,rgba(120,160,200,.4));border-radius:10px;background:var(--panel-2,#13243b);color:inherit;padding:10px 12px;font:inherit;font-weight:750;cursor:pointer}.gmp-settings-intro,.gmp-settings-status{color:var(--muted,#9db0c9);font-size:.82rem;line-height:1.5}.gmp-settings-fields{display:grid;gap:14px}.gmp-settings-fields label{display:grid;gap:7px;font-size:.85rem;font-weight:750}.gmp-settings-fields select{width:100%;min-height:42px;border:1px solid var(--line-strong,rgba(120,160,200,.4));border-radius:10px;background:var(--panel-2,#13243b);color:inherit;padding:10px;font:inherit}.gmp-settings-check{display:flex!important;align-items:center;gap:10px!important}.gmp-settings-check input{width:18px;height:18px;accent-color:#54b5ff}.gmp-settings-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}.gmp-settings-action.primary{background:linear-gradient(135deg,#248ce2,#5a65ee);color:#fff}.gmp-settings-status{min-height:1.3em;margin-top:12px}.gmp-light-mode{--bg:#edf4fb;--panel:#fff;--panel-2:#f1f6fb;--panel-3:#e2edf8;--text:#172b42;--muted:#50677f;--line:rgba(35,70,105,.2);--line-strong:rgba(30,112,180,.4);color-scheme:light}.gmp-light-mode body{background:#edf4fb!important;color:#172b42!important}.gmp-large-text body{font-size:18px!important}.gmp-reduce-motion *,.gmp-reduce-motion *:before,.gmp-reduce-motion *:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}@media(max-width:680px){.gmp-settings-trigger{padding:8px 9px;font-size:.72rem}.gmp-settings-panel{padding:18px}}';
-if(!document.getElementById("gmp-settings-css")){const st=document.createElement("style");st.id="gmp-settings-css";st.textContent=css;document.head.appendChild(st)}
-let saved={theme:"dark",size:"normal",motion:false,language:"",accent:"#55b6ff"};try{saved=Object.assign(saved,JSON.parse(localStorage.getItem("gmp-site-settings-v2")||"{}"))}catch(e){}
-const modal=document.createElement("div");modal.className="gmp-settings-shade";modal.id="gmp-settings-modal";modal.innerHTML='<section class="gmp-settings-panel" role="dialog" aria-modal="true" aria-labelledby="gmp-settings-title"><div class="gmp-settings-heading"><h2 id="gmp-settings-title">⚙ Settings</h2><button class="gmp-settings-close" type="button" aria-label="Close settings">✕</button></div><p class="gmp-settings-intro">Personalize your GRModPro experience. Preferences are saved on this device.</p><div class="gmp-settings-fields"><label>Appearance<select id="gmp-setting-theme"><option value="dark">Dark gaming theme</option><option value="light">Light theme</option><option value="system">Use device appearance</option></select></label><label>Theme color — choose any color<input id="gmp-setting-color" type="color" value="#55b6ff" style="width:100%;height:46px;border:1px solid var(--line-strong,rgba(120,160,200,.4));border-radius:10px;background:var(--panel-2,#13243b);padding:5px;cursor:pointer"></label><label>Text size<select id="gmp-setting-size"><option value="normal">Normal</option><option value="large">Larger text</option></select></label><label class="gmp-settings-check"><input type="checkbox" id="gmp-setting-motion"> Reduce animations and motion</label><label>Website language<select id="gmp-setting-language"></select></label></div><div class="gmp-settings-actions"><button class="gmp-settings-action primary" id="gmp-settings-save" type="button">Save settings</button><button class="gmp-settings-action" id="gmp-settings-reset" type="button">Reset</button></div><p class="gmp-settings-status" id="gmp-settings-status" role="status"></p><div id="google_translate_element" style="display:none"></div></section>';
-document.body.appendChild(modal);
-const $=id=>modal.querySelector("#"+id),theme=$("gmp-setting-theme"),color=$("gmp-setting-color"),size=$("gmp-setting-size"),motion=$("gmp-setting-motion"),language=$("gmp-setting-language"),status=$("gmp-settings-status");
-language.innerHTML='<option value="">Original language (English)</option>'+langs.map(x=>'<option value="'+x[0]+'">'+x[1]+'</option>').join("");
-function apply(){
-const root=document.documentElement;
-root.classList.toggle("gmp-light-mode",saved.theme==="light"||(saved.theme==="system"&&matchMedia("(prefers-color-scheme: light)").matches));
-root.classList.toggle("gmp-large-text",saved.size==="large");
-root.classList.toggle("gmp-reduce-motion",!!saved.motion);
-const accent=/^#[0-9a-f]{6}$/i.test(saved.accent||"")?saved.accent:"#55b6ff";
-["--blue","--blue-bright","--blue-deep","--bright","--cyan","--accent","--primary","--gmp-accent"].forEach(name=>root.style.setProperty(name,accent));
-root.style.setProperty("--line-strong",accent+"99");
-root.style.setProperty("--gmp-accent-soft","color-mix(in srgb, "+accent+" 13%, var(--panel, #102039))");
-root.style.setProperty("--gmp-accent-glow","color-mix(in srgb, "+accent+" 30%, transparent)");
-let style=document.getElementById("gmp-settings-accent-style");
-if(!style){style=document.createElement("style");style.id="gmp-settings-accent-style";document.head.appendChild(style)}
-style.textContent=`
-:root{--blue:${accent}!important;--blue-bright:${accent}!important;--blue-deep:${accent}!important;--bright:${accent}!important;--cyan:${accent}!important;--accent:${accent}!important;--primary:${accent}!important;--gmp-accent:${accent}!important;--line-strong:${accent}99!important}
-.gmp-settings-trigger,.gmp-settings-action.primary{border-color:${accent}!important}
-.gmp-settings-action.primary{background:${accent}!important;color:#fff!important}
-a:not(.plain-link),.nav-links a.active,.eyebrow,.section-kicker{color:${accent}}
-button:not(.gmp-settings-close):not(.gmp-settings-action),.btn,.button,.search-button,.search-submit,.filter-button.active,.chip.active,.tab.active{border-color:${accent}!important}
-button.primary,.btn-primary,.button-primary,.search-button,.search-submit,.cta,.hero-cta{background:${accent}!important;border-color:${accent}!important;color:#fff!important}
-.card,.mod-card,.category-card,.project-card,.stat-card,.panel,.surface,.filter-bar{border-color:color-mix(in srgb,${accent} 42%,var(--line, #23364f))!important}
-.card:hover,.mod-card:hover,.category-card:hover,.project-card:hover{border-color:${accent}!important;box-shadow:0 10px 32px color-mix(in srgb,${accent} 18%,transparent)!important}
-input:focus,select:focus,textarea:focus{outline-color:${accent}!important;border-color:${accent}!important}
-.badge,.tag,.pill,.count-badge{border-color:color-mix(in srgb,${accent} 50%,transparent)!important}
-::selection{background:${accent};color:#fff}
-/* GRModPro premium refresh — shared across every page */
-:root{--gmp-radius:20px;--gmp-glass:rgba(12,19,31,.78);--gmp-border:color-mix(in srgb,${accent} 24%,rgba(157,181,215,.16))}
-html{scroll-behavior:smooth;scroll-padding-top:100px}
-body{background-color:var(--bg,#070a10);background-image:radial-gradient(ellipse at 12% -8%,color-mix(in srgb,${accent} 17%,transparent),transparent 34rem),radial-gradient(ellipse at 92% 20%,rgba(116,82,255,.09),transparent 30rem),linear-gradient(180deg,rgba(255,255,255,.012),transparent 40%)}
-body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.14;background-image:radial-gradient(rgba(255,255,255,.22) .6px,transparent .6px);background-size:6px 6px;mask-image:linear-gradient(to bottom,black,transparent 70%)}
-.topbar,.top,.header,.site-header{background:var(--gmp-glass)!important;backdrop-filter:blur(24px) saturate(145%)!important;-webkit-backdrop-filter:blur(24px) saturate(145%)!important;border-bottom:1px solid var(--gmp-border)!important;box-shadow:0 8px 36px rgba(0,0,0,.12)}
-.nav{min-height:76px}.brand,.brand-mark,.mark{transition:transform .25s ease,filter .25s ease}.brand:hover .brand-mark,.brand:hover .mark{transform:rotate(-5deg) scale(1.06);filter:drop-shadow(0 0 15px color-mix(in srgb,${accent} 45%,transparent))}
-.brand-mark,.mark{border-color:var(--gmp-accent)!important;box-shadow:0 0 26px color-mix(in srgb,${accent} 15%,transparent)!important}
-.nav-links a,.links a{position:relative;transition:color .2s ease}.nav-links a:after,.links a:after{content:"";position:absolute;left:0;right:100%;bottom:-9px;height:2px;border-radius:9px;background:var(--gmp-accent);transition:right .22s ease}.nav-links a:hover:after,.links a:hover:after{right:0}
-main.shell,.shell main{padding-bottom:64px}.hero{position:relative;isolation:isolate;padding-top:clamp(46px,7vw,88px)!important;padding-bottom:clamp(36px,5vw,62px)!important}
-.hero:before{content:"";position:absolute;z-index:-1;inset:12px -22px 0;border-radius:30px;background:linear-gradient(130deg,color-mix(in srgb,${accent} 11%,transparent),rgba(255,255,255,.015) 48%,rgba(111,78,255,.055));border:1px solid color-mix(in srgb,${accent} 17%,transparent);mask-image:linear-gradient(90deg,black,rgba(0,0,0,.75),transparent)}
-h1,h2,h3{letter-spacing:-.045em;text-wrap:balance}h1{font-weight:850!important;line-height:1.02!important}.hero h1{font-size:clamp(2.7rem,6.4vw,5.4rem)!important;max-width:950px;text-shadow:0 8px 44px rgba(0,0,0,.18)}
-.eyebrow{letter-spacing:.18em!important;font-size:.7rem!important;font-weight:850!important}.desc,.hero-description{max-width:680px;line-height:1.8!important;color:var(--muted,#a9b8ca)!important}
-.grid,.cards,.category-grid{gap:18px!important}.card,.mod-card,.category,.category-tile,.feature-card,.panel,.hero-panel,.item,.notice,.detail,.project-panel,.project-hero{border:1px solid var(--gmp-border)!important;border-radius:20px!important;box-shadow:0 12px 36px rgba(0,0,0,.13);transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease,background .25s ease}
-.card,.mod-card,.category-tile,.item{background:linear-gradient(145deg,color-mix(in srgb,var(--panel-2,var(--panel,#121b29)) 92%,white 8%),var(--panel,#0e141f))!important;overflow:hidden}
-.card:hover,.mod-card:hover,.category:hover,.category-tile:hover,.item:hover{transform:translateY(-5px);border-color:color-mix(in srgb,${accent} 75%,transparent)!important;box-shadow:0 22px 55px color-mix(in srgb,${accent} 11%,rgba(0,0,0,.32))!important}
-.cover,.card-cover{position:relative;overflow:hidden}.cover:after,.card-cover:before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(125deg,rgba(255,255,255,.09),transparent 42%,rgba(0,0,0,.13))}
-.button,.nav-cta,.primary-button,.secondary-button,.feature-action,.actions a,.gmp-settings-trigger{border-radius:12px!important;font-weight:800!important;transition:transform .2s ease,filter .2s ease,box-shadow .2s ease!important}
-.button:hover,.nav-cta:hover,.primary-button:hover,.secondary-button:hover,.feature-action:hover,.actions a:hover,.gmp-settings-trigger:hover{transform:translateY(-2px);filter:brightness(1.08);box-shadow:0 12px 30px color-mix(in srgb,${accent} 16%,transparent)}
-.button,.nav-cta,.primary-button,.feature-action{box-shadow:0 7px 25px color-mix(in srgb,${accent} 16%,transparent)}
-input,select,textarea{border-radius:12px!important;background-color:color-mix(in srgb,var(--panel,#101827) 86%,transparent)!important;border-color:var(--gmp-border)!important;transition:border-color .2s ease,box-shadow .2s ease}
-input:focus,select:focus,textarea:focus{box-shadow:0 0 0 4px color-mix(in srgb,${accent} 13%,transparent)!important}.crumb{color:var(--muted)!important;padding-top:22px!important}
-.footer,footer,.foot{border-top:1px solid var(--gmp-border)!important;color:var(--muted)!important}.gmp-settings-trigger{padding:9px 12px!important;background:color-mix(in srgb,${accent} 9%,var(--panel,#101827))!important;color:var(--text,#f4f7fb)!important;border:1px solid color-mix(in srgb,${accent} 38%,transparent)!important}
-@media(max-width:700px){.nav{min-height:64px}.hero:before{inset:6px -8px 0;border-radius:22px}.grid,.cards,.category-grid{gap:12px!important}.card,.mod-card,.category,.category-tile,.feature-card,.panel,.item{border-radius:16px!important}.button,.nav-cta,.primary-button{min-height:42px}}
-/* High-refresh-rate feel: actual Hz depends on device/browser. */
-*{-webkit-tap-highlight-color:transparent}
-html{scroll-behavior:smooth}
-body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-.card,.mod-card,.category,.category-tile,.item,.button,.nav-cta,.primary-button,.secondary-button,.feature-action,.gmp-settings-trigger,.nav-links a{transform:translateZ(0);backface-visibility:hidden}
-.card,.mod-card,.category,.category-tile,.item{contain:layout paint;transition:transform 160ms cubic-bezier(.2,.75,.25,1),border-color 160ms ease,box-shadow 160ms ease!important}
-.button,.nav-cta,.primary-button,.secondary-button,.feature-action,.gmp-settings-trigger{transition:transform 140ms cubic-bezier(.2,.75,.25,1),filter 140ms ease,box-shadow 140ms ease,background-color 140ms ease!important}
-@media(hover:hover) and (pointer:fine){.card:hover,.mod-card:hover,.category:hover,.category-tile:hover,.item:hover{transform:translate3d(0,-4px,0)}.button:hover,.nav-cta:hover,.primary-button:hover,.secondary-button:hover,.feature-action:hover,.gmp-settings-trigger:hover{transform:translate3d(0,-2px,0)}}
-@media(hover:none){.card:active,.mod-card:active,.category:active,.category-tile:active,.item:active,.button:active,.nav-cta:active,.primary-button:active,.feature-action:active{transform:scale(.985);transition-duration:90ms!important}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
-`;
-}
-function populate(){theme.value=saved.theme;color.value=saved.accent||"#55b6ff";size.value=saved.size;motion.checked=!!saved.motion;language.value=saved.language||""}
-function translate(code){if(code){document.cookie="googtrans=/en/"+code+";path=/;max-age=31536000;SameSite=Lax"}else{document.cookie="googtrans=;path=/;max-age=0;SameSite=Lax";document.cookie="googtrans=;path=/;domain="+location.hostname+";max-age=0;SameSite=Lax"}location.reload()}
-document.querySelectorAll('nav a[href="discover.html"], nav a[href="./discover.html"]').forEach(a=>{if(a.parentElement.querySelector(".gmp-settings-trigger"))return;const b=document.createElement("button");b.type="button";b.className="gmp-settings-trigger";b.textContent="⚙ Settings";b.setAttribute("aria-haspopup","dialog");a.insertAdjacentElement("afterend",b)});
-document.querySelectorAll(".gmp-settings-trigger").forEach(b=>b.addEventListener("click",()=>{populate();modal.classList.add("gmp-open");theme.focus()}));
-const projectActions=document.querySelector(".top-actions");if(projectActions&&!projectActions.querySelector(".gmp-settings-trigger")){const b=document.createElement("button");b.type="button";b.className="gmp-settings-trigger";b.textContent="⚙ Settings";b.setAttribute("aria-haspopup","dialog");b.addEventListener("click",()=>{populate();modal.classList.add("gmp-open");theme.focus()});projectActions.insertBefore(b,projectActions.firstChild);}
-function close(){modal.classList.remove("gmp-open")}
-modal.querySelector(".gmp-settings-close").addEventListener("click",close);modal.addEventListener("click",e=>{if(e.target===modal)close()});document.addEventListener("keydown",e=>{if(e.key==="Escape")close()});
-$("gmp-settings-save").addEventListener("click",()=>{const oldLanguage=saved.language;saved={theme:theme.value,size:size.value,motion:motion.checked,language:language.value,accent:color.value};try{localStorage.setItem("gmp-site-settings-v2",JSON.stringify(saved))}catch(e){}apply();status.textContent="Settings saved.";if(oldLanguage!==saved.language)translate(saved.language)});
-$("gmp-settings-reset").addEventListener("click",()=>{const was=saved.language;saved={theme:"dark",size:"normal",motion:false,language:""};try{localStorage.removeItem("gmp-site-settings-v2")}catch(e){}populate();apply();status.textContent="Settings reset.";if(was)translate("")});
-populate();apply();
-if(!window.googleTranslateElementInit){window.googleTranslateElementInit=function(){try{new google.translate.TranslateElement({pageLanguage:"en",autoDisplay:false,multilanguagePage:true},"google_translate_element")}catch(e){}};const s=document.createElement("script");s.src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";s.async=true;document.head.appendChild(s)}
+  const KEY = "gmp-site-settings-v3";
+  const LANGS = [["", "English (original)"], ["es", "Español"], ["pt", "Português"], ["fr", "Français"], ["de", "Deutsch"], ["it", "Italiano"], ["nl", "Nederlands"], ["pl", "Polski"], ["tr", "Türkçe"], ["ru", "Русский"], ["uk", "Українська"], ["ar", "العربية"], ["hi", "हिन्दी"], ["id", "Bahasa Indonesia"], ["vi", "Tiếng Việt"], ["th", "ไทย"], ["tl", "Filipino"], ["ja", "日本語"], ["ko", "한국어"], ["zh-CN", "中文 (简体)"], ["zh-TW", "中文 (繁體)"]];
+  let s = { theme: "dark", size: "normal", motion: false, language: "" };
+  try { s = Object.assign(s, JSON.parse(localStorage.getItem(KEY) || "{}")); } catch (e) {}
+
+  const root = document.documentElement;
+  function apply() {
+    const light = s.theme === "light" || (s.theme === "system" && matchMedia("(prefers-color-scheme: light)").matches);
+    root.classList.toggle("gmp-light", light);
+    root.classList.toggle("gmp-large-text", s.size === "large");
+    root.classList.toggle("gmp-reduce-motion", !!s.motion);
+  }
+  apply();
+
+  function translate(code) {
+    if (code) document.cookie = "googtrans=/en/" + code + ";path=/;max-age=31536000;SameSite=Lax";
+    else { document.cookie = "googtrans=;path=/;max-age=0"; document.cookie = "googtrans=;path=/;domain=" + location.hostname + ";max-age=0"; }
+    location.reload();
+  }
+  if (s.language) {
+    window.googleTranslateElementInit = () => { try { new google.translate.TranslateElement({ pageLanguage: "en", autoDisplay: false }, "gmp-translate"); } catch (e) {} };
+    const holder = document.createElement("div"); holder.id = "gmp-translate"; holder.hidden = true;
+    document.addEventListener("DOMContentLoaded", () => document.body.appendChild(holder));
+    const sc = document.createElement("script"); sc.async = true; sc.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+    document.head.appendChild(sc);
+  }
+
+  let shade;
+  function open() {
+    if (!shade) {
+      shade = document.createElement("div");
+      shade.className = "modal-shade"; shade.hidden = true;
+      shade.innerHTML = `<section class="modal" role="dialog" aria-modal="true" aria-labelledby="gmp-set-title">
+        <div class="modal-head"><h2 id="gmp-set-title">Display settings</h2>
+          <button class="icon-btn" type="button" data-close aria-label="Close settings"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div>
+        <form class="form">
+          <div class="field"><label for="gmp-theme">Colors</label>
+            <select class="input select" id="gmp-theme"><option value="dark">Dark</option><option value="light">Light</option><option value="system">Match my device</option></select></div>
+          <div class="field"><label for="gmp-size">Text size</label>
+            <select class="input select" id="gmp-size"><option value="normal">Normal</option><option value="large">Bigger text</option></select></div>
+          <label class="toggle"><input type="checkbox" id="gmp-motion"> Turn off animations</label>
+          <div class="field"><label for="gmp-lang">Language</label>
+            <select class="input select" id="gmp-lang">${LANGS.map(([v, n]) => `<option value="${v}">${n}</option>`).join("")}</select>
+            <span class="hint">Translation is automatic and may not be perfect.</span></div>
+          <button class="btn btn-primary btn-block" type="submit">Save settings</button>
+        </form></section>`;
+      document.body.appendChild(shade);
+      const f = shade.querySelector("form");
+      shade.addEventListener("click", e => { if (e.target === shade || e.target.closest("[data-close]")) close(); });
+      document.addEventListener("keydown", e => { if (e.key === "Escape" && !shade.hidden) close(); });
+      f.addEventListener("submit", e => {
+        e.preventDefault();
+        const prevLang = s.language;
+        s = { theme: f.querySelector("#gmp-theme").value, size: f.querySelector("#gmp-size").value, motion: f.querySelector("#gmp-motion").checked, language: f.querySelector("#gmp-lang").value };
+        try { localStorage.setItem(KEY, JSON.stringify(s)); } catch (err) {}
+        apply(); close();
+        if (prevLang !== s.language) translate(s.language);
+      });
+    }
+    shade.querySelector("#gmp-theme").value = s.theme;
+    shade.querySelector("#gmp-size").value = s.size;
+    shade.querySelector("#gmp-motion").checked = !!s.motion;
+    shade.querySelector("#gmp-lang").value = s.language || "";
+    shade.hidden = false;
+    shade.querySelector("#gmp-theme").focus();
+  }
+  function close() { shade.hidden = true; document.querySelector("[data-settings]")?.focus(); }
+  document.addEventListener("click", e => { if (e.target.closest("[data-settings]")) open(); });
 })();
