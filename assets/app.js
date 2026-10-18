@@ -209,3 +209,36 @@ document.addEventListener("keydown", e => {
   if (modal?.open && e.key === "ArrowRight") showPreview(previewIndex + 1);
   if (modal?.open && e.key === "ArrowLeft") showPreview(previewIndex - 1);
 });
+
+
+/* Site-wide cinematic slide transitions */
+(function installCinematicNavigation(){
+  const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const duration = reduced ? 0 : 240;
+  let navigating = false;
+  function overlay(){
+    let el=document.getElementById('gmp-transition');
+    if(!el){el=document.createElement('div');el.id='gmp-transition';el.setAttribute('aria-hidden','true');el.innerHTML='<div class="gmp-transition-glow"></div><div class="gmp-transition-mark">GR<span>MOD</span>PRO</div><div class="gmp-transition-line"><i></i></div>';document.body.append(el);}
+    return el;
+  }
+  document.addEventListener('click',function(e){
+    const link=e.target.closest('a[href]');
+    if(!link || e.defaultPrevented || e.button!==0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    if(link.hasAttribute('download') || link.target==='_blank' || link.hasAttribute('data-download') || link.getAttribute('href')?.startsWith('#')) return;
+    const raw=link.getAttribute('href');
+    if(!raw || /^(mailto:|tel:|javascript:)/i.test(raw)) return;
+    let url; try{url=new URL(raw,location.href);}catch{return;}
+    if(url.origin!==location.origin || !/\\.html?$/i.test(url.pathname)) return;
+    if(navigating) { e.preventDefault(); return; }
+    e.preventDefault(); navigating=true;
+    const el=overlay(); el.classList.remove('is-leaving'); el.classList.add('is-active');
+    window.setTimeout(()=>{location.href=url.href;},duration+80);
+  },true);
+  window.addEventListener('pageshow',()=>{const el=document.getElementById('gmp-transition');if(el){el.classList.remove('is-active');el.classList.add('is-leaving');setTimeout(()=>el.classList.remove('is-leaving'),280);}});
+  document.addEventListener('click',e=>{
+    const button=e.target.closest('button, .btn'); if(!button) return;
+    if(button.closest('#gmp-preview,#gmp-transition')) return;
+    button.classList.remove('gmp-tap'); void button.offsetWidth; button.classList.add('gmp-tap');
+    setTimeout(()=>button.classList.remove('gmp-tap'),260);
+  });
+})();
