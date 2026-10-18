@@ -635,3 +635,20 @@ html { scroll-behavior: smooth; }
 body.preview-open { overflow: hidden; }
 @media (max-width: 520px) { .preview-dialog { border-radius: 20px; } .preview-controls { display: grid; grid-template-columns: 1fr 1fr; } .preview-controls .preview-details { grid-column: 1 / -1; grid-row: 1; } .preview-controls .btn { width: 100%; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+
+
+/* Cinematic site-wide slideshow transitions */
+#gmp-transition{position:fixed;inset:0;z-index:99999;display:grid;place-content:center;justify-items:center;gap:22px;background:var(--bg,#fff);color:var(--text,#111);opacity:0;visibility:hidden;pointer-events:none;transform:translateX(5%);transition:opacity .24s ease,transform .32s cubic-bezier(.16,1,.3,1),visibility .24s}
+#gmp-transition.is-active{opacity:1;visibility:visible;pointer-events:all;transform:translateX(0)}
+#gmp-transition.is-leaving{opacity:0;transform:translateX(-4%)}
+.gmp-transition-glow{position:absolute;width:min(78vw,520px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent,#111) 18%,transparent),transparent 68%);filter:blur(18px);animation:gmp-glow 1.8s ease-in-out infinite alternate}
+.gmp-transition-mark{position:relative;font-weight:850;letter-spacing:.16em;font-size:clamp(20px,4vw,30px);animation:gmp-mark-in .4s cubic-bezier(.16,1,.3,1) both}
+.gmp-transition-mark span{font-weight:400}
+.gmp-transition-line{position:relative;width:120px;height:2px;overflow:hidden;border-radius:9px;background:color-mix(in srgb,var(--text,#111) 12%,transparent)}
+.gmp-transition-line i{display:block;width:42%;height:100%;background:var(--accent,#111);border-radius:9px;animation:gmp-loading .8s ease-in-out infinite}
+@keyframes gmp-loading{from{transform:translateX(-120%)}to{transform:translateX(290%)}}
+@keyframes gmp-glow{from{transform:scale(.86);opacity:.55}to{transform:scale(1.08);opacity:1}}
+@keyframes gmp-mark-in{from{opacity:0;transform:translateY(9px);letter-spacing:.25em}to{opacity:1;transform:translateY(0);letter-spacing:.16em}}
+.gmp-tap{animation:gmp-tap .24s cubic-bezier(.16,1,.3,1)}
+@keyframes gmp-tap{0%{transform:scale(1)}45%{transform:scale(.965)}100%{transform:scale(1)}}
+@media(prefers-reduced-motion:reduce){#gmp-transition,.gmp-transition-glow,.gmp-transition-mark,.gmp-transition-line i,.gmp-tap{animation:none!important;transition:none!important}}
