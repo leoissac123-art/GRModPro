@@ -92,10 +92,10 @@ if (page === "project") {
           <h1>${esc(m.title)}</h1>
           <p class="lead">${esc(m.description)}</p>
           <div class="project-actions">
-            ${m.ready ? `<a class="btn btn-primary btn-lg" href="${esc(m.download)}" download>${icon("download")}Download ${esc(m.fileType)}</a>` : `<span class="btn btn-lg" aria-disabled="true">Not available to download yet</span>`}
+            ${m.ready ? `<a class="btn btn-primary btn-lg" href="https://github.com/leoissac123-art/GRModPro/raw/refs/heads/main/${esc(m.download)}" target="_blank" rel="noopener noreferrer">${icon("download")}Download ${esc(m.fileType)}</a>` : `<span class="btn btn-lg" aria-disabled="true">Not available to download yet</span>`}
             <div class="row">
               <button class="btn" type="button" data-fav="${esc(m.id)}" data-fav-label aria-pressed="${fav}" aria-label="${fav ? "Remove from" : "Save to"} favorites: ${esc(m.title)}">${icon("heart")}<span>${fav ? "Saved" : "Save"}</span></button>
-              ${(m.extras || []).map(x => `<a class="btn" href="${esc(x.href)}" download>${icon("download")}${esc(x.label)}</a>`).join("")}
+              ${(m.extras || []).map(x => `<a class="btn" href="https://github.com/leoissac123-art/GRModPro/raw/refs/heads/main/${esc(x.href)}" target="_blank" rel="noopener noreferrer">${icon("download")}${esc(x.label)}</a>`).join("")}
             </div>
           </div>
           ${m.note ? `<div class="notice">${icon("alert")}<span>${esc(m.note)} Always back up your world before adding new packs.</span></div>` : ""}
