@@ -1,5 +1,5 @@
 /* GrModPro — per-page logic. Each page sets <body data-page="..."> */
-import { icon, esc, MODS, CATS, findMod, renderCards, cardHTML, toast } from "./app.js?v=7";
+import { icon, esc, MODS, CATS, findMod, renderCards, cardHTML, toast } from "./app.js?v=8";
 import * as auth from "./auth.js";
 
 const CODE_RE = new RegExp("\\x60([^\\x60]+)\\x60", "g");
