@@ -50,8 +50,8 @@ export function cardHTML(m) {
   const isFav = favs.includes(m.id);
   const details = "project.html?id=" + encodeURIComponent(m.id);
   const action = m.ready
-    ? `<a class="btn btn-primary" href="${esc(downloadHref(m.download))}" target="_blank" rel="noopener noreferrer" data-download="${esc(m.id)}">${icon("download")}Download</a><a class="btn" href="${details}">Details</a>`
-    : `<a class="btn btn-block" href="${details}">Learn more</a>`;
+    ? `<a class="btn btn-primary" href="${esc(downloadHref(m.download))}" target="_blank" rel="noopener noreferrer" data-download="${esc(m.id)}">${icon("download")}Download</a><button class="btn" type="button" data-slideshow="${esc(m.id)}">Preview</button><a class="btn" href="${details}">Details</a>`
+    : `<button class="btn" type="button" data-slideshow="${esc(m.id)}">Preview</button><a class="btn" href="${details}">Learn more</a>`;
   return `<article class="card${m.ready ? "" : " is-soon"}">
     <div class="card-cover">
       <img src="${esc(m.cover)}" alt="" loading="lazy" width="640" height="360">
@@ -166,3 +166,46 @@ ready.then(() => onUserChange(user => { renderAuth(user); syncFavButtons(); docu
 
 /* Year */
 document.querySelectorAll("[data-year]").forEach(el => el.textContent = new Date().getFullYear());
+
+
+/* Premium add-on preview slideshow */
+let previewIndex = 0;
+function closePreview() {
+  const modal = document.getElementById("gmp-preview");
+  if (modal) { modal.removeAttribute("open"); modal.remove(); document.body.classList.remove("preview-open"); }
+}
+function showPreview(index) {
+  const items = MODS;
+  if (!items.length) return;
+  previewIndex = (index + items.length) % items.length;
+  const m = items[previewIndex];
+  let modal = document.getElementById("gmp-preview");
+  if (!modal) {
+    modal = document.createElement("dialog"); modal.id = "gmp-preview"; modal.className = "preview-dialog";
+    modal.innerHTML = `<button class="preview-close" type="button" aria-label="Close preview">×</button><div class="preview-count"></div><div class="preview-art"><img alt=""></div><div class="preview-copy"><p class="card-cat"></p><h2></h2><p class="preview-description"></p><div class="preview-controls"><button class="btn" type="button" data-preview-prev>← Previous</button><a class="btn btn-primary preview-details">View add-on</a><button class="btn" type="button" data-preview-next>Next →</button></div></div>`;
+    document.body.append(modal);
+    modal.querySelector(".preview-close").addEventListener("click", closePreview);
+    modal.querySelector("[data-preview-prev]").addEventListener("click", () => showPreview(previewIndex - 1));
+    modal.querySelector("[data-preview-next]").addEventListener("click", () => showPreview(previewIndex + 1));
+    modal.addEventListener("click", e => { if (e.target === modal) closePreview(); });
+    modal.addEventListener("close", closePreview);
+  }
+  modal.querySelector(".preview-count").textContent = `PREVIEW  ·  ${previewIndex + 1} / ${items.length}`;
+  const img = modal.querySelector(".preview-art img"); img.src = m.cover; img.alt = `${m.title} preview`;
+  modal.querySelector(".card-cat").textContent = m.category;
+  modal.querySelector("h2").textContent = m.title;
+  modal.querySelector(".preview-description").textContent = m.short || m.description || "";
+  modal.querySelector(".preview-details").href = "project.html?id=" + encodeURIComponent(m.id);
+  if (!modal.open) modal.showModal();
+  document.body.classList.add("preview-open");
+}
+document.addEventListener("click", e => {
+  const trigger = e.target.closest("[data-slideshow]");
+  if (trigger) { e.preventDefault(); showPreview(MODS.findIndex(m => m.id === trigger.dataset.slideshow)); }
+});
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") closePreview();
+  const modal = document.getElementById("gmp-preview");
+  if (modal?.open && e.key === "ArrowRight") showPreview(previewIndex + 1);
+  if (modal?.open && e.key === "ArrowLeft") showPreview(previewIndex - 1);
+});
