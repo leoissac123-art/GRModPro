@@ -29,6 +29,8 @@ export const MODS = window.GMP_MODS || [];
 export const CATS = window.GMP_CATEGORIES || [];
 export const findMod = id => MODS.find(m => m.id === id);
 
+const downloadHref = path => "https://github.com/leoissac123-art/GRModPro/raw/refs/heads/main/" + String(path || "").replace(/^\/+/, "");
+
 /* Toast */
 let toastTimer;
 export function toast(message, kind = "check") {
@@ -48,7 +50,7 @@ export function cardHTML(m) {
   const isFav = favs.includes(m.id);
   const details = "project.html?id=" + encodeURIComponent(m.id);
   const action = m.ready
-    ? `<a class="btn btn-primary" href="${esc(m.download)}" download data-download="${esc(m.id)}">${icon("download")}Download</a><a class="btn" href="${details}">Details</a>`
+    ? `<a class="btn btn-primary" href="${esc(downloadHref(m.download))}" target="_blank" rel="noopener noreferrer" data-download="${esc(m.id)}">${icon("download")}Download</a><a class="btn" href="${details}">Details</a>`
     : `<a class="btn btn-block" href="${details}">Learn more</a>`;
   return `<article class="card${m.ready ? "" : " is-soon"}">
     <div class="card-cover">
