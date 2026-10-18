@@ -21,7 +21,7 @@ window.GMP_MODS = [
       { label: "Behavior pack only", href: "downloads/GRModPro-Horror-Behavior-1.0.0.mcpack" },
       { label: "Resource pack only", href: "downloads/GRModPro-Horror-Resources-1.0.0.mcpack" }
     ],
-    works: "Minecraft Bedrock (made for 26.52)",
+    works: "Minecraft Bedrock v26.52 (compatibility not fully verified)",
     steps: [
       "Tap the Download button. On iPhone or iPad, the file may save to the Files app — open Files, go to Downloads, and tap the file.",
       "Choose Minecraft when your device asks which app to open it with. Minecraft will import it for you.",
@@ -37,7 +37,7 @@ window.GMP_MODS = [
     description: "A separate Phase 2 resource pack with an updated fix for how block textures load. It's still an early version — it is not a true shader and hasn't been tested on a real device yet.",
     fileType: "Resource pack (.mcpack)",
     download: "downloads/GRModPro-Realism-Phase-2-2.0.2.mcpack",
-    works: "Minecraft Bedrock · made for iPhone/iPad (not tested yet)",
+    works: "Minecraft Bedrock v26.52 · iPhone/iPad compatibility not verified",
     steps: [
       "Tap the Download button and open the file with Minecraft.",
       "In a test world, go to Settings → Resource Packs and turn on GRModPro Realism Phase 2.",
@@ -52,7 +52,7 @@ window.GMP_MODS = [
     description: "An experimental realism resource pack with original textures for many common Overworld, cave, Nether, End, ore, wood, leaf, water, and tool textures, plus Overworld and cave fog presets. It doesn't replace every block, mob, item, or sound, and it is not a true shader.",
     fileType: "Resource pack (.mcpack)",
     download: "downloads/GRModPro-Realism-Atmosphere-1.0.0.mcpack",
-    works: "Minecraft Bedrock · made for iPhone/iPad (not tested yet)",
+    works: "Minecraft Bedrock v26.52 · iPhone/iPad compatibility not verified",
     steps: [
       "Tap the Download button and open the file with Minecraft.",
       "In a test world, go to Settings → Resource Packs and turn on GRModPro Realism Atmosphere.",
@@ -68,7 +68,7 @@ window.GMP_MODS = [
     description: "A non-realistic resource pack with bright, stylized pixel textures for selected blocks. It's a starter pack — it changes some block textures, not every block, item, or mob.",
     fileType: "Resource pack (.mcpack)",
     download: "downloads/GRModPro-Classic-Blocks-1.0.0.mcpack",
-    works: "Minecraft Bedrock · made for iPhone/iPad (not tested yet)",
+    works: "Minecraft Bedrock v26.52 · iPhone/iPad compatibility not verified",
     steps: [
       "Tap the Download button and open the file with Minecraft.",
       "In a test world, go to Settings → Resource Packs and turn on GRModPro Classic Blocks.",
