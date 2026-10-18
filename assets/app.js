@@ -236,9 +236,17 @@ document.addEventListener("keydown", e => {
   },true);
   window.addEventListener('pageshow',()=>{const el=document.getElementById('gmp-transition');if(el){el.classList.remove('is-active');el.classList.add('is-leaving');setTimeout(()=>el.classList.remove('is-leaving'),280);}});
   document.addEventListener('click',e=>{
-    const button=e.target.closest('button, .btn'); if(!button) return;
-    if(button.closest('#gmp-preview,#gmp-transition')) return;
+    const button=e.target.closest('button, .btn, [role="button"]'); if(!button) return;
+    if(button.closest('#gmp-preview,#gmp-transition,.preview-dialog')) return;
     button.classList.remove('gmp-tap'); void button.offsetWidth; button.classList.add('gmp-tap');
     setTimeout(()=>button.classList.remove('gmp-tap'),260);
+    /* A brief visual slide for every control, without hijacking its real action. */
+    let stage=document.getElementById('gmp-action-slide');
+    if(!stage){stage=document.createElement('div');stage.id='gmp-action-slide';stage.setAttribute('aria-hidden','true');stage.innerHTML='<div class="gmp-action-panel"><span class="gmp-action-eyebrow">GRMODPRO · INTERACTION</span><span class="gmp-action-title">Loading your experience</span><span class="gmp-action-progress"><i></i></span></div>';document.body.append(stage);}
+    const title=stage.querySelector('.gmp-action-title');
+    const label=(button.getAttribute('aria-label')||button.innerText||button.textContent||'').trim().replace(/\\s+/g,' ');
+    title.textContent=label ? label.slice(0,72) : 'Loading your experience';
+    stage.classList.remove('is-showing'); void stage.offsetWidth; stage.classList.add('is-showing');
+    clearTimeout(stage._hideTimer); stage._hideTimer=setTimeout(()=>stage.classList.remove('is-showing'), reduced ? 0 : 360);
   });
 })();
