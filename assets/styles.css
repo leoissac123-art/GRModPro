@@ -368,3 +368,27 @@ html.gmp-reduce-motion *, html.gmp-reduce-motion *::before, html.gmp-reduce-moti
 .profile .avatar { color: var(--accent-ink); }
 .avatar-guest { background: var(--surface-3); color: var(--text); } .avatar-guest .icon { width: 18px; height: 18px; }
 .or-line { display: flex; align-items: center; gap: 12px; color: var(--faint); font-size: var(--text-xs); margin: 6px 0; } .or-line::before, .or-line::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+
+/* Temporary visitor-facing setup notice */
+.setup-notice {
+  position: relative; z-index: 1; display: flex; align-items: flex-start; gap: 14px;
+  margin-top: 22px; margin-bottom: 4px; padding: 17px 20px;
+  border: 1px solid rgba(76, 178, 255, .32); border-radius: 16px;
+  background: linear-gradient(115deg, rgba(38, 103, 163, .22), rgba(10, 17, 31, .94));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.035);
+}
+.setup-notice-dot {
+  flex: 0 0 9px; width: 9px; height: 9px; margin-top: 5px; border-radius: 50%;
+  background: #64c5ff; box-shadow: 0 0 14px rgba(76,178,255,.7);
+}
+.setup-notice-copy { min-width: 0; }
+.setup-notice-copy strong {
+  display: block; margin-bottom: 5px; color: #8bd2ff; font-size: .75rem;
+  font-weight: 700; letter-spacing: .12em;
+}
+.setup-notice-copy p { margin: 0; color: var(--text, #eaf2ff); font-size: .92rem; line-height: 1.55; }
+@media (max-width: 600px) {
+  .setup-notice { margin-top: 14px; padding: 14px 15px; border-radius: 13px; }
+  .setup-notice-copy p { font-size: .86rem; }
+}
