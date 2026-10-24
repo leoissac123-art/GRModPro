@@ -228,7 +228,7 @@ document.addEventListener("keydown", e => {
     const raw=link.getAttribute('href');
     if(!raw || /^(mailto:|tel:|javascript:)/i.test(raw)) return;
     let url; try{url=new URL(raw,location.href);}catch{return;}
-    if(url.origin!==location.origin || !/\\.html?$/i.test(url.pathname)) return;
+    if(url.origin!==location.origin || !/\.html?$/i.test(url.pathname)) return;
     if(navigating) { e.preventDefault(); return; }
     e.preventDefault(); navigating=true;
     const el=overlay(); el.classList.remove('is-leaving'); el.classList.add('is-active');
@@ -244,7 +244,7 @@ document.addEventListener("keydown", e => {
     let stage=document.getElementById('gmp-action-slide');
     if(!stage){stage=document.createElement('div');stage.id='gmp-action-slide';stage.setAttribute('aria-hidden','true');stage.innerHTML='<div class="gmp-action-panel"><span class="gmp-action-eyebrow">GRMODPRO · INTERACTION</span><span class="gmp-action-title">Loading your experience</span><span class="gmp-action-progress"><i></i></span></div>';document.body.append(stage);}
     const title=stage.querySelector('.gmp-action-title');
-    const label=(button.getAttribute('aria-label')||button.innerText||button.textContent||'').trim().replace(/\\s+/g,' ');
+    const label=(button.getAttribute('aria-label')||button.innerText||button.textContent||'').trim().replace(/\s+/g,' ');
     title.textContent=label ? label.slice(0,72) : 'Loading your experience';
     stage.classList.remove('is-showing'); void stage.offsetWidth; stage.classList.add('is-showing');
     clearTimeout(stage._hideTimer); stage._hideTimer=setTimeout(()=>stage.classList.remove('is-showing'), reduced ? 0 : 360);
