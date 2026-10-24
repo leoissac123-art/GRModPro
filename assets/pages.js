@@ -123,8 +123,14 @@ function setBusy(btn, busy, label) {
   else if (btn.dataset.label) btn.innerHTML = btn.dataset.label;
 }
 function message(el, kind, text) {
-  el.hidden = false; el.className = "notice " + kind;
-  el.innerHTML = icon(kind === "ok" ? "check" : kind === "error" ? "alert" : "info") + "<span>" + text + "</span>";
+  el.hidden = false;
+  el.className = "notice " + kind;
+  el.replaceChildren();
+  const iconHolder = document.createElement("span");
+  iconHolder.innerHTML = icon(kind === "ok" ? "check" : kind === "error" ? "alert" : "info");
+  const textHolder = document.createElement("span");
+  textHolder.textContent = String(text ?? "");
+  el.append(iconHolder.firstElementChild, textHolder);
   el.setAttribute("role", kind === "error" ? "alert" : "status");
 }
 document.querySelectorAll(".pw-toggle").forEach(b => b.addEventListener("click", () => {
@@ -160,9 +166,9 @@ if (page === "signup") {
       if (data.session) { toast("Welcome to GrModPro, " + name + "!"); setTimeout(() => location.href = safeNext(), 600); }
       else {
         form.hidden = true; $("#switch-line").hidden = true;
-        message(msg, "ok", `<strong>Almost done! Check your email.</strong><br>We sent a link to <strong>${esc(email)}</strong>. Click it to confirm your account, then you can log in. Can't find it? Look in your spam folder.`);
+        message(msg, "ok", `Almost done! Check your email. We sent a link to ${email}. Click it to confirm your account, then you can log in. If you can’t find it, check your spam folder.`);
       }
-    } catch (err) { message(msg, "error", esc(auth.friendlyError(err))); }
+    } catch (err) { message(msg, "error", auth.friendlyError(err)); }
     finally { setBusy(btn, false); }
   });
 }
@@ -198,7 +204,7 @@ if (page === "forgot") {
     try {
       await auth.sendReset(email);
       form.hidden = true;
-      message(msg, "ok", `If an account exists for <strong>${esc(email)}</strong>, we've sent a link to reset your password. It may take a minute — check your spam folder too.`);
+      message(msg, "ok", `If an account exists for ${email}, we’ve sent a link to reset your password. It may take a minute — check your spam folder too.`);
     } catch (err) { message(msg, "error", esc(auth.friendlyError(err))); }
     finally { setBusy(btn, false); }
   });
