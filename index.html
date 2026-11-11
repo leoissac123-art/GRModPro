@@ -1,121 +1,63 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>GrModPro — Free Minecraft Bedrock add-ons, easy to install</title>
-  <meta name="description" content="Download free Minecraft Bedrock add-ons and texture packs from GrModPro. Simple steps, honest labels, and a free account to save your favorites.">
-  <meta name="theme-color" content="#070b14">
-  <link rel="canonical" href="https://leoissac123-art.github.io/GRModPro/">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="GrModPro">
-  <meta property="og:title" content="GrModPro — Free Minecraft Bedrock add-ons, easy to install">
-  <meta property="og:description" content="Download free Minecraft Bedrock add-ons and texture packs from GrModPro. Simple steps, honest labels, and a free account to save your favorites.">
-  <meta property="og:image" content="https://leoissac123-art.github.io/GRModPro/assets/grmodpro-hero-blue.webp">
-  <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 29 9.5v13L16 30 3 22.5v-13Z' fill='%234cb2ff'/%3E%3C/svg%3E">
-  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
-  <link href="https://api.fontshare.com/v2/css?f[]=chillax@500,600&f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css?v=11">
-  <script src="site-settings.js?v=4"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GrModPro — Free Minecraft Bedrock add-ons</title>
+<meta name="description" content="Discover free Minecraft Bedrock add-ons and texture packs. Browse clearly labeled downloads and save your favorites with GrModPro.">
+<meta name="theme-color" content="#070b14">
+<link rel="canonical" href="https://leoissac123-art.github.io/GRModPro/">
+<meta property="og:title" content="GrModPro — Make Minecraft feel new again">
+<meta property="og:description" content="Free Bedrock add-ons, texture packs, and your next adventure.">
+<meta property="og:image" content="https://leoissac123-art.github.io/GRModPro/assets/grmodpro-hero-blue.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=chillax@500,600&f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css?v=11">
+<script src="site-settings.js?v=4"></script>
+<style>
+body[data-page=home]{background:radial-gradient(ellipse at 90% 0,var(--accent-soft),transparent 38%),var(--bg)}
+.nav{min-height:80px}.nav-links a[aria-current=page]{background:var(--accent-soft);color:var(--accent)}
+.hero{width:var(--shell);margin:24px auto 0;border:1px solid var(--line-strong);border-radius:28px;box-shadow:var(--shadow)}
+.hero .shell{width:100%;padding:clamp(40px,7vw,92px) clamp(24px,5vw,64px)}
+.hero-copy{max-width:640px}.hero h1{font-size:clamp(2.65rem,6vw,5rem);letter-spacing:-.045em;max-width:620px;line-height:1.04;margin:24px 0}
+.hero h1 em{color:#89d4ff}.hero .lead{max-width:480px}.hero-search{margin-top:30px;box-shadow:0 16px 40px #0003}.hero-search label{min-width:0}
+.hero-points{margin-bottom:0}.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}.hero-actions a{color:#d5eaff;font-size:.9rem;text-underline-offset:5px}
+.release-strip{display:flex;align-items:center;gap:12px;margin:20px auto 0;padding:14px 18px;border:1px solid var(--line);border-radius:16px;background:var(--surface);font-size:var(--text-sm);color:var(--muted)}
+.release-strip details{min-width:0;flex:1}.release-strip summary{cursor:pointer;color:var(--text);font-weight:600}.release-strip p{margin-top:10px;max-width:85ch}.release-dot{width:8px;height:8px;flex:none;border-radius:50%;background:var(--warn)}
+.section-head h2{font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:-.035em}.section-head p{max-width:54ch}.grid{gap:24px}.card{box-shadow:0 8px 24px #0000000d}.card-body{padding:22px;gap:10px}.card h3{line-height:1.25}.card:focus-within{border-color:var(--accent)}
+.step{position:relative;background:linear-gradient(135deg,var(--accent-soft),transparent 65%),var(--surface);padding:30px}.step-num{border:1px solid var(--line-strong);background:var(--accent-soft);color:var(--accent);border-radius:50%;width:46px;height:46px}
+.cat-tile{padding:24px}.cta-band{border-radius:28px}.site-footer{background:var(--surface)}
+@media(hover:hover){.card:hover{transform:translateY(-6px)}.cat-tile:hover{box-shadow:var(--shadow)}}
+@media(max-width:720px){.nav{min-height:68px}.hero{margin-top:16px;border-radius:22px}.hero .shell{padding:38px 22px}.hero .kicker{font-size:.7rem;max-width:100%;white-space:normal}.hero h1{font-size:clamp(2.4rem,10vw,3.5rem)}.hero-points{gap:10px 16px}.release-strip{align-items:flex-start}.release-dot{margin-top:8px}.section-head{gap:14px}.cta-band .actions{display:grid;width:100%}.cta-band .btn{white-space:normal;text-align:center}.footer-grid nav{gap:16px}.step{padding:24px}}
+</style>
 </head>
 <body data-page="home">
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
-  <div class="shell nav">
-    <a class="brand" href="index.html" aria-label="GrModPro home"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 29 9.5v13L16 30 3 22.5v-13Z" fill="currentColor" opacity=".18"/><path d="M16 2 29 9.5 16 17 3 9.5Z" fill="currentColor" opacity=".55"/><path d="M16 17v13L3 22.5v-13Z" fill="currentColor" opacity=".35"/><path d="M16 2 29 9.5v13L16 30 3 22.5v-13Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span>Gr<b>Mod</b>Pro</span></a>
-    <nav class="nav-links" aria-label="Main"><a href="index.html" aria-current="page">Home</a><a href="discover.html">Browse add-ons</a><a href="categories.html">Categories</a><a href="trending.html">Popular</a><a href="recent.html">New</a></nav>
-    <div class="nav-right">
-      <button class="icon-btn" type="button" data-settings aria-label="Display settings" title="Display settings"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></svg></button>
-      <div class="auth-slot" id="auth-slot" aria-live="polite"></div>
-      <button class="icon-btn menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg></button>
-    </div>
-  </div>
-  <div class="shell mobile-nav" id="mobile-nav">
-    <nav aria-label="Mobile"><a href="index.html" aria-current="page">Home</a><a href="discover.html">Browse add-ons</a><a href="categories.html">Categories</a><a href="trending.html">Popular</a><a href="recent.html">New</a></nav>
-    <div class="mobile-auth" id="mobile-auth"></div>
-  </div>
+<div class="shell nav">
+<a class="brand" href="index.html" aria-label="GrModPro home"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 29 9.5v13L16 30 3 22.5v-13Z" fill="currentColor" opacity=".2"/><path d="M16 2 29 9.5 16 17 3 9.5Z" fill="currentColor"/><path d="M16 17v13M3 9.5 16 17 29 9.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg><span>Gr<b>Mod</b>Pro</span></a>
+<nav class="nav-links" aria-label="Main"><a href="index.html" aria-current="page">Home</a><a href="discover.html">Browse add-ons</a><a href="categories.html">Categories</a><a href="trending.html">Popular</a><a href="recent.html">New</a></nav>
+<div class="nav-right"><button class="icon-btn" type="button" data-settings aria-label="Display settings"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M5 5l2 2m10 10 2 2M5 19l2-2M17 7l2-2"/></svg></button><div class="auth-slot" id="auth-slot" aria-live="polite"></div><button class="icon-btn menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button></div>
+</div>
+<div class="shell mobile-nav" id="mobile-nav"><nav aria-label="Mobile"><a href="index.html" aria-current="page">Home</a><a href="discover.html">Browse add-ons</a><a href="categories.html">Categories</a><a href="trending.html">Popular</a><a href="recent.html">New</a></nav><div class="mobile-auth" id="mobile-auth"></div></div>
 </header>
 <main id="main">
-
-<section class="setup-notice shell" role="status" aria-label="Website status">
-  <span class="setup-notice-dot" aria-hidden="true"></span>
-  <div class="setup-notice-copy">
-    <strong>TEST WEBSITE · DEVELOPMENT IN PROGRESS</strong>
-  <p class="notice-copy">Target version: Minecraft Bedrock v26.52. Add-on compatibility is still being checked; listings marked early or unverified may not work on every device.</p>
-    <p>GrModPro is still being built and carefully tested. We’re reviewing the website’s code, checking pages and buttons, and testing the mod-download links and file imports so we can catch problems before calling anything ready. Some mods, downloads, and features may not work yet while we finish setting everything up. Thanks for your patience while we improve GrModPro!</p>
-  </div>
-</section>
-
-
-
-<section class="hero">
-  <img class="hero-art" src="assets/grmodpro-hero-blue.webp" alt="" width="1920" height="1080" fetchpriority="high">
-  <div class="shell">
-    <div class="hero-copy">
-      <span class="kicker">Minecraft Bedrock v26.52 · phone, tablet &amp; PC</span>
-      <h1>Make Minecraft <em>feel new</em> again.</h1>
-      <p class="lead">Free add-ons and texture packs you can install in a few taps. Every download is clearly labeled, so you always know what you're getting.</p>
-      <form class="hero-search" id="hero-search" role="search">
-        <label for="hero-q"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="sr-only">Search add-ons</span>
-          <input id="hero-q" type="search" placeholder="Try “horror” or “textures”" autocomplete="off"></label>
-        <button class="btn btn-primary" type="submit">Search</button>
-      </form>
-      <ul class="hero-points">
-        <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>100% free</li><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Easy 3-step install</li><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Honest “ready” labels</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="section shell" aria-labelledby="popular-h">
-  <div class="section-head">
-    <div><h2 id="popular-h">Ready to download</h2><p>Start with one of these. Tap Download, open the file with Minecraft, and you're set.</p></div>
-    <a class="link-more" href="discover.html?ready=1">See all downloads <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
-  </div>
-  <div class="grid" id="popular"><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div></div>
-</section>
-
-<section class="section shell" id="how" aria-labelledby="how-h">
-  <div class="section-head"><div><h2 id="how-h">How to install, in 3 steps</h2><p>No computer skills needed. It works the same way for every pack on this site.</p></div></div>
-  <div class="steps-grid">
-    <div class="step"><span class="step-num">1</span><h3>Download</h3><p>Pick an add-on and tap the blue Download button. The file is small and saves to your device.</p></div>
-    <div class="step"><span class="step-num">2</span><h3>Open with Minecraft</h3><p>Tap the downloaded file. Your device will ask which app to use — choose Minecraft and it imports by itself.</p></div>
-    <div class="step"><span class="step-num">3</span><h3>Turn it on</h3><p>Edit a world (try a copy first), open Add-Ons or Resource Packs, switch the pack on, and play.</p></div>
-  </div>
-</section>
-
-<section class="section shell" aria-labelledby="cats-h">
-  <div class="section-head"><div><h2 id="cats-h">Find what you like</h2><p>Browse by the kind of fun you're looking for.</p></div>
-    <a class="link-more" href="categories.html">All categories <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a></div>
-  <div class="cat-grid" id="cats"></div>
-</section>
-
-<section class="section shell" aria-labelledby="soon-h">
-  <div class="section-head"><div><h2 id="soon-h">Coming soon</h2><p>Projects we're working on. Save them to your favorites so they're easy to find later.</p></div>
-    <a class="link-more" href="discover.html">See everything <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a></div>
-  <div class="grid" id="soon"></div>
-</section>
-
-<section class="section shell" id="account-cta">
-  <div class="cta-band">
-    <div><h2>Make a free account</h2><p>Save your favorite add-ons and come back to them on any device. It takes less than a minute — just an email and a password. Not ready? You can browse and save favorites as a guest.</p></div>
-    <div class="actions"><a class="btn btn-primary btn-lg" href="signup.html">Sign up free</a><a class="btn btn-lg" href="login.html">I already have an account</a></div>
-  </div>
-</section>
+<section class="hero" aria-labelledby="hero-title">
+<img class="hero-art" src="assets/grmodpro-hero-blue.webp" alt="" width="1920" height="1080" fetchpriority="high">
+<div class="shell"><div class="hero-copy"><span class="kicker">YOUR NEXT MINECRAFT ADVENTURE STARTS HERE</span><h1 id="hero-title">Same world.<br><em>New possibilities.</em></h1><p class="lead">Give your Minecraft world a fresh start with free Bedrock add-ons and texture packs. Find your next favorite, one discovery at a time.</p>
+<form class="hero-search" id="hero-search" role="search"><label for="hero-q"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="sr-only">Search add-ons</span><input id="hero-q" type="search" placeholder="Search add-ons, textures, and more" autocomplete="off"></label><button class="btn btn-primary" type="submit">Find add-ons</button></form>
+<div class="hero-actions"><a href="discover.html">Explore the collection →</a><a href="#how">New here? Installation guide</a></div>
+<ul class="hero-points"><li>Free downloads</li><li>Clear compatibility labels</li><li>Phone, tablet &amp; PC</li></ul>
+</div></div></section>
+<aside class="shell release-strip" aria-label="Development and compatibility notice"><span class="release-dot" aria-hidden="true"></span><details><summary>In development · Compatibility is still being checked</summary><p>Target version: Minecraft Bedrock v26.52. This is a test website. We are reviewing the code, pages, buttons, download links, and file imports. Some mods, downloads, and features may not work yet. Early or unverified listings may not work on every device. Back up your world before installing an add-on.</p></details></aside>
+<section class="section shell" aria-labelledby="popular-h"><div class="section-head"><div><h2 id="popular-h">Your next world upgrade</h2><p>Explore listings marked ready to download. Check each pack’s details before installing.</p></div><a class="link-more" href="discover.html?ready=1">All downloads →</a></div><div class="grid" id="popular"><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div></div></section>
+<section class="section shell" aria-labelledby="cats-h"><div class="section-head"><div><h2 id="cats-h">Find your kind of adventure</h2><p>A new look, a different challenge, or something unexpected.</p></div><a class="link-more" href="categories.html">All categories →</a></div><div class="cat-grid" id="cats"></div></section>
+<section class="section shell" id="how" aria-labelledby="how-h"><div class="section-head"><div><h2 id="how-h">From download to your world</h2><p>Three steps to get started. Follow any extra instructions on the pack’s page.</p></div></div><div class="steps-grid"><div class="step"><span class="step-num">01</span><h3>Find your pack</h3><p>Check its compatibility and download the available add-on file to your device.</p></div><div class="step"><span class="step-num">02</span><h3>Import into Minecraft</h3><p>Open the downloaded file with Minecraft. Wait for the import to finish before continuing.</p></div><div class="step"><span class="step-num">03</span><h3>Make it yours</h3><p>Back up your world, then activate the pack in its resource or behavior pack settings.</p></div></div></section>
+<section class="section shell" aria-labelledby="soon-h"><div class="section-head"><div><h2 id="soon-h">On the horizon</h2><p>A first look at projects in progress. Save a favorite to find it again later.</p></div><a class="link-more" href="discover.html">Explore everything →</a></div><div class="grid" id="soon"></div></section>
+<section class="section shell" id="account-cta"><div class="cta-band"><div><h2>A home for your favorites.</h2><p>Create a free account to keep your favorite add-ons together across devices. Just browsing? You can also save favorites as a guest.</p></div><div class="actions"><a class="btn btn-primary btn-lg" href="signup.html">Create free account</a><a class="btn btn-lg" href="login.html">Log in</a></div></div></section>
 </main>
-<footer class="site-footer">
-  <div class="shell">
-    <div class="footer-grid">
-      <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 29 9.5v13L16 30 3 22.5v-13Z" fill="currentColor" opacity=".18"/><path d="M16 2 29 9.5 16 17 3 9.5Z" fill="currentColor" opacity=".55"/><path d="M16 17v13L3 22.5v-13Z" fill="currentColor" opacity=".35"/><path d="M16 2 29 9.5v13L16 30 3 22.5v-13Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span>Gr<b>Mod</b>Pro</span></a>
-      <nav aria-label="Footer">
-        <a href="discover.html">Browse add-ons</a><a href="index.html#how">How to install</a>
-        <a href="account.html">My account</a><button class="linklike" type="button" data-settings>Display settings</button>
-      </nav>
-    </div>
-    <p class="footer-note">© <span data-year>2026</span> GrModPro. Free community add-ons for Minecraft Bedrock. Not an official Minecraft product and not approved by or associated with Mojang or Microsoft. Always back up your world before installing add-ons.</p>
-  </div>
-</footer>
+<footer class="site-footer"><div class="shell"><div class="footer-grid"><a class="brand" href="index.html"><span>Gr<b>Mod</b>Pro</span></a><nav aria-label="Footer"><a href="discover.html">Browse add-ons</a><a href="#how">Installation guide</a><a href="account.html">My account</a><button class="linklike" type="button" data-settings>Display settings</button></nav></div><p class="footer-note">© <span data-year>2026</span> GrModPro. Free community add-ons for Minecraft Bedrock. Not an official Minecraft product and not approved by or associated with Mojang or Microsoft. Always back up your world before installing add-ons.</p></div></footer>
 <script src="assets/catalog.js?v=4"></script>
 <script type="module" src="assets/pages.js?v=8"></script>
 <script src="ai-assistant.js" defer></script>
