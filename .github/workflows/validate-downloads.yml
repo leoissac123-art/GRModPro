@@ -1,0 +1,21 @@
+name: Validate downloadable mod archives
+on:
+  push:
+    paths:
+      - 'downloads/**'
+      - 'tools/validate_downloads.py'
+      - '.github/workflows/validate-downloads.yml'
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate actual downloadable archives
+        run: python tools/validate_downloads.py
